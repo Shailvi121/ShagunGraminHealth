@@ -1,0 +1,453 @@
+.contract-labour-main {
+  border: 1px solid #cccccc;
+  float: left;
+  margin-top: -13px;
+  padding:20px;
+  width: 100%;
+}
+
+.contract-labour-main .breadcrumb {
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  top:0;
+}
+
+.contract-area {
+  float: left;
+  width: 100%;
+}
+
+.contract-area .row-grps {
+  float: left;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.row-grps > h2 {
+  border-bottom: 1px solid #cccccc;
+  color: #1976d2;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.row-grps table {
+  width: 100%;
+}
+
+.row-grps table tr th {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 1px solid #7c7c7c !important;
+  color: #3c3c3c;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.row-grps table tr td {
+  border: 1px solid #7c7c7c!important;
+  padding: 5px;
+  vertical-align:top;
+}
+
+.row-grps table tr td input[type="text"] {
+  border: 1px solid #cccccc;
+  width: 100%;
+  padding:8px;
+  color:#383636;
+}
+
+.row-grps table tr td textarea {
+  border: 1px solid #cccccc;
+  width: 100%;
+  padding:8px;
+  color:#383636;
+}
+
+.add_more {
+  float: right;
+  margin-bottom: 20px;
+}
+
+.add_more > a {
+  background:url("../images/add-more.png") no-repeat #1976d2;
+  color: #ffffff;
+  font-size: 14px;
+  padding:8px 30px 8px 8px;
+  background-position:80px center;
+}
+
+form.payment .registration .documents.treasury-challan > .row-grps .add_more a {
+   background:url("../images/add-more.png") no-repeat #cb221b;
+     background-position:80px center;
+}
+
+.contract-labour-main .breadcrumb ul li {
+    background: url("../images/arrow-right.png") no-repeat right 5px;
+    float: left;
+    padding-right: 17px;
+}
+
+.contract-labour-main .breadcrumb ul li:last-child {
+    background:none;
+}
+
+.contract-labour-main .breadcrumb li:first-child a {
+  padding-left: 0;
+}
+
+.contract-labour-main .breadcrumb li:last-child a {
+  color:#DA1E17;
+}
+
+.contract-labour-main .submit {
+  width: 100%;
+  float: left;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contract-labour-main .submit > a {
+  background: #1976d2 none repeat scroll 0 0;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 8px 30px;
+}
+
+.contract-labour-main .submit > a:hover {
+  background:#0C549E;
+  }
+  
+  table#contract_info tr td {
+  position: relative;
+  padding-bottom:15px;
+}
+
+table#contract_info tr td .error {
+  top: 40px;
+}
+
+table#other_contract_info tr td {
+  position: relative;
+  padding-bottom:15px;
+}
+
+table#other_contract_info tr td .error {
+  top:40px;
+}
+
+table#contract_info tr td i.fa-calendar, table#other_contract_info tr td i.fa-calendar {
+  position: absolute;
+  right: 7px;
+  top: 13px;
+}
+
+table#contract_info tr td:nth-child(2) .error {
+  top: 68px;
+}
+
+.haryana-contractors {
+  float: left;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.haryana-contractors > h2 {
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+
+.haryana-contractors > table {
+  width: 100%;
+}
+
+.haryana-contractors table tr td {
+  border: 1px solid #ccc;
+  font-size: 13px;
+  padding:10px;
+  text-align: center;
+  vertical-align:middle;
+}
+
+.haryana-contractors table tr td a {
+  background: #cb221b;
+  color: #fff;
+  padding:6px 10px;
+}
+
+.haryana-contractors table tr td a:hover {
+ background:#a30000;
+ }
+ 
+ .new-listing.contract-listing > h2 {
+  margin-bottom: 10px;
+}
+
+.contract-listing table.list_latest td {
+  border-left:none;
+  border-right:none !important;
+  border-top:none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  vertical-align: middle;
+}
+
+.contract-listing table td p {
+  margin-top: 6px;
+}
+
+.contract_lab .section-main > a.click-amend {
+
+  color: #1976d2;
+  float: left;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+
+.contract_lab .section-main > a.click-amend.division {
+ border-right:1px solid #5c5c5c !important;
+ }
+
+
+
+.contract_lab .section-main > a.click-amend:nth-child(3) {
+  border: none;
+}
+
+.contract_lab .section-main > a.click-amend:hover {
+ text-decoration:underline;
+ }
+ 
+.contract_lab .paginatiion li a.current, .contract_lab .pagination li a:hover {
+  border: 1px solid #444;
+}
+
+.contract_lab > form > p.information {
+  margin: 0;
+}
+
+.contract_lab .tresury.declaration .small-form p.error_custom {
+  bottom: -15px;
+  font-size: 12px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.contract_lab.full {
+  position: relative;
+}
+
+.contract-area form table#contract_info th {
+  padding: 5px 0;
+}
+
+a.click-amend {
+  color: #1976d2;
+  font-size: 14px;
+  font-weight: 600;
+  float:left;
+}
+a.click-amend:hover {
+  text-decoration:underline;
+}
+
+.contract_lab .accordion-new {
+  margin: 0;
+}
+
+.contract_lab .accordion-new > .main-top {
+  margin-top: 0;
+  padding-bottom:10px;
+}
+
+.haryana-contractors td{
+  position:relative;
+}
+
+.haryana-contractors td .loader {
+  left: inherit;
+  position: absolute;
+  right: -5px;
+  top: 5px;
+}
+
+.contract_lab .inside-grp span.defines span.cl_icon {
+  margin-right: 0;
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+
+.contract_lab .section-main.counting > .info-form > ul > li:first-child {
+  background-position:15px 11px;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 20px;
+  width: auto;
+}
+
+.contract_lab .section-main.counting > .info-form > ul > li:first-child a {
+  padding-left: 0;
+}
+
+.i-migrant .box-body{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.migrant-link.pull-right {
+  background: #cb221b;
+  color: #fff;
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+form#addcontribution .inside-grp table#injuredDetail.add_contribution th {
+  vertical-align: top;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td span.cl_icon {
+  position: absolute;
+  right:10px;
+  top:20px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td {
+  max-width:300px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td .contribution_radio {
+  float: left;
+  margin-right:5px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td.type_td {
+  width:300px;
+  min-width:137px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(2) {
+  width:180px;
+    min-width:100px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(3) {
+  width:120px;
+    min-width:120px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(4) {
+  width:162px;
+    min-width:162px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(5) {
+  width:125px;
+    min-width:125px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(6) {
+  width:110px;
+    min-width:110px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(7) {
+  width:110px;
+    min-width:110px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(8) {
+  width:142px;
+    min-width:130px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(9) {
+  width:120px;
+    min-width:120px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(10) {
+  width:198px;
+    min-width:114px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(11) {
+  width:120px;
+    min-width:120px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(12) {
+  width:198px;
+    min-width:114px;
+}
+
+form#addcontribution table#injuredDetail.add_contribution td:nth-child(13) {
+  width:198px;
+    min-width:114px;
+}
+
+form#filter-form .declaration.upload_csv {
+    margin-top: 10px;
+}
+
+
+.inside .forms-table table#injuredDetail.add_contribution td select {
+  width: 100%;
+}
+
+.welfare_board .forms-table #injuredDetail th {
+  font-weight: 600;
+}
+
+.welfare_board .forms-table #injuredDetail td > form {
+  float: left;
+  width: 50%;
+}
+
+.table-responsive {
+  width: 100%;
+  float: left;
+  overflow: auto;
+  overflow-y: hidden;
+  margin-bottom: 30px;
+}
+
+.table-responsive table{
+ margin-bottom:0 !important;
+ }
+ 
+ .welfare_board table#injuredDetail td .button {
+    height: 32px;
+}
+.contribution-scroll{
+	    width: 100%;
+    float: left;
+    overflow: auto;
+    margin-bottom: 30px;
+    max-height: 500px;
+}
+form#addcontribution table.add_contribution td:nth-child(3) , form#addcontribution table.add_contribution td:nth-child(4) {width:100%; position:relative;}
+form#addcontribution table.add_contribution td:nth-child(3) input , form#addcontribution table.add_contribution td:nth-child(4)input {width:100% !important; margin:0px; padding:0px 10px !important; padding-right:30px !important;}
+form#addcontribution table.add_contribution td:nth-child(3) span , form#addcontribution table.add_contribution td:nth-child(4) span {width:20px !important; position:absolute !important;margin: -4px 0 !important;}
+form#addcontribution table.add_contribution td:nth-child(1) {width: 300px !important; min-width: 137px !important;}
+form#addcontribution table.add_contribution td:nth-child(2) {width: 300px !important; min-width: 137px !important;}
+form#addcontribution table.add_contribution td:nth-child(3) { width: 162px !important; min-width: 162px !important;}
+form#addcontribution table.add_contribution td:nth-child(4) { width: 162px !important; min-width: 162px !important;}
+form#addcontribution table.add_contribution td:nth-child(5) {width: 300px !important; min-width: 137px !important;}
+form#addcontribution table.add_contribution td:nth-child(6) {width: 300px !important; min-width: 137px !important;}
+form#addcontribution table.add_contribution td:nth-child(7) {width: 300px !important; min-width: 137px !important;}
+form#addcontribution table.add_contribution td:nth-child(8) {width: 300px !important; min-width: 137px !important;}
+
+
+ form#addcontribution .inside-grp table.add_contribution th{
+text-align:center;
+}

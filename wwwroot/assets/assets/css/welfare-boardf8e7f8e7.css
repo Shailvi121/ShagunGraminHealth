@@ -1,0 +1,562 @@
+.hworker_verification {
+  width: 100%;
+  float: left;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.hworker_verification .form-group {
+  position: relative;
+  margin-bottom:50px;
+}
+
+.hworker_verification .form-group label {
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+.hworker_verification .form-group > input {
+  border: 1px solid #ccc;
+  color: #333;
+  display: inline-block;
+  font-size: 13px;
+  height: 36px;
+  padding: 5px;
+  width: 182px;
+}
+
+.hworker_verification p.error {
+  bottom: -34px;
+  font-size: 13px;
+}
+
+.hworker_verification a.verify {
+    background: #2c2c2c;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 20px;
+    position: relative;
+    right: 5px;
+    top: 1px;
+    border: 1px solid #000;
+}
+
+.wb-section {
+  width: 100%;
+  float: left;
+  margin-bottom:40px;
+}
+
+.wb-section .my-account {
+  width: 100%;
+  float: left;
+}
+
+.wb-section a.edit {
+  background: #1976d2 ;
+  border-radius: 10px;
+  color: #fff;
+  float: left;
+  font-size: 14px;
+  padding: 12px 20px;
+}
+
+.profile-image {
+  float: right;
+  width:150px;
+  border:1px solid #ccc;
+  padding:2px;
+  height:150px;
+}
+
+.profile-image > img {
+  height: 100%;
+  width: 100%;
+}
+
+.worker-info {
+  float: left;
+  width: 100%;
+}
+
+.worker-info table {
+  width: 100%;
+}
+
+.worker-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.wb-section .worker-info table th {
+  background:none;
+  border: 1px solid #ccc !important;
+  color: #333;
+  font-weight: 600;
+  padding:8px;
+  background-color: #ff9934;
+}
+
+.wb-section .worker-info table th:first-child {
+  width: 80px;
+}
+
+.wb-section .worker-info table td {
+  border: 1px solid #ccc !important;
+  color: #333;
+  font-size: 13px;
+  padding: 8px 20px;
+}
+
+.wb-section .worker-info table td a.approved {
+  color: #166d01;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wb-section .family-detail {
+  width: 100%;
+  float: left;
+  margin-bottom:20px;
+}
+
+.add-more {
+  background: #3452b5;
+  border: 1px solid #223f9f;
+  color: #fff;
+  float: right;
+  font-size: 13px;
+  padding: 6px;
+  margin-bottom: 20px;
+}
+
+.add-more span {
+  margin-left: 5px;
+}
+
+.wb-section table {
+  float: left;
+  width: 100%;
+}
+
+.wb-section table th {
+  background:none;
+  border: 1px solid #ccc !important;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  padding:10px;
+  text-align:left;
+  background-color: #ff9934;
+}
+
+.wb-section table td{
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 13px;
+  padding:10px;
+}
+
+.wb-section .submit_btn {
+  font-weight: 600;
+  padding:6px 20px;
+}
+
+.benefits_schemes {
+  width: 100%;
+  float: left;
+}
+
+.schemes_links {
+  float: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.schemes_links li {
+  float: left;
+}
+
+.schemes_links li a {
+  background: #efefef;
+  color: #2c2c2c;
+  float: left;
+  font-size: 14px;
+  padding: 10px 15px;
+  font-weight:600;
+}
+
+.schemes_links li a.active {
+ background:#1976d2;
+ color:#fff;
+ }
+ 
+.wb-section .benefits_schemes table th {
+  border: medium none !important;
+  width: 350px;
+  vertical-align:middle;
+  padding:10px;
+  color:#000;
+}
+
+.wb-section .benefits_schemes table td {
+  border: none !important;
+  font-size:14px;
+  vertical-align:middle;
+  padding:10px;
+}
+
+
+.wb-section .benefits_schemes table td:nth-child(2) {
+  width: 630px;
+}
+
+.wb-section .benefits_schemes table td a {
+  background: #1976d2;
+  border-radius: 10px;
+  color: #fff;
+  float: right;
+  font-size: 14px;
+  height: 38px;
+  padding:8px 5px;
+  text-align: center;
+  width: 112px;
+  font-weight:600;
+}
+
+.wb-section .benefits_schemes table tr:nth-child(2n+1) {
+  background: #f3f3f3;
+}
+
+.wb-section .benefits_schemes table td a.noteligible {
+  background:#ff5d5d;
+}
+
+.wb-section .benefits_schemes table td a.noteligible:hover {
+  background:#fd3f3f;
+}
+
+.wb-section .benefits_schemes table td a.applied {
+  background: #008000;
+}
+
+.wb-section .benefits_schemes table td a.view-detail:hover {
+  background: #303F9F;
+}
+
+.wb-section .scheme table th {
+  padding: 8px 15px;
+}
+
+.wb-section .scheme table td{
+  padding: 8px 15px;
+}
+
+.wb-section .scheme table td input[type="text"],select {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 254px;
+}
+
+.wb-section .scheme table td input[type="file"] {
+  border: 1px solid #ccc;
+  padding: 4px;
+  width: 254px;
+}
+
+.wb-section .scheme table {
+  margin-bottom: 20px;
+}
+
+.wb-section .scheme table td table {
+  margin-bottom: 0;
+}
+
+.wb-section .scheme h3 {
+  color: #333;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.wb-section .scheme > h2 {
+  float: left;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.wb-section .e-date {
+  float: right;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.e-date > span {
+  color: #da231c;
+}
+
+.wb-section .family-detail table td {
+  max-width: 350px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.wb-section .family-detail table.family_info td:nth-child(2) {
+    min-width: 135px;
+}
+
+.wb-section .family-detail table td input, .wb-section .family-detail table td select, .wb-section .family-detail table td textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-bottom:10px;
+}
+
+.wb-section .family-detail table td .error {
+  bottom: 3px;
+  left: 10px;
+}
+
+.family-detail h3, .nominee-family-detail h3 {
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: 100%;
+  color: #333;
+}
+
+.wb-section .scheme table th:first-child {
+  width: 240px;
+}
+
+.wb-section .scheme a {
+  color: #fff;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 8px 15px;
+}
+
+.wb-section .scheme a.approv {
+  background:#008000;
+}
+
+.wb-section .scheme .comments.first {
+  margin-top: 15px;
+}
+
+.wb-section .scheme .comment-by {
+  margin-top: 8px;
+}
+
+.wb-section .scheme .comments {
+  margin-bottom: 20px;
+}
+
+
+.wb-section .scheme {
+  float: left;
+  width: 100%;
+}
+
+.apply_sche {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wb-section .scheme .apply_sche a {
+  background: #1976d2;
+  font-weight: 600;
+  margin: 0;
+}
+
+.wb-section .scheme .apply_sche a:hover {
+  background:#303F9F;
+}
+
+.back-button {
+  background: #5c5c5c;
+  border: 1px solid #5c5c5c;
+  color: #fff;
+  font-size: 14px;
+  padding: 6px 15px;
+}
+
+.back-button:hover {
+ background:#000;
+ }
+ 
+ .wb-section .info_basic {
+  float: left;
+  padding-right: 15px;
+  width: 70%;
+}
+
+.wb-section .doc_section {
+  float: left;
+  padding-left: 15px;
+  width: 30%;
+}
+
+.wb-section .scheme .doc_section table th:first-child {
+  width: auto;
+  text-align: center;
+}
+
+.wb-section .scheme .doc_section table td {
+  width: 50%;
+}
+
+.wb-section .scheme .doc_section table td a {
+  color: #1976D2;
+}
+
+.nominee-family-detail {
+  float: left;
+  width: 100%;
+}
+
+
+.nominee-family-detail table td {
+  max-width: 152px;
+  vertical-align:middle;
+  position:relative;
+}
+
+.nominee-family-detail table tr.add_nominee td input {
+  float: left;
+  margin-right: 5px;
+  width: auto;
+  margin-top: 8px;
+}
+
+.nominee-family-detail table td select {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+  
+}
+
+.nominee-family-detail table td textarea {
+   width: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.nominee-family-detail table tr.add_nominee td input {
+  width: auto;
+  float: left;
+  margin-right: 5px;
+  margin-left:5px;
+}
+
+.nominee-family-detail table tr.add_nominee td label {
+  float: left;
+  margin-right: 10px;
+  margin-top: 6px;
+  width: auto;
+}
+
+.nominee-family-detail table tr.add_nominee td select {
+  width:150px;
+  float: left;
+  margin-right: 5px;
+  margin-top:5px;
+}
+
+.nominee-family-detail table td input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 100%;
+}
+
+.nominee-family-detail table td i {
+  position: absolute;
+  right: 13px;
+  top: 29px;
+}
+
+.family_info td i.fa.fa-calendar {
+  position: absolute;
+  right: 13px;
+  top: 29px;
+}
+
+.nominee-family-detail table tr.add_nominee td {
+  border: medium none !important;
+  padding-left: 0;
+  padding-top:0;
+}
+
+.wb-section > .scheme > table {
+  width: 68.8%;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group {
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group.bott {
+    margin-bottom: 10px;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group.bott label {
+    text-transform:capitalize;
+	font-weight:600;
+	float:left;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group.bott > p.pull-right.half {
+    width: auto;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group.bott > p.pull-right.half a {
+    font-size: 13px;
+    color: #1976d2;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group > p.pull-right {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.box-body.table-responsive.objec-letter > .col-md-12.reply-objec .box.box-primary .documents > .form-group > p {
+  width: 100%;
+}
+
+.welfare_board .calculatedrecord table.contribution-yrs td {
+  min-width:82px;
+}
+
+.forms-table table#injuredDetail.outside_contribution td .error {
+  left: 5px;
+}
+
+.wb-section .family-detail table td a.submit_btn {
+  float: none;
+}
+
+.nominee-family-detail table tr > td >a {
+    color: #1976d2;
+}
+
+.documents.treasury-challan .input.error_payment .error {
+  top: 52px;
+}
+
+.wb-section table tr:nth-child(2n) {
+  background-color: #f2f2f2;
+}

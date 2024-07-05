@@ -1,0 +1,252 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="description" content="Shagun Gramin Health and Family Welfare Council" />
+
+ 
+	<link rel="shortcut icon" href="assets/images/logo-fav.png" type="image/x-icon">
+	<link href='fonts.googleapis.com/css4c5c4c5c.css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<title>Home - Shagun Gramin Health and Family Welfare Council</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" />
+	<link href="maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="~/assets/assets/css/style.css" rel="stylesheet" type="text/css">
+	<link href="~/assets/assets/css/menu.css" rel="stylesheet" type="text/css">
+	<link href="~/assets/assets/css/jquery.bxslider.css" rel="stylesheet" />
+	<link href="~/assets/assets/css/woco-accordion.min.css" rel="stylesheet">
+	<link href="~/assets/assets/css/style_factory.css" rel="stylesheet" type="text/css">
+	<link href="~/assets/assets/css/style-contract.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="~/assets/assets/css/easydropdown.css" />
+	<link rel="stylesheet" type="text/css" href="~/assets/assets/css/default.css" />
+	<link rel="stylesheet" href="code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="~/assets/assets/css/welfare-boardf8e7f8e7.css?t=1668831099" />
+
+	
+</head>
+<body>
+	<div class="home-page">
+		<!-- Header Start Here -->
+		<header class="header">
+			<div class="welcome_top">
+				<div class="wrapper">
+					<div class="welcome_labor">Welcome Shagun Gramin Health and Family Welfare Council</div>
+					<ul class="top_nav">
+
+						<li><a href="#slider_sec" title="Skip-to-main-content">Skip to Main Content </a></li>
+
+						<li><a onclick="javascript:sizeDown(12);" title="small-text">A-</a></li>
+						<li><a onclick="javascript:sizeRe(16);" title="med-text">A</a></li>
+						<li><a onclick="javascript:sizeUp(17);" title="large-text">A+</a></li>
+
+
+						<script language="javascript">
+
+
+							function sizeDown(min) {
+								$("*").each(function () {
+									//get this object's current font size
+									var dCurrSize = parseFloat($(this).css("font-size"), 16);
+									//the only parameter of the function is the minimum font size
+									//if current size's bigger than minimum size we go and resize
+									if (dCurrSize > min) {
+										//set font-size to current size - 1
+										$(this).css("font-size", (dCurrSize - 1).toString() + "px");
+									}
+								});
+							}
+
+
+
+							function sizeUp(iHateMax) {
+								//see the documentation of the function above. it's almost the same
+								$("*").each(function () {
+									var dCurrSize = parseFloat($(this).css("font-size"), 16);
+
+									if (dCurrSize < iHateMax) {
+										$(this).css("font-size", (dCurrSize + 1).toString() + "px");
+									}
+								});
+							}
+							function sizeRe(resize) {
+								//see the documentation of the function above. it's almost the same
+								$("*").each(function () {
+									$(this).css("font-size", 16 + "px");
+								});
+							}
+
+						</script>
+
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="header_logo_sec">
+				<div class="wrapper">
+					<figure class="logo"><a href="/Organization/Index"><img src="assets/images/logo.png" alt=""></a></figure>
+					<h1>Shagun Gramin Health and Family Welfare Council</h1>
+				</div>
+			</div>
+		</header>
+		<br>
+		<div class="wrapper nevig">
+
+
+			<div class="wrapper nevig">
+
+
+				<section class="navigation_bg">
+
+					<div id="navigation">
+						<ul class="first">
+							<li class="active"><a href="~/Organization/Index">Home</a></li>
+
+							<li>
+								<a href="javascript:void(0);">About Us <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></a>
+								<ul id="description">
+
+									<li><a href="/Organization/Overview"><i class="fa fa-caret-right"></i> Overview</a></li>
+									<li><a href="/Organization/CompanyValues"><i class="fa fa-caret-right"></i> Company Values</a></li>
+									<li><a href="/Organization/Mission"><i class="fa fa-caret-right"></i>Mission</a></li>
+									<li><a href="/Organization/Vision"><i class="fa fa-caret-right"></i>Vision</a></li>
+
+								</ul>
+							</li>
+							<li><a href="/Organization/Services">Services <span></span></a></li>
+							<li>
+								<a href="javascript:void(0);">Download Application Forms <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></a>
+								<ul id="description">
+									<li><a href="~/assets/assets/form.pdf"><i class="fa fa-caret-right"></i>Membership Form</a></li>
+									<li><a href="~/assets/assets/job.pdf"><i class="fa fa-caret-right"></i>Job Application Form</a></li>
+
+								</ul>
+							</li>
+
+							
+
+
+
+
+
+
+
+
+
+							<li><a href="/Organization/Contact" title="Contact">Contact Us<span></span></a></li>
+						</ul>
+					</div>
+
+				</section>
+			</div>
+		</div>
+
+		<!--Navigation Start Here-->
+		<!--Navigation End Here-->
+		<div class="container">
+      
+            @RenderBody()
+			</div>
+      
+
+		<!-- Footer Start Here -->
+		<section class="footer">
+			<div class="wrapper">
+				<div class="footer_inner">
+					<!--<div class="hrlogo"><img src="https://hrylabour.gov.in/assets/images/hr-logo.png" alt=""></div> -->
+					<div class="address_office">
+						<h2>Head Office</h2>
+						<p>
+							<!--Shagun Gramin Health and Family Welfare Council <br> -->
+							Office No. 228 2nd floor,<br>
+							Global Business Park,<br>
+							Zirakpur, Punjab - 140603
+							<!-- New Delhi -->
+						</p>
+						<p>&nbsp;</p>
+						<p>
+
+						</p>
+					</div>
+					<div class="contact-us">
+						<h2>CONTACT US</h2>
+						<div class="full-info">
+							<div class="info-grp">
+								<p>Mobile No.:<span> 7087412635</span></p>
+								<p>Head Office : <span>9am to 5pm- Monday to Saturday</span></p>
+
+								<p>Website : <span><a target="_blank" href="index-3.html">https://shagungraminhealth.com/</a></span> </p>
+							</div>
+							<div class="info-grp">
+								<h2>Email:</h2>
+
+								<p>For Non Technical Support : <a href="#" class="mailcrypt">info<span><span>∂</span></span>shagungraminhealth.com</a></p>
+								<p>&nbsp;</p>
+								<p>For Technical Support : <a href="#" class="mailcrypt">support<span><span>∂</span></span>shagungraminhealth.com</a></p>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="rightside-btns">
+			<a class="help" href="contact.html"><img src="~/assets/assets/images/help.png"><span>HELP</span></a>
+			<a class="faq" href="assets/form.pdf"><img src="~/assets/assets/images/pdf1.png"><span>FORM</span></a>
+		</div>
+		<section class="footer_bottom">
+			<div class="wrapper">
+				<div class="copyright">All rights reserved - Shagun Gramin Health and Family Welfare Council  </div> </br> <div><a href="privacy_policy.html">Privacy Policy </a> | <a href="terms_and_conditions.html"> Terms and Conditions</a> | <a href="refund-policy.html"> Refund and Cancellations Policy </a>  </div>
+			</div>
+		</section>
+
+
+		<!-- Footer End Here -->
+		<script type="text/javascript" src="~/assets/assets/js/mailcrypt.js"></script>
+		<script>
+			/*Numeric Validation*/
+			$(document).on('keypress', '.numbersOnly', function (e) {
+				if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+					return false;
+				}
+			});
+			/*Only Alphabets Validation*/
+			$('.alphabetsOnly').keypress(function (e) {
+				if ((e.which > 64 && e.which < 91) || (e.which > 96 && e.which < 123) || (e.which == 32) || (e.which == 8) || (e.which == 0)) {
+					return true;
+				} else {
+					return false;
+				}
+			});
+			$('input,select,textarea').bind("drop", function (e) { e.preventDefault(); return false; });
+
+			$(document).ready(function () {
+				$('a.mailcrypt').mailcrypt();
+			});
+		</script>
+
+	</div>
+
+		<script type="text/javascript" src="~/assets/assets/js/html5.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/menu-script.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/jquery.bxslider.min.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/common.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/tab.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/jquery.easydropdown.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/zebra_datepicker.js"></script>
+		<script type="text/javascript" src="~/assets/assets/admin/plugins/input-mask/jquery.inputmask.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/smsapi.js"></script>
+		<script type="text/javascript" src="~/assets/assets/js/jquery.slimscroll.min.js"></script>
+		<script>
+			var base_url = "index.html"
+		</script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

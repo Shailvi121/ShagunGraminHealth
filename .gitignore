@@ -1,0 +1,13 @@
+bin/
+obj/
+packages
+.vs
+*.user
+*.pubxml
+FSDataBase/FSDataBase.dbmdl
+FSDataBase/FSDataBase.jfm
+/FundingShieldUserMigrate
+/cr
+/UserMgmtUI/ClientApp/src/assets/lib/msal
+*.bak
+.idea
