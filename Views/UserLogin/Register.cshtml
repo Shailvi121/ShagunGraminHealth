@@ -1,6 +1,10 @@
-﻿@{
+﻿
+
+@{
     Layout = null;
 }
+
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="~/admin/assets/" data-template="vertical-menu-template-free">
 
@@ -60,7 +64,7 @@
                                     <div class="col-md-6 col-lg-5 d-none d-md-block">
                                         <img src="~/assets/assets/images/logo.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                                     </div>
-                                    <form>
+                                    <form asp-action="Register" asp-controller="UserLogin" method="post">
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create New ShagunGraminHealth.com panel Account.</h5>
 
                                         <div class="input-group input-group-outline my-3">
@@ -69,6 +73,9 @@
 
                                         <div class="input-group input-group-outline my-3">
                                             <input type="email" name="Email" class="form-control" placeholder="Enter your Email">
+                                        </div>
+                                        <div class="input-group input-group-outline my-3">
+                                            <input type="password" name="Password" class="form-control" placeholder="Enter your Password">
                                         </div>
 
                                         <div class="input-group input-group-outline my-3">
