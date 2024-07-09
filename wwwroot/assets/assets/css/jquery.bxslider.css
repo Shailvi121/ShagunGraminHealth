@@ -234,12 +234,12 @@
 }
 
 .slider .bx-wrapper .bx-controls-direction a.bx-prev {
-background:rgba(255, 255, 255, 0.3) url("../images/s-left.png") no-repeat scroll center center !important;
+background:rgba(255, 255, 255, 0.3) url("~/assets/assets/images/s-left.png") no-repeat scroll center center !important;
 left:20px;
 }
 
 .slider .bx-wrapper .bx-controls-direction a.bx-next {
-  background:rgba(255, 255, 255, 0.3) url("../images/s-right.png") no-repeat center center !important; 
+  background:rgba(255, 255, 255, 0.3) url("~/assets/assets/images/s-right.png") no-repeat center center !important; 
   right:20px;
 }
 

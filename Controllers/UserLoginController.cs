@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using System;
 using System.Reflection;
@@ -8,10 +9,10 @@ namespace ShagunGraminHealth.Controllers
 {
     public class UserLoginController : Controller
     {
-        private readonly ShagunGraminHealthContext _context;
-        public UserLoginController(ShagunGraminHealthContext context)
+        private readonly IUserService _userService;
+        public UserLoginController(IUserService userService)
         {
-            _context = context;
+            this._userService = userService;
         }
 
 
@@ -19,55 +20,40 @@ namespace ShagunGraminHealth.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
+            var user = _userService.SignIn(model);
+            if (user != null)
             {
-                var user = _context.Users.FirstOrDefault(u => u.Name == model.Name);
-                if (user != null)
-                {
-                    return RedirectToAction("Index", "Dashboard");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                }
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
             return RedirectToAction("Index", "Dashboard");
         }
+
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(User model)
         {
-            if (ModelState.IsValid)
+            var existingUser = _userService.SignUp(model);
+            if (existingUser != null)
             {
-                var existingUser = _context.Users.FirstOrDefault(u => u.Name == model.Name);
-                if (existingUser == null)
-                {
-
-                    var newUser = new User
-                    {
-                        Name = model.Name,
-                        Email = model.Email,
-                        Password = model.Password,
-                        Mobile = model.Mobile,
-                        ReferenceId = model.ReferenceId,
-                        Passcode = model.Passcode,
-                    };
-                    _context.Users.Add(newUser);
-                    _context.SaveChanges();
-
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Username already exists.");
-                }
+                return RedirectToAction("Login");
             }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Username already exists.");
+            }
+
             return RedirectToAction("Login");
         }
     }

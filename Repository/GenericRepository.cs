@@ -1,10 +1,20 @@
-﻿using ShagunGraminHealth.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using ShagunGraminHealth.Data;
+using ShagunGraminHealth.Interface;
+using ShagunGraminHealth.Models;
 using System.Linq.Expressions;
 
 namespace ShagunGraminHealth.Repository
 {
-    public class UserRepository<T> : IUser<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        public ShagunGraminHealthContext context { get; set; }
+        private readonly DbSet<T> _dbSet;
+        public GenericRepository(ShagunGraminHealthContext context)
+        {
+            this.context = context;
+            _dbSet = context.Set<T>();
+        }
         public Task AddAsync(T entity)
         {
             throw new NotImplementedException();
@@ -15,10 +25,11 @@ namespace ShagunGraminHealth.Repository
             throw new NotImplementedException();
         }
 
-        public Task<T> FindAsync(Expression<Func<T, bool>> predicate)
+        public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FirstOrDefaultAsync(predicate);
         }
+
 
         public Task<List<T>> GetAllAsync()
         {

@@ -31,12 +31,12 @@ textarea{resize:vertical;}
 
 /* set image max width to 100% */
 img {
-	max-width: 100%;
+	max-width: 160px;
 	height: auto;
 	width: auto\9; /* ie8 */
-	vertical-align:middle;
-	border:none;
-	outline:none;
+	vertical-align: middle;
+	border: none;
+	outline: none;
 }
 
 

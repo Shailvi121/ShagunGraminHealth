@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ShagunGraminHealth.Areas.Admin.Models.RegistrationModel
+
+@{
     Layout = null;
 }
 
@@ -60,24 +62,24 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
                                     <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                        <img src="~/assets/assets/images/logo.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                                        <img src="~/assets/assets/images/logo-img.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                                     </div>
-                                    <form asp-area="admin" asp-action="Register" asp-controller="Login" method="post">
+                                    <form asp-area="Admin" asp-action="Register" asp-controller="Login" method="post">
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create New ShagunGraminHealth.com panel Account.</h5>
 
                                         <div class="input-group input-group-outline my-3">
-                                            <input type="text" name="Name" class="form-control" placeholder="Enter your Name">
+                                            <input type="text" name="Name" class="form-control" placeholder="Enter your Name" required>
                                         </div>
 
                                         <div class="input-group input-group-outline my-3">
-                                            <input type="email" name="Email" class="form-control" placeholder="Enter your Email">
+                                            <input type="email" name="Email" class="form-control" placeholder="Enter your Email" required>
                                         </div>
                                         <div class="input-group input-group-outline my-3">
-                                            <input type="password" name="Password" class="form-control" placeholder="Enter your Password">
+                                            <input type="password" name="Password" class="form-control" placeholder="Enter your Password" required>
                                         </div>
 
                                         <div class="input-group input-group-outline my-3">
-                                            <input type="text" name="Mobile" class="form-control" placeholder="Enter your Mobile Number">
+                                            <input type="text" name="Mobile" class="form-control" placeholder="Enter your Mobile Number" required>
                                         </div>
 
                                         <div class="input-group input-group-outline my-3">

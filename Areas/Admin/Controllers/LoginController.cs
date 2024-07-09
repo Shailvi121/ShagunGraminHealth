@@ -22,7 +22,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _context.Users.FirstOrDefault(u => u.Name == model.Name);
+                var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
                 if (user != null)
                 {
                     return RedirectToAction("Index", "Dashboard");
@@ -43,7 +43,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var existingUser = _context.Users.FirstOrDefault(u => u.Name == model.Name);
+                var existingUser = _context.Users.FirstOrDefault(u => u.Email == model.Email);
                 if (existingUser == null)
                 {
 
@@ -71,5 +71,5 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
     }
 }
 
-    }
-}
+    
+

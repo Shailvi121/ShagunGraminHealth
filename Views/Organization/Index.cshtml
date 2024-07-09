@@ -63,9 +63,9 @@
 								</ul>
 							</div>
 							<div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager bx-default-pager">
-								<div class="bx-pager-item"><a href="~/" data-slide-index="0" class="bx-pager-link">1</a></div>
-								<div class="bx-pager-item"><a href="~/" data-slide-index="1" class="bx-pager-link active">2</a></div>
-								<div class="bx-pager-item"><a href="~/" data-slide-index="2" class="bx-pager-link">3</a></div></div>
+								<div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link">1</a></div>
+								<div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link active">2</a></div>
+								<div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div></div>
 								<div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a>
 								<a class="bx-next" href="">Next</a></div></div>
 						</div>
@@ -478,133 +478,7 @@
 		<div class="otp-modal "></div>
 
 		<script type="text/javascript" src="~/assets/assets/js/sha1.js"></script>
-		<script>
-			//$(function(){
-			var base_url = 'index-2.html';
-			$('.captcha-refresh').click(function (event) {
-				event.preventDefault();
-				$('.captcha').attr('src', base_url + 'home/captcha?' + Math.random());
-				/*$.get(base_url+'home/captcha',function(res){
-					$('#captcha').attr('src',res);
-				});*/
-			});
-			//});
-			function loginType(name) {
-				if (name == 'bocw_worker' || name == 'welfare_worker') {
-					$("#username_label").text('User Name');
-				} else {
-					$("#username_label").text('Email');
-				}
-			}
-
-			$('.bxslider').bxSlider({
-				auto: true,
-				speed: 500,
-			});
-			$('.bxslider1').bxSlider({
-				auto: true,
-				speed: 500,
-			});
-			$('.bxslider2').bxSlider({
-				auto: true,
-				speed: 500,
-			});
-			$('#tab').tabify();
-
-			// $('.bxslider1').bxSlider({
-			// minSlides: 1,
-			// maxSlides: 5,
-			// moveSlides: 1
-			// });
-
-			$('.bxslider2').bxSlider({
-				minSlides: 1,
-				maxSlides: 5,
-				slideWidth: 205,
-				slideMargin: 28.7,
-				moveSlides: 1
-			});
-			jQuery(".accordion").accordion();
-
-			$(document).ready(function () {
-				$('.vc').keyup(function (e) {
-					if ($(this).val().length == $(this).attr("maxlength")) {
-						$(this).next().focus();
-					}
-					if (e.keyCode == 8) {
-						if ($(this).val().length == 0) {
-							$(this).prev().focus();
-						}
-					}
-				});
-
-
-			});
-
-			function encryptPass() {
-				var password = $("input[name=password]").val();
-				$("input[name=password2]").val(password);
-				var encrypted = SHA1(password);
-				$("input[name=password]").val(encrypted);
-			}
-
-			function encryptPassDept() {
-				var password = $("input[name=dp_password]").val();
-				var encrypted = SHA1(password);
-				$("input[name=dp_password]").val(encrypted);
-			}
-
-			function myFunction() {
-				var vc1, vc2, vc3, vc4, type, text, text1;
-				document.getElementById("demo1").innerHTML = "";
-				document.getElementById("demo").innerHTML = "";
-
-				// Get the value of the input field with id="numb"
-				vc1 = document.getElementById("vc1").value;
-				vc2 = document.getElementById("vc2").value;
-				vc3 = document.getElementById("vc3").value;
-				vc4 = document.getElementById("vc4").value;
-				type = document.getElementById("act_type").value;
-				// If x is Not a Number or less than one or greater than 10
-				if (type == "") {
-					text1 = "Please select the Licence type";
-					document.getElementById("demo1").innerHTML = text1;
-				} else if (vc1 == '' || vc2 == '' || vc3 == '' || vc4 == '') {
-					text = "Please enter a valid 16 digit code";
-					document.getElementById("demo").innerHTML = text;
-				} else {
-					document.getElementById("lic_frm").submit();
-				}
-
-
-			}
-			$('.marquee').marquee({
-				//speed in milliseconds of the marquee
-				duration: 15000,
-				//gap in pixels between the tickers
-				gap: 50,
-				//time in milliseconds before the marquee will start animating
-				delayBeforeStart: 0,
-				//'left' or 'right'
-				direction: 'left',
-				//true or false - should the marquee be duplicated to show an effect of continues flow
-				duplicated: false,
-				pauseOnHover: true
-			});
-
-
-
-
-
-		</script>
-		<script>
-			$(document).ready(function () {
-				$('.captcha-refresh').on('click', function () {
-					$.get('home/reloadCaptcha.html', function (data) {
-						$('.captImg').html(data);
-					});
-				});
-			});
-		</script>
+		<script src="~/assets/assets/js/javascript.js"></script>
+		
 	</div>
 	
