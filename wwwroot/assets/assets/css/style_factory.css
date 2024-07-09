@@ -31,7 +31,7 @@ textarea{resize:vertical;}
 
 /* set image max width to 100% */
 img {
-	max-width: 160px;
+	max-width: 104px;
 	height: auto;
 	width: auto\9; /* ie8 */
 	vertical-align: middle;
@@ -307,7 +307,7 @@ body {
 	right: 0;
 	text-align: center;
 	text-transform: uppercase;
-	top: 29px;
+	top: 65px;
 	
 }
 
@@ -1038,13 +1038,14 @@ ul.tab li a {
 }
 
 .bocw_img {
-	background:url("../images/logohd.png") no-repeat;
+	background: url("../images/logo-img.png") no-repeat;
+	background-size: 197px;
 	float: left;
-	height: 270px;
-	margin: 0;
+	height: 266px;
+	margin: 6px;
 	padding: 0;
 	width: 270px;
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .read_more {
