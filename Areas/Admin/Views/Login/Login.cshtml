@@ -1,91 +1,50 @@
-﻿@model ShagunGraminHealth.Areas.Admin.Models.LoginModel
+﻿@model ShagunGraminHealth.Models.LoginModel
 
 @{
     Layout = null;
 }
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="~/admin/assets/" data-template="vertical-menu-template-free">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>SignUp | ShagunGraminHealth</title>
-    <meta name="description" content="" />
-    <link rel="icon" type="image/x-icon" href="~/admin/assets/img/favicon/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="~/admin/assets/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="~/admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="~/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="~/admin/assets/css/demo.css" />
-    <link rel="stylesheet" href="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="~/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
-    <script src="~/admin/assets/vendor/js/helpers.js"></script>
-    <script src="~/admin/assets/js/config.js"></script>
-    <style>
-        /* Custom styles */
-        body {
-            font-family: 'Public Sans', sans-serif;
-        }
-
-        .card {
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-
-        .form-control {
-            border-color: #ced4da;
-        }
-
-        .btn-danger {
-            background-color: #0b5c1f;
-            border-color: #0b5c1f;
-        }
-
-            .btn-danger:hover {
-                background-color: #0b5c1f;
-                border-color: #0b5c1f;
-            }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | ShagunGraminHealth</title>
+    <meta name="description" content="Sign up form for ShagunGraminHealth">
+    <link rel="icon" type="image/x-icon" href="~/admin/assets/img/favicon/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/admin/assets/vendor/fonts/boxicons.css">
+    <link rel="stylesheet" href="~/admin/assets/vendor/css/core.css">
+    <link rel="stylesheet" href="~/admin/assets/vendor/css/theme-default.css">
+    <link rel="stylesheet" href="~/admin/assets/css/demo.css">
+    <link rel="stylesheet" href="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link href="~/css/login.css" rel="stylesheet" />
 </head>
 
 <body>
-    <section class="vh-100" style="background-color:#f8f9fa;">
+    <section class="vh-100">
         <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-6">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-7 col-lg-6">
                     <div class="card">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                                <div class="card-body p-4 p-lg-5 text-black">
-                                    <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                        <img src="~/assets/assets/images/logo-img.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-                                    </div>
-                                    <form  asp-are="Admin" asp-controller="Login" asp-action="Login" method="post">
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create New ShagunGraminHealth.com panel Account.</h5>
-
-                                        <div class="input-group input-group-outline my-3">
-                                            <input type="text" name="Email" class="form-control" placeholder="Enter your Email">
+                            <div class="col-md-5">
+                                <img src="~/assets/assets/images/logo-img.png" alt="logo" class="card-img">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h5 class="fw-normal mb-4">Create New ShagunGraminHealth.com Account</h5>
+                                    <form asp-controller="UserLogin" asp-action="Login" method="post">
+                                        <div class="mb-3">
+                                            <input type="text" name="Email" class="form-control" placeholder="Email Address">
                                         </div>
-
-
-                                        <div class="input-group input-group-outline my-3">
-                                            <input type="password" name="Password" class="form-control" placeholder="Enter your Password">
+                                        <div class="mb-3">
+                                            <input type="password" name="Password" class="form-control" placeholder="Password">
                                         </div>
-
-
-
-
-
-
-                                        <div class="pt-1 mb-4">
-                                            <button class="btn btn-danger btn-lg btn-block" type="submit">SignIn</button>
-                                        </div>
-
-                                        <div class="small text-muted">
-                                            <a href="#!" class="text-decoration-none text-muted me-2">Terms of Use</a>
-                                            <a href="#!" class="text-decoration-none text-muted">Privacy Policy</a>
+                                        <button class="btn btn-danger btn-lg btn-block mb-3" type="submit">Sign In</button>
+                                        <div class="text-muted">
+                                            <a href="#!" class="me-2">Terms of Use</a>
+                                            <a href="#!">Privacy Policy</a>
                                         </div>
                                     </form>
                                 </div>
@@ -96,16 +55,10 @@
             </div>
         </div>
     </section>
-
-    <!-- Core JS scripts (you can leave them as is) -->
     <script src="~/admin/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="~/admin/assets/vendor/libs/popper/popper.js"></script>
     <script src="~/admin/assets/vendor/js/bootstrap.js"></script>
     <script src="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="~/admin/assets/vendor/js/menu.js"></script>
-    <script src="~/admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="~/admin/assets/js/main.js"></script>
-    <script src="~/admin/assets/js/dashboards-analytics.js"></script>
 </body>
 
 </html>

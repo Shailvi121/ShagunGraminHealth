@@ -1,0 +1,93 @@
+﻿
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.card-img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+    .form-control:focus {
+        border-color: #0b5c1f;
+        box-shadow: 0 0 0 0.2rem rgba(11, 92, 31, 0.25);
+    }
+
+.btn-danger {
+    background-color: #0b5c1f;
+    border-color: #0b5c1f;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+    .btn-danger:hover {
+        background-color: #0a4b1b;
+        border-color: #0a4b1b;
+    }
+
+.form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #0b5c1f;
+    border-color: #0b5c1f;
+}
+
+.text-muted {
+    font-size: 0.875rem;
+}
+
+    .text-muted a {
+        color: #6c757d;
+        text-decoration: none;
+        transition: color 0.15s ease-in-out;
+    }
+
+        .text-muted a:hover {
+            color: #495057;
+        }
+
+.form-check-label {
+    font-size: 0.875rem;
+}
+
+.checkbox-label {
+    margin-bottom: 1rem;
+}
+
+
