@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Models;
 
 namespace ShagunGraminHealth.Areas.Admin.Controllers

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Interface;
-using ShagunGraminHealth.Models;
 using System.Linq.Expressions;
 
 namespace ShagunGraminHealth.Repository

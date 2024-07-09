@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Interface;
-using ShagunGraminHealth.Interface.Repository;
 using ShagunGraminHealth.Models;
+using ShagunGraminHealth.Repository;
+using ShagunGraminHealth.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ShagunGraminHealthContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<UserRepository<User>>();
-builder.Services.AddScoped<IUser, UserRepository<User>>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>)); 
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ShagunGraminHealth.Models;
 
-namespace ShagunGraminHealth.Models
+namespace ShagunGraminHealth.Data
 {
     public partial class ShagunGraminHealthContext : DbContext
     {
