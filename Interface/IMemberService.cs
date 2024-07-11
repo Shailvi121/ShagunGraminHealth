@@ -1,4 +1,5 @@
 ﻿using ShagunGraminHealth.Areas.Admin.Models;
+using ShagunGraminHealth.Models;
 
 namespace ShagunGraminHealth.Interface
 {

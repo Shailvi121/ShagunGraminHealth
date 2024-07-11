@@ -23,7 +23,6 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<MembershipPlan> MembershipPlans { get; set; } = null!;
 
-        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -80,6 +79,17 @@ namespace ShagunGraminHealth.Data
                     .WithMany(p => p.UserRoles)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_UserRole_User");
+            });
+
+            modelBuilder.Entity<MembershipPlan>(entity =>
+            {
+                entity.ToTable("MembershipPlan");
+
+                entity.Property(e => e.PlanFee).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.PlanName).HasMaxLength(100);
+
+                entity.Property(e => e.PlanNumber).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);
