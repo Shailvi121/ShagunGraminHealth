@@ -1,27 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Interface;
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace ShagunGraminHealth.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public ShagunGraminHealthContext context { get; set; }
+        private readonly ShagunGraminHealthContext _context;
         private readonly DbSet<T> _dbSet;
+
         public GenericRepository(ShagunGraminHealthContext context)
         {
-            this.context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = context.Set<T>();
         }
-        public Task AddAsync(T entity)
+
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(entity);
         }
 
         public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
@@ -29,25 +34,26 @@ namespace ShagunGraminHealth.Repository
             return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
-
-        public Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync();
         }
 
-        public Task Update(T entity)
+        public async Task Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            await SaveChangesAsync();
         }
     }
 }
