@@ -76,6 +76,20 @@
     <script src="~/admin/assets/vendor/libs/popper/popper.js"></script>
     <script src="~/admin/assets/vendor/js/bootstrap.js"></script>
     <script src="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script>
+        function showPopup(message) {
+            alert(message);
+        }
+
+        $(document).ready(function () {
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                    showPopup('@TempData["SuccessMessage"]');
+            </text>
+        }
+                        });
+    </script>
 </body>
 
 </html>

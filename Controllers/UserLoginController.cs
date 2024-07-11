@@ -27,6 +27,8 @@ namespace ShagunGraminHealth.Controllers
             var user = _userService.SignIn(model);
             if (user != null)
             {
+                TempData["SuccessMessage"] = "Login successful!";
+
                 return RedirectToAction("Index", "Dashboard");
             }
             else
@@ -47,6 +49,8 @@ namespace ShagunGraminHealth.Controllers
             var existingUser = _userService.SignUp(model);
             if (existingUser != null)
             {
+                TempData["SuccessMessage"] = "Registration successful! Please log in.";
+
                 return RedirectToAction("Login");
             }
             else
