@@ -28,12 +28,12 @@
                 <div class="col-md-7 col-lg-6">
                     <div class="card">
                         <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src="~/assets/assets/images/logo-img.png" alt="logo" class="card-img">
+                            <div class="col-md-12">
+                                <img src="~/assets/assets/images/logo-img.png" style="width: 103px;" alt="logo" class="card-img">
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-12">
                                 <div class="card-body">
-                                    <h2 class="fw-normal mb-4">Create New ShagunGraminHealth Account</h2>
+                                    <h2 class="fw-normal mb-4" style="font-size: 20px;">Create New ShagunGraminHealth Account</h2>
                                     <form asp-action="Register" asp-controller="UserLogin" method="post">
                                         <div class="mb-3">
                                             <input type="text" name="Name" class="form-control" placeholder="Full Name" required>
@@ -61,7 +61,10 @@
                                         </div>
                                         <button class="btn btn-danger btn-lg btn-block mb-3" type="submit">Sign Up</button>
                                         <div class="text-muted text-center">
-                                            Already have an account? <a href="UserLogin/Login">Sign In</a>
+                                            Already have an account? <a href="/UserLogin/Login">Login In</a>
+                                        </div>
+                                        <div class="text-muted text-center">
+                                            Go to home <a href="/Organization/Index">Home</a>
                                         </div>
                                     </form>
                                 </div>

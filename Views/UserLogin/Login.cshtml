@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="~/assets/assets/images/logo-img.png" alt="logo" class="card-img">
+                                <img src="~/assets/assets/images/logo-img.png" style="height: 136px;width: 105px;position: absolute;top: 21%;left: 10%;" alt="logo" class="card-img">
                             </div>
                             <div class="col-md-7">
                                 <div class="card-body">
@@ -42,6 +42,7 @@
                                             <input type="password" name="Password" class="form-control" placeholder="Password" required>
                                         </div>
                                         <button class="btn btn-danger btn-lg btn-block mb-3" type="submit">Sign In</button>
+                                        <a href="/UserLogin/Register" class="btn btn-danger btn-lg btn-block mb-3" type="submit">Register</a>
                                         <div class="text-muted">
                                             <a href="#!" class="me-2">Terms of Use</a>
                                             <a href="#!">Privacy Policy</a>
@@ -71,7 +72,7 @@
                     showPopup('@TempData["SuccessMessage"]');
             </text>
         }
-                });
+                        });
     </script>
 </body>
 
