@@ -1,4 +1,4 @@
-﻿using ShagunGraminHealth.Areas.Admin.Models;
+﻿using System.Threading.Tasks;
 using ShagunGraminHealth.Models;
 
 namespace ShagunGraminHealth.Interface
@@ -6,5 +6,7 @@ namespace ShagunGraminHealth.Interface
     public interface IMemberService
     {
         Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync();
+        Task<User> GetUserByIdAsync(int id);
+        Task UpdateUserProfileAsync(User user);
     }
 }

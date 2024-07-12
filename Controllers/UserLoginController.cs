@@ -20,7 +20,6 @@ namespace ShagunGraminHealth.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -28,7 +27,9 @@ namespace ShagunGraminHealth.Controllers
             if (user != null)
             {
                 TempData["SuccessMessage"] = "Login successful!";
-                return RedirectToAction("Index", "Dashboard");
+
+                return Redirect("/Admin/Dashboard");
+
             }
             else
             {
@@ -36,7 +37,6 @@ namespace ShagunGraminHealth.Controllers
             }
             return RedirectToAction("Index", "Dashboard");
         }
-
         public IActionResult Register()
         {
             return View();

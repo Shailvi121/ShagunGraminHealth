@@ -1,23 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
-using ShagunGraminHealth.Services;
+using ShagunGraminHealth.Models;
+using System.Threading.Tasks;
 
 namespace ShagunGraminHealth.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class MemberController : Controller
     {
         private readonly IMemberService _memberService;
+
         public MemberController(IMemberService memberService)
         {
-            _memberService=memberService;
+            _memberService = memberService;
         }
+
         public async Task<IActionResult> Index()
         {
-           var data = await _memberService.GetAllMembershipPlansAsync();
-
+            var data = await _memberService.GetAllMembershipPlansAsync();
             return View(data);
+        }
+
+        public async Task<IActionResult> UpdateProfile()
+        {
+            int userId = 1;
+            var user = await _memberService.GetUserByIdAsync(userId);
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                await _memberService.UpdateUserProfileAsync(user);
+                ViewBag.Message = "Profile updated successfully.";
+            }
+            return View(user);
+        }
+        public ActionResult Apply(string PlanNumber)
+        {
+
+            return View();
         }
     }
 }

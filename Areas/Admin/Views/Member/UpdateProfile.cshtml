@@ -1,0 +1,81 @@
+﻿@model ShagunGraminHealth.Models.User
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block nk-block-lg">
+                    <div class="nk-block-head">
+                        <div class="nk-block-head-content">
+                            <h4 class="title nk-block-title">Update Profile</h4>
+                            <div class="nk-block-des">
+                                <p>Update Profile Details like Personal and Social Media Links.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-bordered">
+                        <div class="card-inner">
+                            <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                                <div>
+                                    <h5>PERSONAL DETAILS</h5>
+                                </div>
+                                <br>
+                                <div>
+                                    <div class="row gy-3">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="Name">Full Name<span style="color:red">*</span></label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="Address">Address<span style="color:red">*</span></label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" id="Address" name="Address" value="@Model." required>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="Email">Email Address<span style="color:red">*</span></label>
+                                                <div class="form-control-wrap">
+                                                    <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" readonly required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="Mobile">Mobile Number<span style="color:red">*</span></label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" class="form-control" id="Mobile" name="Mobile" value="@Model.Mobile" maxlength="10" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row gy-2">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-lg btn-primary">Update Information</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            @if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-info">@ViewBag.Message</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
