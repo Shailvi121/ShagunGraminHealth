@@ -28,7 +28,6 @@ namespace ShagunGraminHealth.Controllers
             if (user != null)
             {
                 TempData["SuccessMessage"] = "Login successful!";
-
                 return RedirectToAction("Index", "Dashboard");
             }
             else
