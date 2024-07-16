@@ -1,16 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using System;
 using System.Reflection;
+using System.Security.Claims;
 
 namespace ShagunGraminHealth.Controllers
 {
     public class UserLoginController : Controller
     {
         private readonly IUserService _userService;
-        public UserLoginController(IUserService userService)
+        public UserLoginController(IUserService userService
+        )
         {
             this._userService = userService;
         }
@@ -23,9 +27,12 @@ namespace ShagunGraminHealth.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var user = _userService.SignIn(model);
+            var user = await _userService.SignInAsync(model);
+
             if (user != null)
             {
+                var roles = await _userService.GetRoles(user.Id);
+
                 TempData["SuccessMessage"] = "Login successful!";
 
                 return Redirect("/Admin/Dashboard");
@@ -36,7 +43,24 @@ namespace ShagunGraminHealth.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
             return RedirectToAction("Index", "Dashboard");
+
+            return View(model);
         }
+        //var user = _userService.SignIn(model);
+
+        //if (user != null)
+        //{
+        //    TempData["SuccessMessage"] = "Login successful!";
+
+        //    return Redirect("/Admin/Dashboard");
+
+        //}
+        //else
+        //{
+        //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        //}
+        //return RedirectToAction("Index", "Dashboard");
+
         public IActionResult Register()
         {
             return View();

@@ -5,9 +5,10 @@ namespace ShagunGraminHealth.Interface
 {
     public interface IUserService
     {
-        Task SignIn(LoginModel model);
+        Task<User> SignInAsync(LoginModel model);
 
         Task SignUp(User model);
+        Task<List<string>> GetRoles(int userId);
 
 
     }

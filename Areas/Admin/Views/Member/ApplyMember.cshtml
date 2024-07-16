@@ -1,0 +1,365 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<form asp-controller="Member" asp-action="ApplyMember" method="post" enctype="multipart/form-data">
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-inner">
+                <h5>आवेदन विवरण</h5>
+                <div class="row gy-3">
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Application_Id">आवेदन संख्या <span style="color:red">*</span></label>
+                            <input asp-for="Application_Id" class="form-control required" value="" readonly required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="PlanNumber">योजना संख्या <span style="color:red">*</span></label>
+                            <input asp-for="PlanNumber" class="form-control required" readonly value="@ViewBag.PlanNumber" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Reference">Reference <span style="color:red">*</span></label>
+                            <input asp-for="Reference" class="form-control required" value="" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <h5>व्यक्तिगत विवरण</h5>
+                <div class="row gy-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Candidate_Name">लाभार्थी का नाम <span style="color:red">*</span></label>
+                            <input asp-for="Candidate_Name" class="form-control required" value="" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Father_Name">पिता/पति का नाम <span style="color:red">*</span></label>
+                            <input asp-for="Father_Name" class="form-control required" value="" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="Parmanent_Address">स्थाई पता <span style="color:red">*</span></label>
+                            <textarea asp-for="Parmanent_Address" class="form-control required" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="Current_Address">वर्तमान पता <span style="color:red">*</span></label>
+                            <textarea asp-for="Current_Address" class="form-control required" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Mobile">मोबाइल नंबर <span style="color:red">*</span></label>
+                            <input asp-for="Mobile" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">जन्मतिथि <span style="color:red">*</span></label>
+                            <div class="form-control-wrap">
+                                <input asp-for="Date_of_Birth_Days" placeholder="DD" />
+                                <input asp-for="Date_of_Birth_Months" placeholder="MM" />
+                                <input asp-for="Date_of_Birth_Years" placeholder="YYYY" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">लिंग <span style="color:red">*</span></label>
+                            <select asp-for="Sex" class="form-control">
+                                <option value=""></option>
+                                <option value="पुरुष">पुरुष</option>
+                                <option value="महिला">महिला</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Educational_Level">शैक्षणिक स्तर <span style="color:red">*</span></label>
+                            <input asp-for="Educational_Level" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Marriage">वैवाहिक स्थिति <span style="color:red">*</span></label>
+                            <input asp-for="Marriage" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Category">जाति श्रेणी <span style="color:red">*</span></label>
+                            <select asp-for="Category" class="form-control">
+                                <option value=""></option>
+                                <option value="सामान्य">सामान्य</option>
+                                <option value="ओ.बी.सी">ओ.बी.सी.</option>
+                                <option value="बी.सी">बी.सी</option>
+                                <option value="एस.सि.">एस.सि.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Ration_Card">राशन कार्ड संख्या</label>
+                            <input asp-for="Ration_Card" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Aadhar_Card">आधार कार्ड संख्या <span style="color:red">*</span></label>
+                            <input asp-for="Aadhar_Card" class="form-control required" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <h5>बैंक विवरण</h5>
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Bank_Account">बैंक खाता संख्या <span style="color:red">*</span></label>
+                            <input asp-for="Bank_Account" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="IFSC">आई.एफ.एस.सी. कोड <span style="color:red">*</span></label>
+                            <input asp-for="IFSC" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="Bank_Name">बैंक का नाम <span style="color:red">*</span></label>
+                            <input asp-for="Bank_Name" class="form-control required" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="container">
+                    <h5>परिवार का विवरण </h5>
+
+                    <div class="row gy-2">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="serial_1">क्रम संख्या </label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="1" readonly="" id="serial_1" name="serial_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_name_1">परिवार के सदस्य का नाम</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="" id="family_member_name_1" name="family_member_name_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="relation_1">लाभार्थी से संबध </label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required email" id="relation_1" value="" name="relation_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="age_1">आयु</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" id="age_1" value="" name="age_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="aadhar_1">आधार कार्ड  संख्या </label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="" id="aadhar_1" name="aadhar_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="educational_leval_1">शिक्षा का स्तर </label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="" id="educational_leval_1" name="educational_leval_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-size: 0.7rem !important;" class="form-label" for="school_name_1">यदि पढ़ रहा  है / रही है तो स्कूल का नाम  </label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" id="school_name_1" value="" name="school_name_1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gy-2">
+                        <div class="col-md-6">
+                            <p>लाभार्थी  के परिवार का कोई अन्य सदस्य उपरोक्त कार्यलय में पंजीकृत है , यदि हा तो विवरण दीजिये </p>
+                            <div class="form-group">
+                                <label class="form-label" for="old_member_name">नाम</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="" id="old_member_name" name="old_member_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <br>   <br>
+                            <div class="form-group">
+                                <label class="form-label" for="old_application_no">पंजीकरण संख्या</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control required" value="" id="old_application_no" name="old_application_no">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row gy-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="age_proof">आयु प्रमाण दस्तावेज <span style="color:red">*</span></label>
+                                <div class="form-control-wrap">
+                                    <select name="age_proof" required class="form-control">
+                                        <option value=""></option>
+                                        <option value="आधार कार्ड">आधार कार्ड</option>
+                                        <option value="जन्म प्रमाण-पत्र">जन्म प्रमाण-पत्र</option>
+                                        <option value="राशन कार्ड">राशन कार्ड</option>
+                                        <option value="मतदान पहचान पत्र">मतदान पहचान पत्र</option>
+                                        <option value="ड्राइविंग लाइसेंस">ड्राइविंग लाइसेंस</option>
+                                        <option value="पैन कार्ड">पैन कार्ड</option>
+                                        <option value="स्कूल प्रमाण-पत्र">स्कूल प्रमाण-पत्र</option>
+                                        <option value="पासपोर्ट">पासपोर्ट</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="age_photo">फोटोप्रति<span style="color:red">*</span></label>
+                                <div class="form-control-wrap">
+                                    <div class="custom-file">
+                                        <input type="file" multiple class="custom-file-input" id="age_photo" name="age_photo" required>
+                                        <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="container">
+                    <h5>नामांकित विवरण</h5>
+                    <div class="row gy-2">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label class="form-label">क्रम संख्या</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" value="1" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">नामकिंत व्यक्तियों का नाम व पता नाम</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" name="family_member_name_n_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">लाभार्थी से संबध</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" name="relation_n_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label class="form-label">आयु</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" name="age_n_1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">नामकिंत व्यक्तियों को दी जाने वाली राशि अनुपातया</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" name="persentage_n_1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">फ़ोटो <span style="color:red">*</span></label>
+                            <input type="file" asp-for="Photo" class="custom-file-input" />
+                            <label class="custom-file-label" for="Photo">फाइलें चुनें</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">हस्ताक्षर (सफेद कागज पर नीला/काला हस्ताक्षर) <span style="color:red">*</span></label>
+                            <input type="file" asp-for="Signature" class="custom-file-input" />
+                            <label class="custom-file-label" for="Signature">फाइलें चुनें</label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Place">स्थान <span style="color:red">*</span></label>
+                            <input asp-for="Place" class="form-control required" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Form_Date">तिथि <span style="color:red">*</span></label>
+                            <input id="Form_Date" name="Form_Date" class="form-control required" readonly />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="nk-block">
+                    <div class="row gy-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-primary">Agree &amp; Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById("Form_Date").value = currentDate;
+    });
+</script>
