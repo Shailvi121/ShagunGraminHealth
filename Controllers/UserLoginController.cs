@@ -40,26 +40,14 @@ namespace ShagunGraminHealth.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "User not found. Please check your credentials.");
+
             }
-            return RedirectToAction("Index", "Dashboard");
 
-            return View(model);
-        }
-        //var user = _userService.SignIn(model);
+            TempData["ErrorMessage"] = "User not found. Please check your credentials.";
+            return RedirectToAction("Login", "UserLogin");
 
-        //if (user != null)
-        //{
-        //    TempData["SuccessMessage"] = "Login successful!";
-
-        //    return Redirect("/Admin/Dashboard");
-
-        //}
-        //else
-        //{
-        //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-        //}
-        //return RedirectToAction("Index", "Dashboard");
+        }       
 
         public IActionResult Register()
         {

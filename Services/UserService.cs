@@ -28,10 +28,10 @@ namespace ShagunGraminHealth.Services
                     var userRoles = await GetRoles(user.Id);
 
                     var authClaims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, model.Email),
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-                    };
+            {
+                new Claim(ClaimTypes.Email, model.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
 
                     foreach (var userRole in userRoles)
                     {
@@ -44,12 +44,13 @@ namespace ShagunGraminHealth.Services
                 }
                 else
                 {
-                    throw new Exception("User not found."); 
+                    return null;
+
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Sign in failed.", ex); 
+                throw new Exception("Sign in failed.", ex);
             }
         }
 

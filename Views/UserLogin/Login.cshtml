@@ -3,6 +3,7 @@
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +20,9 @@
     <link rel="stylesheet" href="~/admin/assets/css/demo.css">
     <link rel="stylesheet" href="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
     <link href="~/css/login.css" rel="stylesheet" />
+
+    <!-- Include toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,19 +64,45 @@
     <script src="~/admin/assets/vendor/libs/popper/popper.js"></script>
     <script src="~/admin/assets/vendor/js/bootstrap.js"></script>
     <script src="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script>
-        function showPopup(message) {
-            alert(message);
-        }
 
+    <!-- Include toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
         $(document).ready(function () {
+            // Function to show popup message using toastr
+            function showToastr(type, message) {
+                toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": true,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr[type](message);
+            }
         @if (TempData["SuccessMessage"] != null)
         {
             <text>
-                    showPopup('@TempData["SuccessMessage"]');
+                    showToastr('success', '@TempData["SuccessMessage"]');
             </text>
         }
-                        });
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <text>
+                    showToastr('error', '@TempData["ErrorMessage"]');
+            </text>
+        }
+                  });
+
+      
     </script>
 </body>
 

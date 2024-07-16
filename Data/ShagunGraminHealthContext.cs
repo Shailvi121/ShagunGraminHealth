@@ -23,6 +23,8 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<MembershipPlan> MembershipPlans { get; set; } = null!;
 
+        public virtual DbSet<MembershipForm> MembershipForms { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -90,6 +92,42 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.PlanName).HasMaxLength(100);
 
                 entity.Property(e => e.PlanNumber).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<MembershipForm>(entity =>
+            {
+                entity.ToTable("MembershipForm");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Application_Id).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.PlanNumber).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Reference).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Candidate_Name).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Father_Name).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Parmanent_Address).HasColumnType("text").IsRequired();
+                entity.Property(e => e.Current_Address).HasColumnType("text").IsRequired();
+                entity.Property(e => e.Mobile).HasMaxLength(15).IsRequired();
+                entity.Property(e => e.Date_of_Birth_Days).IsRequired();
+                entity.Property(e => e.Date_of_Birth_Months).IsRequired();
+                entity.Property(e => e.Date_of_Birth_Years).IsRequired();
+                entity.Property(e => e.Sex).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Educational_Level).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Marriage).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Category).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Ration_Card).HasMaxLength(255);
+                entity.Property(e => e.Aadhar_Card).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Bank_Account).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.IFSC).HasMaxLength(20).IsRequired();
+                entity.Property(e => e.Bank_Name).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.age_proof).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.age_photo).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.old_member_name).HasMaxLength(255);
+                entity.Property(e => e.old_application_no).HasMaxLength(255);
+                entity.Property(e => e.Photo).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Signature).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Place).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Form_Date).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);
