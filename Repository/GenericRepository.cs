@@ -31,7 +31,16 @@ namespace ShagunGraminHealth.Repository
 
         public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _dbSet.FirstOrDefaultAsync(predicate);
+            try
+            {
+                return await _dbSet.FirstOrDefaultAsync(predicate);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+       
         }
 
         public async Task<List<T>> GetAllAsync()
