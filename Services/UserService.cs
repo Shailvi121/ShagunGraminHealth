@@ -80,23 +80,29 @@ namespace ShagunGraminHealth.Services
         }
 
 
-        public async Task SignUp(User model)
-        {
-            var existingUser = await _repository.FindAsync(u => u.Email == model.Email);
-            if (existingUser == null)
-            {
-                var newUser = new User
-                {
-                    Name = model.Name,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Mobile = model.Mobile,
-                    ReferenceId = model.ReferenceId,
-                    Passcode = model.Passcode,
-                };
-                await _repository.AddAsync(newUser);
-                await _repository.SaveChangesAsync();
-            }
-        }
-    }
+		public async Task<User> SignUp(RegistrationModel model)
+		{
+			var existingUser = await _repository.FindAsync(u => u.Email == model.Email);
+			if (existingUser == null)
+			{
+				var newUser = new User
+				{
+					Name = model.Name,
+					Email = model.Email,
+					Password = model.Password,
+					Mobile = model.Mobile,
+					ReferenceId = model.ReferenceId,
+					Passcode = model.Passcode,
+				};
+
+				await _repository.AddAsync(newUser); 
+				await _repository.SaveChangesAsync();
+
+				return newUser; 
+			}
+
+			return null; 
+		}
+
+	}
 }

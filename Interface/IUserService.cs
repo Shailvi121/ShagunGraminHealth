@@ -7,7 +7,7 @@ namespace ShagunGraminHealth.Interface
     {
         Task<User> SignInAsync(LoginModel model);
 
-        Task SignUp(User model);
+        Task<User> SignUp(RegistrationModel model);
         Task<List<string>> GetRoles(int userId);
 
 

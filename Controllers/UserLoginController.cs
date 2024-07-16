@@ -54,22 +54,22 @@ namespace ShagunGraminHealth.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Register(User model)
-        {
-            var existingUser = _userService.SignUp(model);
-            if (existingUser != null)
-            {
-                TempData["SuccessMessage"] = "Registration successful! Please log in.";
+		[HttpPost]
+		public async Task<IActionResult> Register(RegistrationModel model)
+		{
+			var existingUser = await _userService.SignUp(model);  
+			if (existingUser != null)
+			{
+				TempData["SuccessMessage"] = "Registration successful! Please log in.";
+				return RedirectToAction("Login");
+			}
+			else
+			{
+				ModelState.AddModelError(string.Empty, "Email already exists.");
+			}
 
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Username already exists.");
-            }
+			return View(model); // Return to the registration view with the model
+		}
 
-            return RedirectToAction("Login");
-        }
-    }
+	}
 }

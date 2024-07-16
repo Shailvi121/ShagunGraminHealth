@@ -15,7 +15,7 @@ namespace ShagunGraminHealth.Repository
 
         public GenericRepository(ShagunGraminHealthContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context;
             _dbSet = context.Set<T>();
         }
 
