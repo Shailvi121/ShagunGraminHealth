@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using System.Threading.Tasks;
@@ -43,19 +44,36 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             ViewBag.PlanNumber = PlanNumber;
             return View();
         }
-		[HttpPost]
-		public async Task<IActionResult> ApplyMember(MembershipForm model)
-		{
-			if (ModelState.IsValid)
-			{
-				await _memberService.SaveMembershipFormAsync(model);
-				ViewBag.Message = "Membership application submitted successfully.";
-				return RedirectToAction("Index","Dashboard");
-			}
-			return View(model);
-		}
+        [HttpPost]
+        public async Task<IActionResult> ApplyMember(MembershipForm model, IFormFile fileToUpload)
+        {
+            if (ModelState.IsValid)
+            {
+                if (fileToUpload != null && fileToUpload.Length > 0)
+                {
+                    string uploadsFolder = "wwwroot/WebFormImages";
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + fileToUpload.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await fileToUpload.CopyToAsync(fileStream);
+                    }
 
+                    model.age_photo = "~/WebFormImages/" + uniqueFileName;
+                }
 
-	}
+                await _memberService.SaveMembershipFormAsync(model);
+                ViewBag.Message = "Membership application submitted successfully.";
+                return RedirectToAction("Index", "Dashboard");
+            }
+            return View(model);
+        }
+    }
 }
+    
+
+
+
+
+

@@ -3,294 +3,1117 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<form asp-controller="Member" asp-action="ApplyMember" method="post" enctype="multipart/form-data">
-    <div class="card card-bordered">
-        <div class="card-inner">
-            <h5>आवेदन विवरण</h5>
-            <div class="row gy-3">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Application_Id">आवेदन संख्या <span style="color:red">*</span></label>
-                        <input asp-for="Application_Id" class="form-control required" value="Model.Application_Id" readonly required />
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <!-- .nk-block-head -->
+                <div class="nk-block nk-block-lg">
+                    <div class="nk-block-head">
+                        <div class="nk-block-head-content">
+                            <h4 class="title nk-block-title">पंजीकरण</h4>
+                            <div class="nk-block-des">
+                                <p>अपने दस्तावेजों के अनुसार अपना विवरण दर्ज करें।.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="PlanNumber">योजना संख्या <span style="color:red">*</span></label>
-                        <input asp-for="PlanNumber" class="form-control required" readonly value="@ViewBag.PlanNumber" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Reference">Reference <span style="color:red">*</span></label>
-                        <input asp-for="Reference" class="form-control required" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <h5>व्यक्तिगत विवरण</h5>
-            <div class="row gy-2">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Candidate_Name">लाभार्थी का नाम <span style="color:red">*</span></label>
-                        <input asp-for="Candidate_Name" class="form-control required" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Father_Name">पिता/पति का नाम <span style="color:red">*</span></label>
-                        <input asp-for="Father_Name" class="form-control required" />
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label" for="Parmanent_Address">स्थाई पता <span style="color:red">*</span></label>
-                        <textarea asp-for="Parmanent_Address" class="form-control required" rows="4"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label" for="Current_Address">वर्तमान पता <span style="color:red">*</span></label>
-                        <textarea asp-for="Current_Address" class="form-control required" rows="4"></textarea>
-                    </div>
-                </div>
-              @*  <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Mobile">मोबाइल नंबर <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Mobile" required>
-                    </div>
-                </div>*@
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">जन्मतिथि <span style="color:red">*</span></label>
-                        <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Date_of_Birth_Days" required placeholder="DD">
-                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Date_of_Birth_Months" required placeholder="MM">
-                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Date_of_Birth_Years" required placeholder="YYYY">
 
+
+
+                    <div class="card card-bordered">
+                        <div class="card-inner">
+                            <div class="card-inner">
+
+                                <form  asp-action="ApplyMember" method="post" enctype="multipart/form-data">
+                                    <br><div class="">
+                                        <h5>आवेदन विवरण</h5>
+
+                                    </div><br>
+                                    <div class="">
+                                        <div class="row gy-3">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">आवेदन संख्या<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="240717103402LTXH2780" id="Application_Id" name="Application_Id" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">योजना संख्या<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="221216AGFV306" id="Advertisement_No" name="Advertisement_No" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Reference<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Reference" name="Reference" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .col -->
+                                        </div>
+                                    </div>
+                                    <br>
+
+
+
+
+                                    <div class="">
+                                        <h5>व्यक्तिगत विवरण</h5>
+                                    </div><br>
+                                    <div class="">
+                                        <div class="row gy-2">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">लाभार्थी का नाम <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Candidate_Name" name="Candidate_Name" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">पिता/पति का नाम <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Father_Name" name="Father_Name" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">स्थाई पता<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea data-msg="Required" class="form-control required" id="Parmanent_Address" name="Parmanent_Address" required="" rows="4" placeholder="स्थाई पता"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">वर्तमान पता <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea data-msg="Required" class="form-control required" id="Current_Address" name="Current_Address" required="" rows="4" placeholder="वर्तमान पता "></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">मोबाइल नंबर <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Mobile" name="Mobile" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-token-address">जन्मतिथि<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+
+
+                                                        <input type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days">
+                                                        <input type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months">
+                                                        <input type="year" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">लिंग<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Sex" class="form-control">
+                                                            <option value=""></option>
+                                                            <option value="पुरुष">पुरुष</option>
+                                                            <option value="महिला">महिला</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">शैक्षणिक स्तर <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="educational_level" value="" name="educational_level" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">वैवाहिक स्थि‍ति <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="marriage" value="" name="marriage" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">जाति श्रेणी <span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Category" class="form-control">
+                                                            <option value=""></option>
+                                                            <option value="सामान्य">सामान्य</option>
+                                                            <option value="ओ.बी.सी">ओ.बी.सी.</option>
+                                                            <option value="बी.सी">बी.सी</option>
+                                                            <option value="एस.सि.">एस.सि.</option>
+
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">राशन कार्ड  संख्या</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="ration_card" value="" name="ration_card">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">आधार कार्ड  संख्या  <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="aadhar_card" value="" name="aadhar_card" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">खाता नंबर <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="bank_account" value="" name="bank_account" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">आईएफएससी कोड <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="IFSC" value="" name="IFSC" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">बैंक का नाम व शाखा <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="bank_name" value="" name="bank_name" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <br>
+
+                                        <br>
+
+                                        <div class="form-control-wrap">
+                                            <div class="custom-file">
+                                                <input asp-for="AgeProof" type="file" class="custom-file-input" id="age_proof" required />
+                                                <label class="custom-file-label" for="age_proof">फाइलें चुनें</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-control-wrap">
+                                            <div class="custom-file">
+                                                <input asp-for="AgePhoto" type="file" class="custom-file-input" id="age_photo" required />
+                                                <label class="custom-file-label" for="age_photo">फाइलें चुनें</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="">
+                                            <h5>परिवार का विवरण </h5>
+                                        </div><br>
+                                        <div class="">
+                                            <div class="row gy-2">
+
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">क्रम संख्या </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="1" readonly="" id="serial_1" name="serial_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">परिवार के सदस्य का नाम</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_1" name="family_member_name_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">लाभार्थी से संबध  </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_1" value="" name="relation_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">आयु</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_1" value="" name="age_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">आधार कार्ड  संख्या  </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_1" name="aadhar_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">शिक्षा का स्तर </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_1" name="educational_leval_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">यदि पढ़ रहा  है / रही है तो स्कूल का नाम  </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_1" value="" name="school_name_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="2" readonly="" id="serial_2" name="serial_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_2" name="family_member_name_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_2" value="" name="relation_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_2" value="" name="age_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_2" name="aadhar_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_2" name="educational_leval_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_2" value="" name="school_name_2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="3" readonly="" id="serial_3" name="serial_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_3" name="family_member_name_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_3" value="" name="relation_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_3" value="" name="age_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_3" name="aadhar_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_3" name="educational_leval_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_3" value="" name="school_name_3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="4" readonly="" id="serial_4" name="serial_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_4" name="family_member_name_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_4" value="" name="relation_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_4" value="" name="age_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_4" name="aadhar_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_4" name="educational_leval_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_4" value="" name="school_name_4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="5" readonly="" id="serial_5" name="serial_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_5" name="family_member_name_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_5" value="" name="relation_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_5" value="" name="age_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_5" name="aadhar_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_5" name="educational_leval_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_5" value="" name="school_name_5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="6" readonly="" id="serial_6" name="serial_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_6" name="family_member_name_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_6" value="" name="relation_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_6" value="" name="age_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_6" name="aadhar_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_6" name="educational_leval_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_6" value="" name="school_name_6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="7" readonly="" id="serial_7" name="serial_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_7" name="family_member_name_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_7" value="" name="relation_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_7" value="" name="age_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_7" name="aadhar_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_7" name="educational_leval_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_7" value="" name="school_name_7">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="8" readonly="" id="serial_8" name="serial_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_8" name="family_member_name_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_8" value="" name="relation_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_8" value="" name="age_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_8" name="aadhar_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_8" name="educational_leval_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_8" value="" name="school_name_8">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="9" readonly="" id="serial_9" name="serial_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_9" name="family_member_name_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_9" value="" name="relation_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="age_9" value="" name="age_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="aadhar_9" name="aadhar_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="educational_leval_9" name="educational_leval_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="school_name_9" value="" name="school_name_9">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-md-6">
+                                                    <p>लाभार्थी  के परिवार का कोई अन्य सदस्य उपरोक्त कार्यलय में पंजीकृत है , यदि हा तो विवरण दीजिये </p>
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">नाम</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="old_member_name" name="old_member_name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <br>   <br>
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">पंजीकरण संख्या</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="old_application_no" name="old_application_no">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-mobile-number">आयु प्रमाण दस्तावेज <span style="color:red">*</span></label>
+
+                                                        <div class="form-control-wrap">
+                                                            <select name="age_proof" required="" class="form-control">
+                                                                <option value=""></option>
+                                                                <option value="आधार कार्ड">आधार कार्ड</option>
+                                                                <option value="जन्म प्रमाण-पत्र">जन्म प्रमाण-पत्र</option>
+                                                                <option value="राशन कार्ड">राशन कार्ड</option>
+                                                                <option value="मतदान पहचान पत्र">मतदान पहचान पत्र</option>
+                                                                <option value="ड्राइविंग लाइसेंस">ड्राइविंग लाइसेंस</option>
+                                                                <option value="पैन कार्ड">पैन कार्ड</option>
+                                                                <option value="स्कूल प्रमाण-पत्र">स्कूल प्रमाण-पत्र</option>
+                                                                <option value="पासपोर्ट">पासपोर्ट</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-token-address">फोटोप्रति<span style="color:red">*</span></label>
+
+                                                        <div class="form-control-wrap">
+                                                            <div class="custom-file">
+                                                                <input type="file" multiple="" class="custom-file-input" id="age_photo" name="age_photo" required="">
+                                                                <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+
+
+
+
+                                            <div class="">
+                                                <h5>नामांकित विवरण</h5>
+                                            </div><br>
+                                            <div class="">
+                                                <div class="row gy-2">
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">क्रम संख्या </label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="1" readonly="" id="serial_n_1" name="serial_n_1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">नामकिंत व्यक्तियों का नाम व पता नाम</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_n_1" name="family_member_name_n_1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">लाभार्थी से संबध  </label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_n_1" value="" name="relation_n_1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">आयु</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_1" value="" name="age_n_1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">नामकिंत व्यक्तियों  को दी जाने वाली राशि अनुपातया  </label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_1" name="persentage_n_1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="2" readonly="" id="serial_n_2" name="serial_n_2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_n_2" name="family_member_name_n_2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_n_2" value="" name="relation_n_2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_2" value="" name="age_n_2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_2" name="persentage_n_2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="3" readonly="" id="serial_n_3" name="serial_n_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_n_3" name="family_member_name_n_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_n_3" value="" name="relation_n_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_3" value="" name="age_n_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_3" name="persentage_n_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="4" readonly="" id="serial_n_4" name="serial_n_4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_n_4" name="family_member_name_n_4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_n_4" value="" name="relation_n_4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_4" value="" name="age_n_4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_4" name="persentage_n_4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="5" readonly="" id="serial_n_5" name="serial_n_5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="family_member_name_n_5" name="family_member_name_n_5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="relation_n_5" value="" name="relation_n_5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_5" value="" name="age_n_5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+
+
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_5" name="persentage_n_5">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br><br>
+
+
+
+
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">स्थान<span style="color:red">*</span></label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="Place" name="Place" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-mobile-number">दिनांक<span style="color:red">*</span></label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-control-wrap">
+                                                        <div class="custom-file">
+                                                            <input asp-for="AgePhoto" type="file" class="custom-file-input" id="age_photo" multiple required />
+                                                            <label class="custom-file-label" for="age_photo">फाइलें चुनें</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">फ़ोटो<span style="color:red">*</span></label>
+
+                                                            <div class="form-control-wrap">
+                                                                <div class="custom-file">
+                                                                    <input type="file" multiple="" class="custom-file-input" id="Photo" name="Photo" required="">
+                                                                    <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">हस्ताक्षर (सफेद कागज पर नीला/काला हस्ताक्षर)<span style="color:red">*</span></label>
+
+                                                            <div class="form-control-wrap">
+                                                                <div class="custom-file">
+                                                                    <input type="file" multiple="" class="custom-file-input" id="Signature" name="Signature" required="">
+                                                                    <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                    </div>
+
+
+                                                </div>
+                                                <br>
+                                                <br>
+
+
+
+
+
+
+
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-lg btn-primary">Agree &amp; Submit</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">लिंग <span style="color:red">*</span></label>
-                        <select asp-for="Sex" class="form-control">
-                            <option value=""></option>
-                            <option value="पुरुष">पुरुष</option>
-                            <option value="महिला">महिला</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Educational_Level">शैक्षणिक स्तर <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Educational_Level" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Marriage">वैवाहिक स्थिति <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Marriage" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Category">जाति श्रेणी <span style="color:red">*</span></label>
-                        <select asp-for="Category" class="form-control">
-                            <option value=""></option>
-                            <option value="सामान्य">सामान्य</option>
-                            <option value="ओ.बी.सी">ओ.बी.सी.</option>
-                            <option value="बी.सी">बी.सी</option>
-                            <option value="एस.सि.">एस.सि.</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Ration_Card">राशन कार्ड संख्या</label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Ration_Card" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Aadhar_Card">आधार कार्ड संख्या <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Aadhar_Card" required>
-                    </div>
+
                 </div>
             </div>
-            <br />
-            <h5>बैंक विवरण</h5>
-            <div class="row gy-3">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Bank_Account">बैंक खाता संख्या <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Bank_Account" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="IFSC">आई.एफ.एस.सी. कोड <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.IFSC" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label" for="Bank_Name">बैंक का नाम <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Bank_Name" required>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="container">
-                <h5>परिवार का विवरण</h5>
-                <div class="row gy-2">
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="serial_1">क्रम संख्या</label>
-                            <div class="form-control-wrap">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_name_1">परिवार के सदस्य का नाम</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.old_member_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_relation_1">संबंध</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Reference" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_dob_1">जन्मतिथि</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.age_proof" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_education_1">शैक्षणिक स्तर</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Educational_Level" required>
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_occuption_1">व्यवसाय</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model." required>
-                            </div>
-                        </div>*@
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_income_1">आय</label>
-                            <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.age_proof" required>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row gy-2">
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="serial_2">क्रम संख्या</label>
-                            <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.old_application_no" required>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_name_2">परिवार के सदस्य का नाम</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_name_2" name="family_member_name_2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_relation_2">संबंध</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_relation_2" name="family_member_relation_2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_dob_2">जन्मतिथि</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_dob_2" name="family_member_dob_2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_education_2">शैक्षणिक स्तर</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_education_2" name="family_member_education_2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_occuption_2">व्यवसाय</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_occuption_2" name="family_member_occuption_2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <label style="font-size: 0.7rem !important;" class="form-label" for="family_member_income_2">आय</label>
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control required" id="family_member_income_2" name="family_member_income_2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row gy-3">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Nominee">नामिनी का नाम</label>
-                        <input asp-for="Nominee" class="form-control" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label" for="Relation_with_Nominee">नामिनी का सदस्य से सम्बन्ध</label>
-                        <input asp-for="Relation_with_Nominee" class="form-control" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row gy-3">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="form-label">Photo</label>
-                        <input type="file" name="Photo" class="form-control required" />
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="row gy-3">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-lg btn-primary">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
