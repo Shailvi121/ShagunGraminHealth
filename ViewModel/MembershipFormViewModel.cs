@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShagunGraminHealth.Models
 {
-    public class MembershipForm
+    public class MembershipFormViewModel
     {
         [Key]
         public int Id { get; set; }
@@ -18,26 +17,27 @@ namespace ShagunGraminHealth.Models
         public int Date_of_Birth_Days { get; set; }
         public int Date_of_Birth_Months { get; set; }
         public int Date_of_Birth_Years { get; set; }
-        public string? Sex { get; set; } 
+        public string? Sex { get; set; }
         public string? Educational_Level { get; set; }
         public string? Marriage { get; set; }
-        public string? Category { get; set; } 
+        public string? Category { get; set; }
         public string? Ration_Card { get; set; }
         public string? Aadhar_Card { get; set; }
         public string? Bank_Account { get; set; }
         public string? IFSC { get; set; }
         public string? Bank_Name { get; set; }
-        public string? age_proof { get; set; } 
-        public string? age_photo { get; set; }
+        public string? age_proof { get; set; }
+        public IFormFile age_photo { get; set; }
         public string? old_member_name { get; set; }
         public string? old_application_no { get; set; }
-        public string? Photo { get; set; }
-        public string? Signature { get; set; }
+        public IFormFile Photo { get; set; }
+        public IFormFile Signature { get; set; }
         public string? Place { get; set; }
         public DateTime Form_Date { get; set; }
-        [NotMapped]
-        public IFormFile? FileToUpload { get; set; }
 
+        public string PhotoPath { get; set; }
+        public string SignaturePath { get; set; }
+        public string AgePhotoPath { get; set; }
 
     }
 }

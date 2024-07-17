@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
+using ShagunGraminHealth.Services;
+using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ShagunGraminHealth.Areas.Admin.Controllers
@@ -10,10 +13,12 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
     public class MemberController : Controller
     {
         private readonly IMemberService _memberService;
+        private readonly IWebHostEnvironment _environment;
 
-        public MemberController(IMemberService memberService)
+        public MemberController(IMemberService memberService, IWebHostEnvironment environment)
         {
             _memberService = memberService;
+            _environment = environment;
         }
 
         public async Task<IActionResult> Index()
@@ -45,36 +50,11 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> ApplyMember(MembershipForm model, IFormFile fileToUpload)
+
+        public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                if (fileToUpload != null && fileToUpload.Length > 0)
-                {
-                    string uploadsFolder = "wwwroot/WebFormImages";
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + fileToUpload.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await fileToUpload.CopyToAsync(fileStream);
-                    }
-
-                    //model.age_photo = "~/WebFormImages/" + uniqueFileName;
-                    //model.age_proof = "~/WebFormImages/" + uniqueFileName;
-                }
-
-                await _memberService.SaveMembershipFormAsync(model);
-                ViewBag.Message = "Membership application submitted successfully.";
-                return RedirectToAction("Index", "Dashboard");
-            }
-            return View(model);
+            await _memberService.ApplyMembershipFormAsync(model);
+            return Ok(model);
         }
     }
 }
-    
-
-
-
-
-
