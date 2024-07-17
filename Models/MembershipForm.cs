@@ -31,7 +31,7 @@ namespace ShagunGraminHealth.Models
         public string? age_photo { get; set; }
         public string? old_member_name { get; set; }
         public string? old_application_no { get; set; }
-        public string? Photo { get; set; }
+        public string Photo { get; set; }
         public string? Signature { get; set; }
         public string? Place { get; set; }
         public DateTime Form_Date { get; set; }

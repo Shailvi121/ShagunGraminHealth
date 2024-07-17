@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShagunGraminHealth.Models
+namespace ShagunGraminHealth.ViewModel
 {
     public class MembershipFormViewModel
     {
         [Key]
         public int Id { get; set; }
         public string? Application_Id { get; set; }
-        public string? PlanNumber { get; set; }
+        public string PlanNumber { get; set; }
         public string? Reference { get; set; }
         public string? Candidate_Name { get; set; }
         public string? Father_Name { get; set; }

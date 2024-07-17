@@ -70,7 +70,6 @@
 
     <script>
         $(document).ready(function () {
-            // Function to show popup message using toastr
             function showToastr(type, message) {
                 toastr.options = {
                     "closeButton": true,
@@ -88,12 +87,7 @@
                 };
                 toastr[type](message);
             }
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <text>
-                    showToastr('success', '@TempData["SuccessMessage"]');
-            </text>
-        }
+       
         @if (TempData["ErrorMessage"] != null)
         {
             <text>

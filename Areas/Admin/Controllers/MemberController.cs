@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using ShagunGraminHealth.Services;
+using ShagunGraminHealth.ViewModel;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -29,11 +30,11 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> UpdateProfile()
         {
-            int userId = 1;
+            var usserId = HttpContext.Session.GetInt32("UserId");
+            int userId = usserId.Value;
             var user = await _memberService.GetUserByIdAsync(userId);
             return View(user);
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(User user)
         {
@@ -54,7 +55,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
             await _memberService.ApplyMembershipFormAsync(model);
-            return Ok(model);
+            return Ok();
         }
     }
 }

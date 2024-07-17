@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ShagunGraminHealth.Models;
+using ShagunGraminHealth.ViewModel;
 
 namespace ShagunGraminHealth.Interface
 {
@@ -8,7 +9,6 @@ namespace ShagunGraminHealth.Interface
         Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync();
         Task<User> GetUserByIdAsync(int id);
         Task UpdateUserProfileAsync(User user);
-		Task SaveMembershipFormAsync(MembershipForm model);
         Task ApplyMembershipFormAsync(MembershipFormViewModel model);
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Models;
@@ -12,7 +13,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public LoginController(ShagunGraminHealthContext context)
         {
-            _context=context;
+            _context = context;
         }
         public IActionResult Login()
         {
@@ -69,8 +70,13 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             }
             return RedirectToAction("Login");
         }
+
+        public async Task<IActionResult> SignOut()
+        {
+            HttpContext.Session.Clear();
+
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login", "UserLogin");
+        }
     }
 }
-
-    
-

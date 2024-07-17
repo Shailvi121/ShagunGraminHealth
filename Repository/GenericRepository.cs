@@ -22,6 +22,7 @@ namespace ShagunGraminHealth.Repository
         public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
+            await SaveChangesAsync();
         }
 
         public void Delete(T entity)

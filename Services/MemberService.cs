@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
+using ShagunGraminHealth.ViewModel;
 
 namespace ShagunGraminHealth.Services
 {
@@ -11,18 +12,18 @@ namespace ShagunGraminHealth.Services
     {
         private readonly IGenericRepository<MembershipPlan> _membershipPlanRepository;
         private readonly IGenericRepository<User> _userRepository;
-        private readonly IGenericRepository<MembershipForm> _generic;
+        private readonly IGenericRepository<MembershipForm> _membershipFormRepository;
         private readonly IWebHostEnvironment _environment;
 
         public MemberService(
             IGenericRepository<MembershipPlan> membershipPlanRepository,
             IGenericRepository<User> userRepository,
-            IGenericRepository<MembershipForm> generic,
+            IGenericRepository<MembershipForm> membershipFormRepository,
             IWebHostEnvironment environment)
         {
             _membershipPlanRepository = membershipPlanRepository;
             _userRepository = userRepository;
-            _generic = generic;
+            _membershipFormRepository = membershipFormRepository;
             _environment = environment;
         }
 
@@ -49,17 +50,20 @@ namespace ShagunGraminHealth.Services
             }
         }
 
-        public async Task SaveMembershipFormAsync(MembershipForm model)
-        {
-            await _generic.AddAsync(model);
-            await _generic.SaveChangesAsync();
-        }
-
         public async Task ApplyMembershipFormAsync(MembershipFormViewModel model)
         {
+            //if (model.Photo != null && model.Signature != null && model.age_photo != null)
+            //{
+
+            //    string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
+
+            //    await ProcessFileAsync(model.Photo, uploadsFolder, model.PhotoPath);
+            //    await ProcessFileAsync(model.Signature, uploadsFolder, model.SignaturePath);
+            //    await ProcessFileAsync(model.age_photo, uploadsFolder, model.AgePhotoPath);
+            //}
+
             if (model.Photo != null && model.Signature != null && model.age_photo != null)
             {
-                // Process Photo file
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
                 string uniquePhotoFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Photo.FileName);
                 string photoFilePath = Path.Combine(uploadsFolder, uniquePhotoFileName);
@@ -67,9 +71,8 @@ namespace ShagunGraminHealth.Services
                 {
                     await model.Photo.CopyToAsync(photoStream);
                 }
-                model.PhotoPath = uniquePhotoFileName; // Save the unique file name or path in the model
+                model.PhotoPath = uniquePhotoFileName;
 
-                // Process Signature file
                 string uniqueSignatureFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Signature.FileName);
                 string signatureFilePath = Path.Combine(uploadsFolder, uniqueSignatureFileName);
                 using (var signatureStream = new FileStream(signatureFilePath, FileMode.Create))
@@ -78,7 +81,6 @@ namespace ShagunGraminHealth.Services
                 }
                 model.SignaturePath = uniqueSignatureFileName;
 
-                // Process age_photo file
                 string uniqueAgePhotoFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.age_photo.FileName);
                 string agePhotoFilePath = Path.Combine(uploadsFolder, uniqueAgePhotoFileName);
                 using (var agePhotoStream = new FileStream(agePhotoFilePath, FileMode.Create))
@@ -87,6 +89,7 @@ namespace ShagunGraminHealth.Services
                 }
                 model.AgePhotoPath = uniqueAgePhotoFileName;
             }
+
 
             MembershipForm membershipForm = new MembershipForm
             {
@@ -119,8 +122,23 @@ namespace ShagunGraminHealth.Services
                 Place = model.Place,
                 Form_Date = DateTime.Now
             };
-
-            await SaveMembershipFormAsync(membershipForm);
+            await _membershipFormRepository.AddAsync(membershipForm);
         }
+
+
+        //private async Task ProcessFileAsync(IFormFile file, string uploadsFolder, string modelProperty)
+        //{
+        //    if (file != null)
+        //    {
+        //        string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+        //        modelProperty = uniqueFileName;
+        //    }
+        //}
+
     }
 }

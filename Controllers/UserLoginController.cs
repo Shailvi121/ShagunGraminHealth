@@ -34,9 +34,9 @@ namespace ShagunGraminHealth.Controllers
                 var roles = await _userService.GetRoles(user.Id);
 
                 TempData["SuccessMessage"] = "Login successful!";
-                TempData["Username"] = user.Name;
-                TempData["Email"] = user.Email;
-
+                HttpContext.Session.SetString("Username", user.Name);
+                HttpContext.Session.SetString("Email", user.Email);
+                HttpContext.Session.SetInt32("UserId", user.Id);
                 return Redirect("/Admin/Dashboard");
 
 
