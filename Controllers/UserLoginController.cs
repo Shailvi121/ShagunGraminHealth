@@ -34,8 +34,12 @@ namespace ShagunGraminHealth.Controllers
                 var roles = await _userService.GetRoles(user.Id);
 
                 TempData["SuccessMessage"] = "Login successful!";
+                TempData["Username"] = user.Name;
+                TempData["Email"] = user.Email;
 
                 return Redirect("/Admin/Dashboard");
+
+
 
             }
             else
@@ -47,8 +51,7 @@ namespace ShagunGraminHealth.Controllers
             TempData["ErrorMessage"] = "User not found. Please check your credentials.";
             return RedirectToAction("Login", "UserLogin");
 
-        }       
-
+        }
         public IActionResult Register()
         {
             return View();

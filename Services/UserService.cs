@@ -93,6 +93,8 @@ namespace ShagunGraminHealth.Services
 					Mobile = model.Mobile,
 					ReferenceId = model.ReferenceId,
 					Passcode = model.Passcode,
+                    IsActive = true,
+                    CreatedOn = DateTime.Now,
 				};
 
 				await _repository.AddAsync(newUser); 

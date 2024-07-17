@@ -83,11 +83,12 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
-                                                    <em class="icon ni ni-user-alt"></em>
+                                                    <span>@ViewBag.Username.ToString()[0]</span>
+                                                    @*  <em class="icon ni ni-user-alt"></em> *@
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
                                                     <div class="user-status">Member Account</div>
-                                                    <div class="user-name dropdown-indicator">Shailvi</div>
+                                                    <div class="user-name dropdown-indicator">@ViewBag.Username</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -95,11 +96,11 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>S</span>
+                                                        <span>@ViewBag.Username.ToString()[0]</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Shailvi</span>
-                                                        <span class="sub-text">shailvigupta2001@gmail.com</span>
+                                                        <span class="lead-text">@ViewBag.Username</span>
+                                                        <span class="sub-text">@ViewBag.Email</span>
                                                     </div>
                                                 </div>
                                             </div>

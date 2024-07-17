@@ -38,45 +38,24 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             }
             return View(user);
         }
-        public ActionResult ApplyMember()
+        public ActionResult ApplyMember(string PlanNumber)
         {
-            //ViewBag.PlanNumber = PlanNumber;
+            ViewBag.PlanNumber = PlanNumber;
             return View();
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> ApplyMember()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        model.Form_Date = DateTime.Now;
-
-        //        // Save files
-        //        if (model.Photo != null)
-        //        {
-        //            var photoPath = Path.Combine("wwwroot/uploads", model.Photo.FileName);
-        //            using (var stream = new FileStream(photoPath, FileMode.Create))
-        //            {
-        //                await model.Photo.CopyToAsync(stream);
-        //            }
-        //            model.PhotoPath = photoPath;
-        //        }
-
-        //        if (model.Signature != null)
-        //        {
-        //            var signaturePath = Path.Combine("wwwroot/uploads", model.Signature.FileName);
-        //            using (var stream = new FileStream(signaturePath, FileMode.Create))
-        //            {
-        //                await model.Signature.CopyToAsync(stream);
-        //            }
-        //            model.SignaturePath = signaturePath;
-        //        }
+		[HttpPost]
+		public async Task<IActionResult> ApplyMember(MembershipForm model)
+		{
+			if (ModelState.IsValid)
+			{
+				await _memberService.SaveMembershipFormAsync(model);
+				ViewBag.Message = "Membership application submitted successfully.";
+				return RedirectToAction("Index","Dashboard");
+			}
+			return View(model);
+		}
 
 
-        //        return RedirectToAction("Index");
-        //    }
 
-        //    return View(model);
-        //}
-    }
+	}
 }

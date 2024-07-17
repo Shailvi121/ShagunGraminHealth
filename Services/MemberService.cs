@@ -9,12 +9,16 @@ namespace ShagunGraminHealth.Services
     {
         private readonly IGenericRepository<MembershipPlan> _membershipPlanRepository;
         private readonly IGenericRepository<User> _userRepository;
+		private readonly IGenericRepository<MembershipForm> _generic;
 
-        public MemberService(IGenericRepository<MembershipPlan> membershipPlanRepository, IGenericRepository<User> userRepository)
+
+		public MemberService(IGenericRepository<MembershipPlan> membershipPlanRepository, IGenericRepository<User> userRepository, IGenericRepository<MembershipForm> generic   )
         {
             _membershipPlanRepository = membershipPlanRepository;
             _userRepository = userRepository;
-        }
+			_generic= generic;
+
+		}
 
         public async Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync()
         {
@@ -38,6 +42,12 @@ namespace ShagunGraminHealth.Services
                 await _userRepository.Update(existingUser);
             }
         }
+		public async Task SaveMembershipFormAsync(MembershipForm model)
+		{
+			 _generic.AddAsync(model);
+			await _generic.SaveChangesAsync();
+		}
 
-    }
+
+	}
 }
