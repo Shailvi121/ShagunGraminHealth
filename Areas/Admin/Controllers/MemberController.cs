@@ -60,7 +60,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
                         await fileToUpload.CopyToAsync(fileStream);
                     }
 
-                    model.age_photo = "~/WebFormImages/" + uniqueFileName;
+                    //model.age_photo = "~/WebFormImages/" + uniqueFileName;
+                    //model.age_proof = "~/WebFormImages/" + uniqueFileName;
                 }
 
                 await _memberService.SaveMembershipFormAsync(model);

@@ -34,6 +34,8 @@ namespace ShagunGraminHealth.Models
         public string? Signature { get; set; }
         public string? Place { get; set; }
         public DateTime Form_Date { get; set; }
+        public IFormFile FileToUpload { get; set; }
+
 
     }
 }
