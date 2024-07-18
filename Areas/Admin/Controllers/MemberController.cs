@@ -57,5 +57,11 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             await _memberService.ApplyMembershipFormAsync(model);
             return Ok();
         }
+        public async Task<IActionResult> AppliedPlan()
+        {
+            var data = await _memberService.GetAppliedPlansAsync();
+            return View(data);
+        }
+
     }
 }

@@ -139,6 +139,23 @@ namespace ShagunGraminHealth.Services
         //        modelProperty = uniqueFileName;
         //    }
         //}
+        public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
+        {
+            var appliedPlans = await _membershipFormRepository.GetAllAsync();
+            var viewModelList = appliedPlans.Select(m => new MembershipFormViewModel
+            {
+                Id = m.Id,
+                Application_Id = m.Application_Id,
+                PlanNumber = m.PlanNumber,
+                Candidate_Name = m.Candidate_Name,
+                Father_Name = m.Father_Name,
+                Sex = m.Sex,
+                Category = m.Category,
+                //Payment = m.Payment
+            });
+            return viewModelList;
+        }
+
 
     }
 }

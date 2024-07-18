@@ -10,6 +10,8 @@ namespace ShagunGraminHealth.Interface
         Task<User> GetUserByIdAsync(int id);
         Task UpdateUserProfileAsync(User user);
         Task ApplyMembershipFormAsync(MembershipFormViewModel model);
+        Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync();
+
 
 
     }
