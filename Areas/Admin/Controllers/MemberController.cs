@@ -22,7 +22,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             _environment = environment;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> AllPlans()
         {
             var data = await _memberService.GetAllMembershipPlansAsync();
             return View(data);
