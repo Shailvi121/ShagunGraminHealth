@@ -19,7 +19,7 @@
         var orderId = "@ViewBag.orderid";
         var options = {
             "key": "@ViewBag.RazorpayKey", // You need to pass the Razorpay key here
-            "name": "vikas",
+            "name": "@Html.DisplayFor(Model => Model.Candidate_Name)",
             "description": "Buy Green Tea",
             "order_id": orderId,
             "image": "https://example.com/your_logo",
