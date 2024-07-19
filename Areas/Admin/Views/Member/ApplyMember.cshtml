@@ -50,9 +50,10 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="fw-first-name">Reference<span style="color:red">*</span></label>
+                                                    <label class="form-label" for="Reference">Reference<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Reference" name="Reference" required="">
+                                                        <input type="text" class="form-control required" id="Reference" name="Reference" required pattern="\d+">
+                                                        <div class="error-message" id="referenceError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -961,7 +962,7 @@
                                                         <div class="form-group">
 
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_4" value="" name="age_n_4">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_4" value="" name="age_n_4" required min="0" max="100">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -970,7 +971,7 @@
 
 
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_4" name="persentage_n_4">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_4" name="persentage_n_4" required min="0" max="100">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1023,7 +1024,7 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="fw-token-address">स्थान<span style="color:red">*</span></label>
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" id="Place" name="Place" required="">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="Place" name="Place" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1032,7 +1033,7 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="fw-mobile-number">दिनांक<span style="color:red">*</span></label>
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" required="">
+                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" readonly required>
                                                             </div>
                                                         </div>
                                                     </div>

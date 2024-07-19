@@ -55,7 +55,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
             await _memberService.ApplyMembershipFormAsync(model);
-            return Ok();
+            return View("Payment", model);
         }
         public async Task<IActionResult> AppliedPlan()
         {
@@ -63,5 +63,6 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             return View(data);
         }
 
+        
     }
 }
