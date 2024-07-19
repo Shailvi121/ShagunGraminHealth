@@ -25,15 +25,6 @@ namespace ShagunGraminHealth.Data
 
         public virtual DbSet<MembershipForm> MembershipForms { get; set; }
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=THUNDERBRAINS\\SQLEXPRESS;Database=ShagunGraminHealth;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>(entity =>
