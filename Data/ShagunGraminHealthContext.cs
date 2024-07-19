@@ -119,6 +119,7 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.Signature).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Place).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Form_Date).IsRequired();
+                entity.Property(e => e.OrderId).HasMaxLength(50).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

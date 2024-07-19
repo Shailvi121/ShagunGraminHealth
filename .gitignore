@@ -11,3 +11,4 @@ FSDataBase/FSDataBase.jfm
 /UserMgmtUI/ClientApp/src/assets/lib/msal
 *.bak
 .idea
+/appsettings.json

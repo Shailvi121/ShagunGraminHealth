@@ -2,6 +2,8 @@
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using ShagunGraminHealth.ViewModel;
@@ -52,15 +54,7 @@ namespace ShagunGraminHealth.Services
 
         public async Task ApplyMembershipFormAsync(MembershipFormViewModel model)
         {
-            //if (model.Photo != null && model.Signature != null && model.age_photo != null)
-            //{
-
-            //    string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
-
-            //    await ProcessFileAsync(model.Photo, uploadsFolder, model.PhotoPath);
-            //    await ProcessFileAsync(model.Signature, uploadsFolder, model.SignaturePath);
-            //    await ProcessFileAsync(model.age_photo, uploadsFolder, model.AgePhotoPath);
-            //}
+           
 
             if (model.Photo != null && model.Signature != null && model.age_photo != null)
             {
@@ -89,8 +83,22 @@ namespace ShagunGraminHealth.Services
                 }
                 model.AgePhotoPath = uniqueAgePhotoFileName;
             }
+            string key = "rzp_test_h6khePiEN5pLb5";
+            string secret = "aa79deq6RzqONUxz2lnJPmhc";
+            RazorpayClient client = new RazorpayClient(key, secret);
 
 
+            string TransactionId = Guid.NewGuid().ToString();
+
+            Dictionary<string, object> input = new Dictionary<string, object>
+            {
+                    { "amount", 100 }, 
+                    { "currency", "INR" },
+                    { "receipt", TransactionId }
+            };
+
+            Razorpay.Api.Order order = client.Order.Create(input);
+            model.OrderId = order["id"].ToString();
             MembershipForm membershipForm = new MembershipForm
             {
                 Application_Id = model.Application_Id,
@@ -120,8 +128,11 @@ namespace ShagunGraminHealth.Services
                 Photo = model.PhotoPath,
                 Signature = model.SignaturePath,
                 Place = model.Place,
-                Form_Date = DateTime.Now
+                Form_Date = DateTime.Now,
+                OrderId = model.OrderId,
             };
+
+
             await _membershipFormRepository.AddAsync(membershipForm);
         }
 

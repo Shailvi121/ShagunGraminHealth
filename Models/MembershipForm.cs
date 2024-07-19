@@ -37,6 +37,8 @@ namespace ShagunGraminHealth.Models
         public DateTime Form_Date { get; set; }
         [NotMapped]
         public IFormFile? FileToUpload { get; set; }
+        public string? OrderId { get; set; }
+
 
 
     }

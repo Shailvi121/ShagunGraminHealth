@@ -16,12 +16,12 @@
     <button id="rzp-button1">Pay with Razorpay</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        var orderId = "@ViewBag.orderid";
+        // var orderId = @Html.TextBoxFor(Model => Model.OrderId);
         var options = {
             "key": "@ViewBag.RazorpayKey", // You need to pass the Razorpay key here
             "name": "@Html.DisplayFor(Model => Model.Candidate_Name)",
             "description": "Buy Green Tea",
-            "order_id": orderId,
+            "order_id": "@Html.DisplayFor(Model => Model.OrderId)",
             "image": "https://example.com/your_logo",
             "prefill": {
                 "name": "Gaurav Kumar",
@@ -40,7 +40,7 @@
         options.theme.image_padding = false;
         options.handler = function (response) {
             document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
-            document.getElementById('razorpay_order_id').value = orderId;
+            document.getElementById('razorpay_order_id').value = @Html.TextBoxFor(Model => Model.OrderId);
             document.getElementById('razorpay_signature').value = response.razorpay_signature;
             document.razorpayForm.submit();
         };
