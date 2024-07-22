@@ -31,8 +31,12 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> UpdateProfile()
         {
-            var usserId = HttpContext.Session.GetInt32("UserId");
-            int userId = usserId.Value;
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
             var user = await _memberService.GetUserByIdAsync(userId);
             return View(user);
         }
@@ -46,11 +50,15 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             }
             return View(user);
         }
-        public ActionResult ApplyMember(string PlanNumber)
+        public IActionResult ApplyMember(string applicationId, string planNumber)
         {
-            ViewBag.PlanNumber = PlanNumber;
+            // Use the applicationId and planNumber as needed
+            ViewBag.ApplicationId = applicationId;
+            ViewBag.PlanNumber = planNumber;
+
             return View();
         }
+
         [HttpPost]
 
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)

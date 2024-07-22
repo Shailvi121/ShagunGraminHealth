@@ -1,15 +1,14 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
+﻿
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    var username = HttpContextAccessor.HttpContext.Session.GetString("Username");
-
+    var claimsPrincipal = User;
+    var username = claimsPrincipal.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value;
 }
 
-<h3 class="nk-block-title page-title">Hello!  @username</h3>
+<h3 class="nk-block-title page-title">Hello! @username</h3>
 <div class="nk-block-des text-soft">
     <p>Welcome to ShagunGraminHealth.com Dashboard</p>
 </div>
