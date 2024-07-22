@@ -1,5 +1,4 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
+﻿@using System.Security.Claims;
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 <head>
@@ -15,10 +14,12 @@
 </head>
 
 @{
-    var username = HttpContextAccessor.HttpContext.Session.GetString("Username");
-    var email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    var claimsPrincipal = User;
+    var username = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
+    var email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
     var UserNamefirst = !string.IsNullOrEmpty(username) ? username[0].ToString() : "";
 }
+
 <body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme">
     <div class="nk-app-root">
         <div class="nk-main">
@@ -92,12 +93,10 @@
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <span>@UserNamefirst</span>
-
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
                                                     <div class="user-status">Member Account</div>
                                                     <div class="user-name dropdown-indicator">
-
                                                         @username
                                                     </div>
                                                 </div>
@@ -108,7 +107,6 @@
                                                 <div class="user-card">
                                                     <div class="user-avatar">
                                                         <span>@UserNamefirst</span>
-
                                                     </div>
                                                     <div class="user-info">
                                                         <span class="lead-text">@username</span>
@@ -124,7 +122,7 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="~/Admin/Login/SignOut"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="~/UserLogin/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>

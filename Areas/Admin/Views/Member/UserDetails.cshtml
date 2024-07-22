@@ -1,4 +1,4 @@
-﻿@model ShagunGraminHealth.ViewModel.UserDetailsViewModel
+﻿@model IEnumerable<ShagunGraminHealth.Models.User>
 
 
 @{
@@ -41,8 +41,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending">Id</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="USER ID: activate to sort column ascending">USER ID</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="FULLNAME: activate to sort column ascending">FULLNAME</th>
+@*                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="USER ID: activate to sort column ascending">USER ID</th>
+*@                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="FULLNAME: activate to sort column ascending">FULLNAME</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="MOBILE: activate to sort column ascending">MOBILE</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="EMAIL: activate to sort column ascending">EMAIL</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ADDRESS: activate to sort column ascending">ADDRESS</th>
@@ -50,15 +50,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-status="" role="row" class="odd">
-                                            <td class="dtr-control sorting_1" tabindex="0">@Model.Id</td>
-                                            <td>@Model.UserId</td>
-                                            <td>@Model.FullName</td>
-                                            <td>@Model.Mobile</td>
-                                            <td>@Model.Email</td>
-                                            <td>@Model.Address</td>
-                                            <td>@Model.ReferenceId</td>
-                                        </tr>
+                                        @foreach (var user in Model)
+                                        {
+                                            <tr>
+                                                <td>@user.Id</td>
+                                                <td>@user.Name</td>
+                                                <td>@user.Mobile</td>
+                                                <td>@user.Email</td>
+@*                                                <td>@user.Address</td>
+*@                                                <td>@user.ReferenceId</td>
+
+
+
+
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>

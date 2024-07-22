@@ -11,6 +11,7 @@ namespace ShagunGraminHealth.Interface
         Task Update(T entity);
         void Delete(T entity);
         Task<int> SaveChangesAsync();
+        Task<List<string>> GetRolesByUserIdAsync(int userId);
 
     }
 }

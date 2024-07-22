@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
-using System;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace ShagunGraminHealth.Controllers
@@ -13,66 +10,77 @@ namespace ShagunGraminHealth.Controllers
     public class UserLoginController : Controller
     {
         private readonly IUserService _userService;
-        public UserLoginController(IUserService userService
-        )
-        {
-            this._userService = userService;
-        }
 
+        public UserLoginController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
             var user = await _userService.SignInAsync(model);
-
             if (user != null)
             {
                 var roles = await _userService.GetRoles(user.Id);
 
-                TempData["SuccessMessage"] = "Login successful!";
-                HttpContext.Session.SetString("Username", user.Name);
-                HttpContext.Session.SetString("Email", user.Email);
-                HttpContext.Session.SetInt32("UserId", user.Id);
-                return Redirect("/Admin/Dashboard");
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                };
 
+                claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                string area = roles.Contains("Admin") ? "Admin" : roles.Contains("Candidate") ? "Candidate" : "";
+                if (!string.IsNullOrEmpty(area))
+                {
+                    return RedirectToAction("Index", "Dashboard", new { areas = area });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Organization");
+                }
             }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "User not found. Please check your credentials.");
 
-            }
-
+            ModelState.AddModelError(string.Empty, "User not found. Please check your credentials.");
             TempData["ErrorMessage"] = "User not found. Please check your credentials.";
             return RedirectToAction("Login", "UserLogin");
-
         }
+
         public IActionResult Register()
         {
             return View();
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Register(RegistrationModel model)
-		{
-			var existingUser = await _userService.SignUp(model);  
-			if (existingUser != null)
-			{
-				TempData["SuccessMessage"] = "Registration successful! Please log in.";
-				return RedirectToAction("Login");
-			}
-			else
-			{
-				ModelState.AddModelError(string.Empty, "Email already exists.");
-			}
+        [HttpPost]
+        public async Task<IActionResult> Register(RegistrationModel model)
+        {
+            var existingUser = await _userService.SignUp(model);
+            if (existingUser != null)
+            {
+                TempData["SuccessMessage"] = "Registration successful! Please log in.";
+                return RedirectToAction("Login");
+            }
 
-			return View(model); 
-		}
+            ModelState.AddModelError(string.Empty, "Email already exists.");
+            return View(model);
+        }
 
-	}
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "UserLogin");
+        }
+    }
 }

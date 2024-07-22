@@ -47,6 +47,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             {
                 await _memberService.UpdateUserProfileAsync(user);
                 ViewBag.Message = "Profile updated successfully.";
+                return Redirect("/Admin/Dashboard");
+
             }
             return View(user);
         }
@@ -83,8 +85,12 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             return RedirectToAction("AppliedPlan");
            
         }
-       
 
+        public async Task<IActionResult> UserDetails()
+        {
+            var userDetails = await _memberService.GetDetailsAsync();
+            return View(userDetails);
+        }
 
     }
 }

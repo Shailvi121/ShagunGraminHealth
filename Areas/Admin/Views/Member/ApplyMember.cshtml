@@ -28,15 +28,24 @@
                                     <br><div class="">
                                         <h5>आवेदन विवरण</h5>
 
-                                        <div class="form-control-wrap">
-                                            <input type="text" data-msg="Required" class="form-control required" readonly=""
-                                                   value="@ViewBag.ApplicationId" id="Application_Id" name="Application_Id" required="">
-                                        </div>
-
-                                        <div class="form-control-wrap">
-                                            <input type="text" data-msg="Required" class="form-control required" readonly=""
-                                                   value="@ViewBag.PlanNumber" id="PlanNumber" name="PlanNumber" required="">
-                                        </div>
+                                         <div class="">
+                                            <div class="row gy-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">आवेदन संख्या<span style="color:red">*</span></label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" readonly="" value="240717103402LTXH2780" id="Application_Id" name="Application_Id" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">योजना संख्या<span style="color:red">*</span></label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" readonly="" value="221216AGFV306" id="PlanNumber" name="PlanNumber" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
                                             <div class="col-md-6">
@@ -204,7 +213,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">आईएफएससी कोड <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="IFSC" value="" name="IFSC" required pattern="[A-Z]{6}" title="Please enter a valid IFSC code">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="IFSC" value="" name="IFSC"  title="Please enter a valid IFSC code">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1088,26 +1097,7 @@
                 </div>
             </div>
             <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    var applyPlanLinks = document.querySelectorAll('.apply-plan');
-
-                    applyPlanLinks.forEach(function (link) {
-                        link.addEventListener('click', function (event) {
-                            event.preventDefault();
-
-                            var applicationId = link.getAttribute('data-application-id');
-                            var planNumber = link.getAttribute('data-plan-number');
-
-                            document.getElementById('Application_Id').value = applicationId;
-                            document.getElementById('PlanNumber').value = planNumber;
-
-                            // Optionally, submit the form or redirect
-                            // document.getElementById('yourFormId').submit();
-                            // Or redirect to another page with the form data
-                            window.location.href = '/Admin/Member/ApplyMember?applicationId=' + applicationId + '&planNumber=' + planNumber;
-                        });
-                    });
-                });
+                
             document.getElementById('yourFormId').addEventListener('submit', function(event) {
             if (!referenceInput.checkValidity()) {
             errorDiv.textContent = 'Please enter digits only.';

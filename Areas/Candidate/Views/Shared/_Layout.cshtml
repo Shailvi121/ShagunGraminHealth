@@ -1,5 +1,4 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
+﻿@using System.Security.Claims;
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 <head>
@@ -15,25 +14,31 @@
 </head>
 
 @{
-    var username = HttpContextAccessor.HttpContext.Session.GetString("Username");
-    var email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    var claimsPrincipal = User;
+    var username = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
+    var email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
     var UserNamefirst = !string.IsNullOrEmpty(username) ? username[0].ToString() : "";
 }
+
 <body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme">
     <div class="nk-app-root">
-        <div class="nk-main ">
+        <div class="nk-main">
             <div class="nk-sidebar nk-sidebar-fixed is-dark" data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a href="~/Candidate/Dashboard/Index" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                        <a href="~/member/Dashboard" class="logo-link nk-sidebar-logo d-flex align-items-center">
+                            <div class="logo-images">
+                                <img class="logo-light logo-img" src="~/assets/assets/images/logo-img.png" srcset="~/assets/assets/images/logo-img.png" alt="logo">
+                                <img class="logo-dark logo-img" src="~/assets/assets/images/logo-img.png" srcset="~/assets/assets/assets/images/logo-img.png" alt="logo-dark">
+                            </div>
+                            <span class="ml-2" style="color: white;">ShagunGraminHealth</span>
                         </a>
                     </div>
                     <div class="nk-menu-trigger mr-n2">
                         <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
                     </div>
-                </div><!-- .nk-sidebar-element -->
+                </div>
+                <!-- .nk-sidebar-element -->
                 <div class="nk-sidebar-element">
                     <div class="nk-sidebar-content">
                         <div class="nk-sidebar-menu" data-simplebar="init">
@@ -44,7 +49,7 @@
                                             <div class="simplebar-content" style="padding: 16px 0px 40px;">
                                                 <ul class="nk-menu">
                                                     <li class="nk-menu-item active current-page">
-                                                        <a href="Apply/Dashboard.php" class="nk-menu-link" data-original-title="" title="">
+                                                        <a href="~/Candidate/Dashboard/Index" class="nk-menu-link" data-original-title="" title="">
                                                             <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
                                                             <span class="nk-menu-text">Dashboard</span>
                                                         </a>
@@ -55,7 +60,7 @@
 
                                                     </li>
                                                     <li class="nk-menu-item">
-                                                        <a href="Apply/New_User.php" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text"> <span class="nk-menu-icon"><em class="icon ni ni-user-alt"></em></span> Update Profile</span></a>
+                                                        <a href="~/Candidate/Candidate/ProfileUpdate" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text"> <span class="nk-menu-icon"><em class="icon ni ni-user-alt"></em></span> Update Profile</span></a>
                                                     </li>
                                                     <li class="nk-menu-item">
                                                         <a href="Apply/Users_List.php" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text"> <span class="nk-menu-icon"><em class="icon ni ni-eye"></em></span> My Details</span></a>

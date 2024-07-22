@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Candidate\Models\**" />
+    <Content Remove="Areas\Candidate\Models\**" />
+    <EmbeddedResource Remove="Areas\Candidate\Models\**" />
+    <None Remove="Areas\Candidate\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\assets\assets\js\script.js" />
   </ItemGroup>
 
@@ -25,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Candidate\Models\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

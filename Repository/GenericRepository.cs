@@ -65,5 +65,22 @@ namespace ShagunGraminHealth.Repository
             _context.Entry(entity).State = EntityState.Modified;
             await SaveChangesAsync();
         }
+       public async Task<List<string>> GetRolesByUserIdAsync(int userId)
+        {
+            try
+            {
+                var roles = await _context.UserRoles
+                    .Where(ur => ur.UserId == userId)
+                    .Select(ur => ur.Role.Name)
+                    .ToListAsync();
+
+                return roles;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error fetching user roles.", ex);
+            }
+        }
+
     }
 }

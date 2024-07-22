@@ -206,5 +206,12 @@ namespace ShagunGraminHealth.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<User>> GetDetailsAsync()
+        {
+            
+            var details = await _userRepository.GetAllAsync();
+            return details;
+        }
     }
 }
