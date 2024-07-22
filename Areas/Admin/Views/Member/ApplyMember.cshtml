@@ -52,11 +52,12 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="Reference">Reference<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control required" id="Reference" name="Reference" required pattern="\d+">
+                                                        <input type="text" class="form-control required" id="Reference" name="Reference" required pattern="\d+" title="Please enter digits only">
                                                         <div class="error-message" id="referenceError"></div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- .col -->
                                         </div>
                                     </div>
@@ -75,7 +76,8 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">लाभार्थी का नाम <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Candidate_Name" name="Candidate_Name" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="Candidate_Name" name="Candidate_Name" required pattern="[A-Za-z\s]+" title="Please enter characters only">
+                                                        <div class="error-message" id="candidateNameError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,10 +86,12 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">पिता/पति का नाम <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Father_Name" name="Father_Name" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="Father_Name" name="Father_Name" required pattern="[A-Za-z\s]+" title="Please enter characters only">
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">स्थाई पता<span style="color:red">*</span></label>
@@ -108,23 +112,25 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">मोबाइल नंबर <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Mobile" name="Mobile" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="Mobile" name="Mobile" required pattern="\d+" title="Please enter digits only">
+                                                        <div class="error-message" id="mobileError"></div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="fw-token-address">जन्मतिथि<span style="color:red">*</span></label>
+                                                    <label class="form-label" for="fw-token-address">जन्मतिथि <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-
-
-                                                        <input type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days">
-                                                        <input type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months">
-                                                        <input type="year" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years">
-
+                                                        <div class="dob-input-group">
+                                                            <input type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days" required pattern="[1-9]|[12][0-9]|3[01]" title="Please enter a valid day (1-31)">
+                                                            <input type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months" required pattern="[1-9]|1[0-2]" title="Please enter a valid month (1-12)">
+                                                            <input type="text" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years" required pattern="\d{4}" title="Please enter a valid year (YYYY)">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">लिंग<span style="color:red">*</span></label>
@@ -148,12 +154,15 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="fw-mobile-number">वैवाहिक स्थि‍ति <span style="color:red">*</span></label>
+                                                    <label class="form-label" for="fw-mobile-number">वैवाहिक स्थिति <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="marriage" value="" name="marriage" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="marriage" value="" name="marriage" required pattern="[^0-9]*">
+                                                        <div class="error-message" id="marriageError" style="display:none;">Please enter a valid marital status .</div>
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">जाति श्रेणी <span style="color:red">*</span></label>
@@ -175,48 +184,51 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="fw-mobile-number">राशन कार्ड  संख्या</label>
+                                                    <label class="form-label" for="fw-mobile-number">राशन कार्ड संख्या</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="ration_card" value="" name="ration_card">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="ration_card" value="" name="ration_card" required pattern="\d+" title="Please enter digits only">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label" for="fw-mobile-number">आधार कार्ड  संख्या  <span style="color:red">*</span></label>
+                                                    <label class="form-label" for="fw-mobile-number">आधार कार्ड संख्या <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="aadhar_card" value="" name="aadhar_card" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="aadhar_card" value="" name="aadhar_card" required pattern="\d+" title="Please enter digits only">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">खाता नंबर <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="bank_account" value="" name="bank_account" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="bank_account" value="" name="bank_account" required pattern="\d+" title="Please enter digits only">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">आईएफएससी कोड <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="IFSC" value="" name="IFSC" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="IFSC" value="" name="IFSC" required pattern="[A-Z]{6}" title="Please enter a valid IFSC code">
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">बैंक का नाम व शाखा <span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" id="bank_name" value="" name="bank_name" required="">
+                                                        <input type="text" class="form-control required" id="bank_name" name="bank_name" required>
+                                                        <div class="error-message" id="bankNameError" style="display: none;">Please enter the bank name and branch.</div>
                                                     </div>
                                                 </div>
                                             </div>
 
-
-
-                                        </div>
                                         <br>
 
                                         <br>
@@ -962,7 +974,7 @@
                                                         <div class="form-group">
 
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_4" value="" name="age_n_4" required min="0" max="100">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="age_n_4" value="" name="age_n_4" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -971,7 +983,7 @@
 
 
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_4" name="persentage_n_4" required min="0" max="100">
+                                                                <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_4" name="persentage_n_4">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1033,7 +1045,7 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="fw-mobile-number">दिनांक<span style="color:red">*</span></label>
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" readonly required>
+                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" required="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1084,3 +1096,16 @@
 
                 </div>
             </div>
+            <script>
+            document.getElementById('yourFormId').addEventListener('submit', function(event) {
+            if (!referenceInput.checkValidity()) {
+            errorDiv.textContent = 'Please enter digits only.';
+            errorDiv.style.display = 'block';
+            event.preventDefault(); // Prevent form submission
+            } else {
+            errorDiv.textContent = '';
+            errorDiv.style.display = 'none';
+            }
+            });
+            });
+            </script>
