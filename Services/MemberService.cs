@@ -89,10 +89,10 @@ namespace ShagunGraminHealth.Services
 
 
             string TransactionId = Guid.NewGuid().ToString();
-
+            int PaymentAmount = 500;
             Dictionary<string, object> input = new Dictionary<string, object>
             {
-                    { "amount", 100 }, 
+                    { "amount", PaymentAmount }, 
                     { "currency", "INR" },
                     { "receipt", TransactionId }
             };
