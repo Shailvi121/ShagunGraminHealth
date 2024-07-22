@@ -71,7 +71,7 @@ namespace ShagunGraminHealth.Controllers
 				ModelState.AddModelError(string.Empty, "Email already exists.");
 			}
 
-			return View(model); // Return to the registration view with the model
+			return View(model); 
 		}
 
 	}
