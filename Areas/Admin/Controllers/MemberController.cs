@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Razorpay.Api;
 using ShagunGraminHealth.Interface;
@@ -6,6 +7,7 @@ using ShagunGraminHealth.Models;
 using ShagunGraminHealth.Services;
 using ShagunGraminHealth.ViewModel;
 using System;
+using System.Diagnostics.Metrics;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -15,12 +17,10 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
     public class MemberController : Controller
     {
         private readonly IMemberService _memberService;
-        private readonly IWebHostEnvironment _environment;
-
-        public MemberController(IMemberService memberService, IWebHostEnvironment environment)
+        public MemberController(IMemberService memberService)
         {
             _memberService = memberService;
-            _environment = environment;
+            
         }
 
         public async Task<IActionResult> AllPlans()
@@ -55,6 +55,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
+            var uerId = HttpContext.Session.GetInt32("UserId");
+            model.UserId = uerId.Value;
             await _memberService.ApplyMembershipFormAsync(model);
             return View("Payment", model);
         }
@@ -63,17 +65,18 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             var data = await _memberService.GetAppliedPlansAsync();
             return View(data);
         }
-        public IActionResult Payment(string razorpay_payment_id,string razorpay_order_id,string razorpay_signature)
+
+
+        public async Task<IActionResult> Payment(PaymentViewModel model)
         {
-            Dictionary<string, string> attributes = new Dictionary<string, string>();
-            attributes.Add("razorpay_payment_id", razorpay_payment_id);
-            attributes.Add("razorpay_order_id", razorpay_order_id);
-            attributes.Add("razorpay_signature", razorpay_signature);
-            Utils.verifyPaymentSignature(attributes);
-            return View("AppliedPlan");
-
+            var uerId = HttpContext.Session.GetInt32("UserId");
+            model.UserId = uerId.Value;
+            await _memberService.ProcessPaymentAsync(model);
+            return RedirectToAction("AppliedPlan");
+           
         }
+       
 
-        
+
     }
 }

@@ -9,7 +9,8 @@
             public string? PaymentStatus { get; set; }
             public string? RazorPaymentId { get; set; }
             public int? UserId { get; set; }
-       
+            public DateTime CreatedDate { get; set; }
+
 
     }
 }

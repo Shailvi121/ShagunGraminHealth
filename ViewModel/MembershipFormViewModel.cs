@@ -94,5 +94,9 @@ namespace ShagunGraminHealth.ViewModel
         public string AgePhotoPath { get; set; }
         public string? OrderId { get; set; }
 
+        public int UserId { get; set; }
+
+      
+
     }
 }

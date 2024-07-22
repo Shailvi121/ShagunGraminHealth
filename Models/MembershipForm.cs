@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ShagunGraminHealth.Models
 {
     public class MembershipForm
     {
+        
         [Key]
         public int Id { get; set; }
         public string? Application_Id { get; set; }
@@ -38,6 +40,7 @@ namespace ShagunGraminHealth.Models
         [NotMapped]
         public IFormFile? FileToUpload { get; set; }
         public string? OrderId { get; set; }
+        public int UserId { get; set; }
 
 
 

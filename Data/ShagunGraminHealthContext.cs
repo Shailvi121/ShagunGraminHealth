@@ -25,6 +25,7 @@ namespace ShagunGraminHealth.Data
 
         public virtual DbSet<MembershipForm> MembershipForms { get; set; }
         public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

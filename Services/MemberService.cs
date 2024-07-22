@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Razorpay.Api;
 using ShagunGraminHealth.Interface;
@@ -15,17 +18,23 @@ namespace ShagunGraminHealth.Services
         private readonly IGenericRepository<MembershipPlan> _membershipPlanRepository;
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<MembershipForm> _membershipFormRepository;
+        private readonly IGenericRepository<PaymentOrder> _paymentRepository;
+        private readonly IGenericRepository<Orders> _orderRepository;
         private readonly IWebHostEnvironment _environment;
 
         public MemberService(
             IGenericRepository<MembershipPlan> membershipPlanRepository,
             IGenericRepository<User> userRepository,
             IGenericRepository<MembershipForm> membershipFormRepository,
+            IGenericRepository<PaymentOrder> paymentRepository,
+             IGenericRepository<Orders> orderRepository,
             IWebHostEnvironment environment)
         {
             _membershipPlanRepository = membershipPlanRepository;
             _userRepository = userRepository;
             _membershipFormRepository = membershipFormRepository;
+            _paymentRepository = paymentRepository;
+            _orderRepository = orderRepository;
             _environment = environment;
         }
 
@@ -54,51 +63,55 @@ namespace ShagunGraminHealth.Services
 
         public async Task ApplyMembershipFormAsync(MembershipFormViewModel model)
         {
-           
-
             if (model.Photo != null && model.Signature != null && model.age_photo != null)
             {
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
-                string uniquePhotoFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Photo.FileName);
-                string photoFilePath = Path.Combine(uploadsFolder, uniquePhotoFileName);
-                using (var photoStream = new FileStream(photoFilePath, FileMode.Create))
-                {
-                    await model.Photo.CopyToAsync(photoStream);
-                }
-                model.PhotoPath = uniquePhotoFileName;
 
-                string uniqueSignatureFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.Signature.FileName);
-                string signatureFilePath = Path.Combine(uploadsFolder, uniqueSignatureFileName);
-                using (var signatureStream = new FileStream(signatureFilePath, FileMode.Create))
-                {
-                    await model.Signature.CopyToAsync(signatureStream);
-                }
-                model.SignaturePath = uniqueSignatureFileName;
-
-                string uniqueAgePhotoFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.age_photo.FileName);
-                string agePhotoFilePath = Path.Combine(uploadsFolder, uniqueAgePhotoFileName);
-                using (var agePhotoStream = new FileStream(agePhotoFilePath, FileMode.Create))
-                {
-                    await model.age_photo.CopyToAsync(agePhotoStream);
-                }
-                model.AgePhotoPath = uniqueAgePhotoFileName;
+                model.PhotoPath = await SaveFileAsync(model.Photo, uploadsFolder);
+                model.SignaturePath = await SaveFileAsync(model.Signature, uploadsFolder);
+                model.AgePhotoPath = await SaveFileAsync(model.age_photo, uploadsFolder);
             }
+
             string key = "rzp_test_h6khePiEN5pLb5";
             string secret = "aa79deq6RzqONUxz2lnJPmhc";
             RazorpayClient client = new RazorpayClient(key, secret);
 
+            string transactionId = Guid.NewGuid().ToString();
+            int paymentAmount = 500;
 
-            string TransactionId = Guid.NewGuid().ToString();
-            int PaymentAmount = 500;
             Dictionary<string, object> input = new Dictionary<string, object>
             {
-                    { "amount", PaymentAmount }, 
-                    { "currency", "INR" },
-                    { "receipt", TransactionId }
+                { "amount", paymentAmount },
+                { "currency", "INR" },
+                { "receipt", transactionId }
             };
 
             Razorpay.Api.Order order = client.Order.Create(input);
             model.OrderId = order["id"].ToString();
+
+            OrderVM orderViewModel = new OrderVM
+            {
+                PaymentAmount = paymentAmount,
+                PaymentStatus = "Initiate",
+                UserId = model.UserId,
+                OrderId = model.OrderId,
+                CreatedDate = DateTime.UtcNow,
+                IsActive = true,
+            };
+
+            Orders orders = new Orders
+            {
+                PaymentAmount = orderViewModel.PaymentAmount,
+                PaymentStatus = orderViewModel.PaymentStatus,
+                UserId = orderViewModel.UserId,
+                OrderId = orderViewModel.OrderId,
+                CreatedDate = orderViewModel.CreatedDate,
+                IsActive = orderViewModel.IsActive,
+            };
+
+            await _orderRepository.AddAsync(orders);
+            await _orderRepository.SaveChangesAsync();
+
             MembershipForm membershipForm = new MembershipForm
             {
                 Application_Id = model.Application_Id,
@@ -130,26 +143,24 @@ namespace ShagunGraminHealth.Services
                 Place = model.Place,
                 Form_Date = DateTime.Now,
                 OrderId = model.OrderId,
+                UserId = model.UserId,
             };
 
-
             await _membershipFormRepository.AddAsync(membershipForm);
+            await _membershipFormRepository.SaveChangesAsync();
         }
 
+        private async Task<string> SaveFileAsync(IFormFile file, string uploadsFolder)
+        {
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+            return uniqueFileName;
+        }
 
-        //private async Task ProcessFileAsync(IFormFile file, string uploadsFolder, string modelProperty)
-        //{
-        //    if (file != null)
-        //    {
-        //        string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
-        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-        //        using (var stream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-        //        modelProperty = uniqueFileName;
-        //    }
-        //}
         public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
         {
             var appliedPlans = await _membershipFormRepository.GetAllAsync();
@@ -167,7 +178,33 @@ namespace ShagunGraminHealth.Services
             return viewModelList;
         }
 
-       
-        
+        public async Task ProcessPaymentAsync(PaymentViewModel model)
+        {
+            Dictionary<string, string> attributes = new Dictionary<string, string>
+            {
+                { "razorpay_payment_id", model.razorpay_payment_id },
+                { "razorpay_order_id", model.razorpay_order_id },
+                { "razorpay_signature", model.razorpay_signature }
+            };
+
+            Utils.verifyPaymentSignature(attributes);
+
+            var paymentOrder = new PaymentOrder
+            {
+                RazorPaymentId = model.razorpay_payment_id,
+                OrderId = model.razorpay_order_id,
+                PaymentStatus = "Success",
+                UserId = model.UserId,
+                CreatedDate = DateTime.Now
+            };
+
+            await _paymentRepository.AddAsync(paymentOrder);
+            await _paymentRepository.SaveChangesAsync();
+        }
+
+        public Task ProcessPaymentAsync(string razorpayPaymentId, string razorpayOrderId, string razorpaySignature, int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
