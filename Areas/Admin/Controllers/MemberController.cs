@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using ShagunGraminHealth.Services;
@@ -61,6 +62,16 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         {
             var data = await _memberService.GetAppliedPlansAsync();
             return View(data);
+        }
+        public IActionResult Payment(string razorpay_payment_id,string razorpay_order_id,string razorpay_signature)
+        {
+            Dictionary<string, string> attributes = new Dictionary<string, string>();
+            attributes.Add("razorpay_payment_id", razorpay_payment_id);
+            attributes.Add("razorpay_order_id", razorpay_order_id);
+            attributes.Add("razorpay_signature", razorpay_signature);
+            Utils.verifyPaymentSignature(attributes);
+            return View("AppliedPlan");
+
         }
 
         

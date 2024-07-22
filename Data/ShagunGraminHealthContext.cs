@@ -24,6 +24,7 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<MembershipPlan> MembershipPlans { get; set; } = null!;
 
         public virtual DbSet<MembershipForm> MembershipForms { get; set; }
+        public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -120,6 +121,18 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.Place).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Form_Date).IsRequired();
                 entity.Property(e => e.OrderId).HasMaxLength(50).IsRequired();
+            });
+
+            modelBuilder.Entity<PaymentOrder>(entity =>
+            {
+                entity.ToTable("PaymentOrder");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.OrderId).HasMaxLength(50);
+                entity.Property(e => e.PaymentStatus).HasMaxLength(50);
+                entity.Property(e => e.RazorPaymentId).HasMaxLength(50);
+                entity.Property(e => e.UserId).IsRequired(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
