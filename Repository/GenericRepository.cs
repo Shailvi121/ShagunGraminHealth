@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Razorpay.Api;
 using ShagunGraminHealth.Data;
 using ShagunGraminHealth.Interface;
+using ShagunGraminHealth.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -53,6 +55,10 @@ namespace ShagunGraminHealth.Repository
         {
             return await _dbSet.FindAsync(id);
         }
+        //public async Task<T> GetByOrderIdAsync(string OrderId)
+        //{
+        //    return await _dbSet.FindAsync(OrderId);
+        //}
 
         public async Task<int> SaveChangesAsync()
         {
@@ -81,6 +87,12 @@ namespace ShagunGraminHealth.Repository
                 throw new Exception("Error fetching user roles.", ex);
             }
         }
+
+        public async Task<List<T>> GetByOrderIdAsync(string orderId)
+        {
+            return await _dbSet.Where(Orders => EF.Property<string>(Orders, "OrderId") == orderId).ToListAsync();
+        }
+
 
     }
 }

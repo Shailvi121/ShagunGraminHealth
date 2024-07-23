@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -77,11 +78,13 @@ namespace ShagunGraminHealth.Services
             RazorpayClient client = new RazorpayClient(key, secret);
 
             string transactionId = Guid.NewGuid().ToString();
-            int paymentAmount = 500;
+            decimal paymentAmountInINR = model.PaymentAmount;
+            int paymentAmountInPaise = (int)(paymentAmountInINR * 100);
 
             Dictionary<string, object> input = new Dictionary<string, object>
             {
-                { "amount", paymentAmount },
+
+                { "amount", paymentAmountInPaise },
                 { "currency", "INR" },
                 { "receipt", transactionId }
             };
@@ -91,7 +94,7 @@ namespace ShagunGraminHealth.Services
 
             OrderVM orderViewModel = new OrderVM
             {
-                PaymentAmount = paymentAmount,
+                PaymentAmount = model.PaymentAmount,
                 PaymentStatus = "Initiate",
                 UserId = model.UserId,
                 OrderId = model.OrderId,
@@ -188,7 +191,7 @@ namespace ShagunGraminHealth.Services
             };
 
             Utils.verifyPaymentSignature(attributes);
-
+            var orderId = model.razorpay_order_id;
             var paymentOrder = new PaymentOrder
             {
                 RazorPaymentId = model.razorpay_payment_id,
@@ -200,6 +203,22 @@ namespace ShagunGraminHealth.Services
 
             await _paymentRepository.AddAsync(paymentOrder);
             await _paymentRepository.SaveChangesAsync();
+
+            var orders = await _orderRepository.GetByOrderIdAsync(model.razorpay_order_id);
+            if (orders != null && orders.Count > 0)
+            {
+                foreach (var order in orders)
+                {
+                    order.PaymentStatus = "Success";
+                    await _orderRepository.Update(order);
+                }
+                await _orderRepository.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Order not found.");
+            }
+
         }
 
         public Task ProcessPaymentAsync(string razorpayPaymentId, string razorpayOrderId, string razorpaySignature, int userId)

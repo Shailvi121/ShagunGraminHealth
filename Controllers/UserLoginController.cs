@@ -21,6 +21,7 @@ namespace ShagunGraminHealth.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -42,21 +43,54 @@ namespace ShagunGraminHealth.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                string area = roles.Contains("Admin") ? "Admin" : roles.Contains("Candidate") ? "Candidate" : "";
-                if (!string.IsNullOrEmpty(area))
-                {
-                    return RedirectToAction("Index", "Dashboard", new { areas = area });
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Organization");
-                }
+                return Redirect("/Admin/Dashboard");
+
             }
 
             ModelState.AddModelError(string.Empty, "User not found. Please check your credentials.");
             TempData["ErrorMessage"] = "User not found. Please check your credentials.";
             return RedirectToAction("Login", "UserLogin");
         }
+
+
+
+
+        //[HttpPost]
+        //public async Task<IActionResult> Login(LoginModel model)
+        //{
+        //    var user = await _userService.SignInAsync(model);
+        //    if (user != null)
+        //    {
+        //        var roles = await _userService.GetRoles(user.Id);
+
+        //        var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, user.Name),
+        //            new Claim(ClaimTypes.Email, user.Email),
+        //            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+        //        };
+
+        //        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+        //        string area = roles.Contains("Admin") ? "Admin" : roles.Contains("Candidate") ? "Candidate" : "";
+        //        if (!string.IsNullOrEmpty(area))
+        //        {
+        //            return RedirectToAction("Index", "Dashboard", new { areas = area });
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index", "Organization");
+        //        }
+        //    }
+
+        //    ModelState.AddModelError(string.Empty, "User not found. Please check your credentials.");
+        //    TempData["ErrorMessage"] = "User not found. Please check your credentials.";
+        //    return RedirectToAction("Login", "UserLogin");
+        //}
 
         public IActionResult Register()
         {

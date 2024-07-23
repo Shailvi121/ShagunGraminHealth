@@ -52,10 +52,10 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             }
             return View(user);
         }
-        public IActionResult ApplyMember(string applicationId, string planNumber)
+        public IActionResult ApplyMember(string planNumber, string PlanFee)
         {
-            // Use the applicationId and planNumber as needed
-            ViewBag.ApplicationId = applicationId;
+            
+            ViewBag.PaymentAmount = PlanFee;
             ViewBag.PlanNumber = planNumber;
 
             return View();
@@ -65,8 +65,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
-            var uerId = HttpContext.Session.GetInt32("UserId");
-            model.UserId = uerId.Value;
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            model.UserId =Convert.ToInt32(userIdClaim);
             await _memberService.ApplyMembershipFormAsync(model);
             return View("Payment", model);
         }
@@ -79,8 +79,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> Payment(PaymentViewModel model)
         {
-            var uerId = HttpContext.Session.GetInt32("UserId");
-            model.UserId = uerId.Value;
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            model.UserId = Convert.ToInt32(userIdClaim);
             await _memberService.ProcessPaymentAsync(model);
             return RedirectToAction("AppliedPlan");
            
