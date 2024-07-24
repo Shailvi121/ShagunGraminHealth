@@ -30,6 +30,8 @@ namespace ShagunGraminHealth.Models
         [StringLength(50)]
         public string Passcode { get; set; }
 
+        public string ? Role {  get; set; }
+
 
 
     }

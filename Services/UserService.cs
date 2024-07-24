@@ -55,9 +55,37 @@ namespace ShagunGraminHealth.Services
                 };
                 await _repository.AddAsync(newUser);
                 await _repository.SaveChangesAsync();
+                await AssignUserRole(newUser.Id, model.Role);
                 return newUser;
             }
             return null;
+        }
+
+        private async Task AssignUserRole(int userId, string role)
+        {
+            int roleId;
+
+            switch (role)
+            {
+                case "Member":
+                    roleId = 2; // Role ID for Member
+                    break;
+                case "Candidate":
+                    roleId = 3; // Role ID for Candidate
+                    break;
+                default:
+                    roleId = 1; // Default Role ID (e.g., Admin)
+                    break;
+            }
+
+            var userRole = new UserRole
+            {
+                UserId = userId,
+                RoleId = roleId
+            };
+
+            await _userRoleRepository.AddAsync(userRole);
+            await _userRoleRepository.SaveChangesAsync();
         }
     }
 }

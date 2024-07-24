@@ -37,6 +37,7 @@
                                 <div class="card-body">
                                     <h2 class="fw-normal mb-4" style="font-size: 20px;">Create New ShagunGraminHealth Account</h2>
                                     <form asp-action="Register" asp-controller="UserLogin" method="post">
+                                        <input type="hidden" asp-for="Role" value="@ViewBag.Role" />
                                         <div class="mb-3">
                                             <input type="text" name="Name" class="form-control" placeholder="Full Name" required>
                                         </div>

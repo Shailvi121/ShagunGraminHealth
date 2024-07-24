@@ -21,6 +21,7 @@ namespace ShagunGraminHealth.Models
         public DateTime? UpdatedOn { get; set; }
         public bool? IsActive { get; set; }
         public string Email { get; set; } = null!;
+        public string? Role {  get; set; }
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }

@@ -92,10 +92,15 @@ namespace ShagunGraminHealth.Controllers
         //    return RedirectToAction("Login", "UserLogin");
         //}
 
-        public IActionResult Register()
+        public IActionResult Register(string role)
         {
+            ViewBag.Role = role;
             return View();
         }
+        //public IActionResult Register()
+        //{
+        //    return View();
+        //}
 
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationModel model)
