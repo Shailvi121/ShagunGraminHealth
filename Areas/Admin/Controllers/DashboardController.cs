@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShagunGraminHealth.Interface;
 
 namespace ShagunGraminHealth.Areas.Admin.Controllers
 {
@@ -10,10 +11,17 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
     public class DashboardController : Controller
     {
-        public IActionResult Index()
+        private readonly IMemberService _memberService;
+        public DashboardController(IMemberService memberService)
         {
+            _memberService = memberService;
 
-            return View();
+        }
+        public async Task<IActionResult> Index()
+        {
+            var data = await _memberService.GetAllMembershipPlansAsync();
+            return View(data);
+           
         }
 
     }

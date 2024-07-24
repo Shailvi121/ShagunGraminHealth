@@ -2,6 +2,7 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@model IEnumerable<ShagunGraminHealth.Models.MembershipPlan>
 
 @{
     var claimsPrincipal = User;
@@ -23,7 +24,24 @@
                             <p>Latest Updates and Notifications</p>
                         </div>
                     </div>
+
                     <table class="table" width="100%">
+                        <tbody>
+                            @foreach (var plan in Model)
+                            {
+                                <tr data-status="@plan.PlanNumber">
+                                    <td>
+                                        Plan No - @plan.PlanNumber - <b>Plan Name - @plan.PlanName</b> -
+                                        <a href="/Admin/Member/ApplyMember?PlanNumber=@plan.PlanNumber&PlanFee=@plan.PlanFee">
+                                            <span class="btn btn-primary">Apply Now</span>
+                                        </a>
+                                        
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @* <table class="table" width="100%">
                         <tbody>
                             <tr data-status="221216AGFV306">
                                 <td>
@@ -38,7 +56,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> *@
                 </div>
             </div>
         </div>
