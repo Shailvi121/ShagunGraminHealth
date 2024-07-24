@@ -68,16 +68,15 @@ namespace ShagunGraminHealth.Services
             switch (role)
             {
                 case "Member":
-                    roleId = 2; // Role ID for Member
+                    roleId = 2; 
                     break;
                 case "Candidate":
-                    roleId = 3; // Role ID for Candidate
+                    roleId = 3; 
                     break;
                 default:
-                    roleId = 1; // Default Role ID (e.g., Admin)
+                    roleId = 1; 
                     break;
             }
-
             var userRole = new UserRole
             {
                 UserId = userId,
