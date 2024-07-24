@@ -12,7 +12,7 @@ using ShagunGraminHealth.Data;
 namespace ShagunGraminHealth.Migrations
 {
     [DbContext(typeof(ShagunGraminHealthContext))]
-    [Migration("20240724090642_InitialCreate")]
+    [Migration("20240724103341_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -263,7 +263,10 @@ namespace ShagunGraminHealth.Migrations
             modelBuilder.Entity("ShagunGraminHealth.Models.Role", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasMaxLength(255)
@@ -330,7 +333,10 @@ namespace ShagunGraminHealth.Migrations
             modelBuilder.Entity("ShagunGraminHealth.Models.UserRole", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");

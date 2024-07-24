@@ -32,8 +32,8 @@ namespace ShagunGraminHealth.Data
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Role");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.Property(e => e.Name).HasMaxLength(255);
             });
@@ -41,6 +41,8 @@ namespace ShagunGraminHealth.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
@@ -63,7 +65,8 @@ namespace ShagunGraminHealth.Data
             {
                 entity.ToTable("UserRole");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.UserRoles)
@@ -79,6 +82,8 @@ namespace ShagunGraminHealth.Data
             modelBuilder.Entity<MembershipPlan>(entity =>
             {
                 entity.ToTable("MembershipPlan");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.Property(e => e.PlanFee).HasColumnType("decimal(18, 2)");
 
@@ -92,6 +97,7 @@ namespace ShagunGraminHealth.Data
                 entity.ToTable("MembershipForm");
 
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.Property(e => e.Application_Id).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.PlanNumber).HasMaxLength(255).IsRequired();
@@ -129,6 +135,7 @@ namespace ShagunGraminHealth.Data
                 entity.ToTable("PaymentOrder");
 
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
 
                 entity.Property(e => e.OrderId).HasMaxLength(50);
                 entity.Property(e => e.PaymentStatus).HasMaxLength(50);

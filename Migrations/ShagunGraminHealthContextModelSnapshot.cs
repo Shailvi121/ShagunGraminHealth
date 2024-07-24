@@ -261,7 +261,10 @@ namespace ShagunGraminHealth.Migrations
             modelBuilder.Entity("ShagunGraminHealth.Models.Role", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasMaxLength(255)
@@ -328,7 +331,10 @@ namespace ShagunGraminHealth.Migrations
             modelBuilder.Entity("ShagunGraminHealth.Models.UserRole", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
