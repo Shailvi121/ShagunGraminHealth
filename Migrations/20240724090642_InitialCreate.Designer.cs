@@ -12,8 +12,8 @@ using ShagunGraminHealth.Data;
 namespace ShagunGraminHealth.Migrations
 {
     [DbContext(typeof(ShagunGraminHealthContext))]
-    [Migration("20240722105318_AddUserIdToMembershipForm")]
-    partial class AddUserIdToMembershipForm
+    [Migration("20240724090642_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,7 +226,7 @@ namespace ShagunGraminHealth.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("ShagunGraminHealth.Models.PaymentOrder", b =>
@@ -282,6 +282,9 @@ namespace ShagunGraminHealth.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime");
 
@@ -312,6 +315,9 @@ namespace ShagunGraminHealth.Migrations
 
                     b.Property<int?>("ReferenceId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime");

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShagunGraminHealth.Migrations
 {
-    public partial class AddMembershipFormEntity : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,9 @@ namespace ShagunGraminHealth.Migrations
                     Photo = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Signature = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Place = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Form_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Form_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +64,41 @@ namespace ShagunGraminHealth.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MembershipPlan", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentOrder",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RazorPaymentId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentOrder", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,11 +123,13 @@ namespace ShagunGraminHealth.Migrations
                     Mobile = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     ReferenceId = table.Column<int>(type: "int", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Passcode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime", nullable: true),
                     UpdatedOn = table.Column<DateTime>(type: "datetime", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -138,6 +177,12 @@ namespace ShagunGraminHealth.Migrations
 
             migrationBuilder.DropTable(
                 name: "MembershipPlan");
+
+            migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "PaymentOrder");
 
             migrationBuilder.DropTable(
                 name: "UserRole");
