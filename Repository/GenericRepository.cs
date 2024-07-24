@@ -90,7 +90,7 @@ namespace ShagunGraminHealth.Repository
 
         public async Task<List<T>> GetByOrderIdAsync(string orderId)
         {
-            return await _dbSet.Where(Orders => EF.Property<string>(Orders, "OrderId") == orderId).ToListAsync();
+            return await _dbSet.Where(Order => EF.Property<string>(Order, "OrderId") == orderId).ToListAsync();
         }
 
 

@@ -1,4 +1,6 @@
-﻿namespace ShagunGraminHealth.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ShagunGraminHealth.Models
 {
     public class Orders
     {
