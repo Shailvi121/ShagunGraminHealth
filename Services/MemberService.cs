@@ -268,23 +268,48 @@ namespace ShagunGraminHealth.Services
             return uniqueFileName;
         }
 
+        //public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
+        //{
+        //    var appliedPlans = await _membershipFormRepository.GetAllAsync();
+        //    var viewModelList = appliedPlans.Select(m => new MembershipFormViewModel
+        //    {
+        //        Id = m.Id,
+        //        Application_Id = m.Application_Id,
+        //        PlanNumber = m.PlanNumber,
+        //        Candidate_Name = m.Candidate_Name,
+        //        Father_Name = m.Father_Name,
+        //        Sex = m.Sex,
+        //        Category = m.Category,
+        //        //Payment = m.Payment
+        //    });
+        //    return viewModelList;
+        //}
+
+
         public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
         {
             var appliedPlans = await _membershipFormRepository.GetAllAsync();
-            var viewModelList = appliedPlans.Select(m => new MembershipFormViewModel
+            var orderDetails = await _orderRepository.GetAllAsync(); 
+
+            var viewModelList = appliedPlans.Select(m =>
             {
-                Id = m.Id,
-                Application_Id = m.Application_Id,
-                PlanNumber = m.PlanNumber,
-                Candidate_Name = m.Candidate_Name,
-                Father_Name = m.Father_Name,
-                Sex = m.Sex,
-                Category = m.Category,
-                //Payment = m.Payment
+                var orderDetail = orderDetails.FirstOrDefault(o => o.OrderId == m.OrderId); 
+                return new MembershipFormViewModel
+                {
+                    Id = m.Id,
+                    Application_Id = m.Application_Id,
+                    PlanNumber = m.PlanNumber,
+                    Candidate_Name = m.Candidate_Name,
+                    Father_Name = m.Father_Name,
+                    Sex = m.Sex,
+                    Category = m.Category,
+                    PaymentStatus = orderDetail?.PaymentStatus ?? "Pending",
+                    PaymentAmount = orderDetail?.PaymentAmount ?? 0
+                };
             });
+
             return viewModelList;
         }
-
         public async Task ProcessPaymentAsync(PaymentViewModel model)
         {
             Dictionary<string, string> attributes = new Dictionary<string, string>
@@ -336,6 +361,39 @@ namespace ShagunGraminHealth.Services
             var details = await _userRepository.GetAllAsync();
             return details;
         }
-        
+
+        //public async Task<MembershipForm> GetMemberApplictionIdAsync(string Application_Id)
+        //{
+
+        //    var membershipForm = await _membershipFormRepository.FindAsync(m => m.Application_Id == Application_Id);
+        //    return membershipForm;
+        //}
+
+        public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplictionIdAsync(string Application_Id)
+        {
+            var allMembershipForms = await _membershipFormRepository.GetAllAsync();
+            var orderDetails = await _orderRepository.GetAllAsync();
+            var membershipForms = allMembershipForms.Where(m => m.Application_Id == Application_Id);
+            var viewModels = membershipForms.Select(m =>
+            {
+                
+                var orderDetail = orderDetails.FirstOrDefault(o => o.OrderId == m.OrderId);
+
+                return new MembershipFormViewModel
+                {
+                    Id = m.Id,
+                    Application_Id = m.Application_Id,
+                    PlanNumber = m.PlanNumber,
+                    Candidate_Name = m.Candidate_Name,
+                    PaymentAmount = orderDetail.PaymentAmount,
+                    OrderId = m.OrderId,
+                    PaymentStatus = orderDetail?.PaymentStatus 
+                };
+            });
+
+                            return viewModels;
+        }
+
+
     }
 }

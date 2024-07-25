@@ -597,6 +597,9 @@ namespace ShagunGraminHealth.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ApplicationId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("PlanFee")
                         .HasColumnType("decimal(18,2)");
 

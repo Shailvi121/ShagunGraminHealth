@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShagunGraminHealth.ViewModel.MembershipFormViewModel>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="nk-content-inner">
+        <div class="nk-content-body">
+            <div class="card card-preview">
+                <div class="card-inner">
+                    <div class="datatable-wrap my-3">
+                        @if (Model != null && Model.Any())
+                        {
+                            <table class="datatable-init nowrap table dataTable no-footer dtr-inline">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Id</th>
+                                        <th>Application Id</th>
+                                        <th>Plan No</th>
+                                        <th>Plan</th>
+                                        <th>Candidate_Name</th>
+                                        <th>Amount</th>
+                                        <th>Order id</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr data-status="" role="row" class="odd">
+                                            <td>@item.Id</td>
+                                            <td>@item.Application_Id</td>
+                                            <td>@item.PlanNumber</td>
+                                            <td>शगुन योजना</td>
+                                            <td>@item.Candidate_Name</td>
+                                            <td>@item.PaymentAmount</td>
+                                            <td>@item.OrderId</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p>No data available.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

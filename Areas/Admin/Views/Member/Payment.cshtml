@@ -12,15 +12,30 @@
         <input id="razorpay_signature" type="hidden" name="razorpay_signature" />
     </form>
 </head>
-
+<style>
+    .button-container {
+        display: flex;
+        gap: 10px; 
+        margin-top: 20px; 
+    }
+</style>
 <body>
-    <button id="rzp-button1">Pay with Razorpay</button>
+    <div class="button-container">
+        <button id="rzppay">Pay</button>
+        <form action="/Admin/Member/AppliedPlan" method="get">
+            <button type="submit" class="btn btn-secondary">Back To Application</button>
+        </form>
+    </div>
+    @* <button id="rzp-button1">Pay</button>
+    <form action="/Admin/Member/AppliedPlan" method="get">
+        <button type="submit" class="btn btn-secondary">Back To Application</button>
+    </form> *@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         var orderId = "@Model.OrderId"
         var options = {
-            "name": "Acme Corp",
-            "description": "Buy Green Tea",
+            "name": "ShagunGraminHealth",
+            "description": "Shagun Yojna",
             "order_id": orderId,
             "image": "https://example.com/your_logo",
             "prefill": {
@@ -35,7 +50,7 @@
                 "color": "#3399cc"
             }
         }
-        // Boolean whether to show image inside a white frame. (default: true)
+       
         options.theme.image_padding = false;
         options.handler = function (response) {
             document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
@@ -47,15 +62,13 @@
             ondismiss: function () {
                 console.log("This code runs when the popup is closed");
             },
-            // Boolean indicating whether pressing escape key
-            // should close the checkout form. (default: true)
+           
             escape: true,
-            // Boolean indicating whether clicking translucent blank
-            // space outside checkout form should close the form. (default: false)
+            
             backdropclose: false
         };
         var rzp = new Razorpay(options);
-        document.getElementById('rzp-button1').onclick = function (e) {
+        document.getElementById('rzppay').onclick = function (e) {
             rzp.open();
             e.preventDefault();
         }

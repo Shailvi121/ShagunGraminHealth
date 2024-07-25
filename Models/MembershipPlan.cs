@@ -9,5 +9,6 @@ namespace ShagunGraminHealth.Models
         public string PlanNumber { get; set; } = null!;
         public string PlanName { get; set; } = null!;
         public decimal PlanFee { get; set; }
+        public string? ApplicationId { get; set; }
     }
 }

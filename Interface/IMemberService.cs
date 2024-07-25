@@ -6,6 +6,7 @@ namespace ShagunGraminHealth.Interface
 {
     public interface IMemberService
     {
+     
         Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync();
         Task<User> GetUserByIdAsync(int id);
         Task UpdateUserProfileAsync(User user);
@@ -15,6 +16,8 @@ namespace ShagunGraminHealth.Interface
         Task ProcessPaymentAsync(string razorpayPaymentId, string razorpayOrderId, string razorpaySignature, int userId);
 
         Task ProcessPaymentAsync(PaymentViewModel model);
+        Task<IEnumerable<MembershipFormViewModel>> GetMemberApplictionIdAsync(string Application_Id);
+        
 
         Task ApplyJobAsync(JobApplicationViewModel model);
         Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize);

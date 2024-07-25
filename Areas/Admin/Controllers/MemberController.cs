@@ -22,7 +22,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         public MemberController(IMemberService memberService)
         {
             _memberService = memberService;
-            
+
         }
 
         public async Task<IActionResult> AllPlans()
@@ -56,7 +56,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         }
         public IActionResult ApplyMember(string planNumber, string PlanFee)
         {
-            
+
             ViewBag.PaymentAmount = PlanFee;
             ViewBag.PlanNumber = planNumber;
 
@@ -68,7 +68,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         public async Task<IActionResult> ApplyMember(MembershipFormViewModel model)
         {
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            model.UserId =Convert.ToInt32(userIdClaim);
+            model.UserId = Convert.ToInt32(userIdClaim);
             await _memberService.ApplyMembershipFormAsync(model);
             return View("Payment", model);
         }
@@ -85,7 +85,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             model.UserId = Convert.ToInt32(userIdClaim);
             await _memberService.ProcessPaymentAsync(model);
             return RedirectToAction("AppliedPlan");
-           
+
         }
 
         public async Task<IActionResult> UserDetails()
@@ -93,6 +93,18 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             var userDetails = await _memberService.GetDetailsAsync();
             return View(userDetails);
         }
-        
+        public async Task<IActionResult> ViewPayments(string Application_Id)
+        {
+            var Member = await _memberService.GetMemberApplictionIdAsync(Application_Id);
+            return View(Member);
+        }
+
+        public async Task<IActionResult> Payment(string Application_Id)
+        {
+            var membershipForms = await _memberService.GetMemberApplictionIdAsync(Application_Id);
+            return View(membershipForms);
+        }
+
+
     }
 }

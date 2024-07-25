@@ -55,11 +55,8 @@ namespace ShagunGraminHealth.Repository
         {
             return await _dbSet.FindAsync(id);
         }
-        //public async Task<T> GetByOrderIdAsync(string OrderId)
-        //{
-        //    return await _dbSet.FindAsync(OrderId);
-        //}
 
+       
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
