@@ -19,6 +19,7 @@ namespace ShagunGraminHealth.Interface
         Task<IEnumerable<MembershipFormViewModel>> GetMemberApplictionIdAsync(string Application_Id);
         
 
+        Task ApplyJobAsync(JobApplicationViewModel model);
 
     }
 }

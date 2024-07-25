@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShagunGraminHealth.Data;
 
@@ -11,9 +12,10 @@ using ShagunGraminHealth.Data;
 namespace ShagunGraminHealth.Migrations
 {
     [DbContext(typeof(ShagunGraminHealthContext))]
-    partial class ShagunGraminHealthContextModelSnapshot : ModelSnapshot
+    [Migration("20240724123958_add_migration")]
+    partial class add_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,56 @@ namespace ShagunGraminHealth.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ShagunGraminHealth.Models.FamilyDetail", b =>
+                {
+                    b.Property<int>("FamilyDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FamilyDetailId"), 1L, 1);
+
+                    b.Property<string>("AadharNumber")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EducationalLevel")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FamilyMemberName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("MembershipFormId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Relation")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Serial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FamilyDetailId");
+
+                    b.HasIndex("MembershipFormId");
+
+                    b.ToTable("FamilyDetail", (string)null);
+                });
 
             modelBuilder.Entity("ShagunGraminHealth.Models.JobApplication", b =>
                 {
@@ -39,10 +91,6 @@ namespace ShagunGraminHealth.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("AgePhoto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Agree")
                         .IsRequired()
@@ -333,10 +381,6 @@ namespace ShagunGraminHealth.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("FamilyDetailsJson")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Father_Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -359,10 +403,6 @@ namespace ShagunGraminHealth.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("NominatedDetailsJson")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("OrderId")
                         .IsRequired()
@@ -441,9 +481,6 @@ namespace ShagunGraminHealth.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ApplicationId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("PlanFee")
                         .HasColumnType("decimal(18,2)");
 
@@ -460,6 +497,46 @@ namespace ShagunGraminHealth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MembershipPlan", (string)null);
+                });
+
+            modelBuilder.Entity("ShagunGraminHealth.Models.NominatedDetail", b =>
+                {
+                    b.Property<int>("NominatedDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NominatedDetailId"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MembershipFormId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NominatedPersonName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Percentage")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Relation")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Serial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NominatedDetailId");
+
+                    b.HasIndex("MembershipFormId");
+
+                    b.ToTable("NominatedDetail", (string)null);
                 });
 
             modelBuilder.Entity("ShagunGraminHealth.Models.Orders", b =>
@@ -617,6 +694,28 @@ namespace ShagunGraminHealth.Migrations
                     b.ToTable("UserRole", (string)null);
                 });
 
+            modelBuilder.Entity("ShagunGraminHealth.Models.FamilyDetail", b =>
+                {
+                    b.HasOne("ShagunGraminHealth.Models.MembershipForm", "MembershipForm")
+                        .WithMany("FamilyDetails")
+                        .HasForeignKey("MembershipFormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MembershipForm");
+                });
+
+            modelBuilder.Entity("ShagunGraminHealth.Models.NominatedDetail", b =>
+                {
+                    b.HasOne("ShagunGraminHealth.Models.MembershipForm", "MembershipForm")
+                        .WithMany("NominatedDetails")
+                        .HasForeignKey("MembershipFormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MembershipForm");
+                });
+
             modelBuilder.Entity("ShagunGraminHealth.Models.UserRole", b =>
                 {
                     b.HasOne("ShagunGraminHealth.Models.Role", "Role")
@@ -632,6 +731,13 @@ namespace ShagunGraminHealth.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ShagunGraminHealth.Models.MembershipForm", b =>
+                {
+                    b.Navigation("FamilyDetails");
+
+                    b.Navigation("NominatedDetails");
                 });
 
             modelBuilder.Entity("ShagunGraminHealth.Models.Role", b =>

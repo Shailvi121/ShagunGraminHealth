@@ -117,20 +117,78 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="fw-token-address">जन्मतिथि <span style="color:red">*</span></label>
-                                                    <div class="form-control-wrap">
-                                                        <div class="dob-input-group">
-                                                            <input type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days" required pattern="[1-9]|[12][0-9]|3[01]" title="Please enter a valid day (1-31)">
-                                                            <input type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months" required pattern="[1-9]|1[0-2]" title="Please enter a valid month (1-12)">
-                                                            <input type="text" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years" required pattern="\d{4}" title="Please enter a valid year (YYYY)">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">ईमेल <span style="color:red">*</span></label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="email" data-msg="Required" class="form-control required" value="" id="Mobile" name="Email" required="">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-token-address">जन्मतिथि<span style="color:red">*</span></label>
+                                                        <div class="form-control-wrap">
+
+
+                                                            <!----input class="dob_flds" type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days"---->
+                                                            <select class="dob_flds" id="Date_of_Birth_Days" name="Date_of_Birth_Days">
+                                                                <option value="">DD</option>
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                                <option value="31">31</option>
+                                                            </select>
+
+                                                            <!----input class="dob_flds" type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months"---->
+                                                            <select class="dob_flds" id="Date_of_Birth_Months" name="Date_of_Birth_Months">
+                                                                <option value="">MM</option>
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                            </select>
+                                                            <input class="dob_flds" type="year" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">लिंग<span style="color:red">*</span></label>
@@ -231,14 +289,11 @@
 
                                         <br>
 
-                                        <br>
-
-
-
-
+                                        </br>
                                         <div class="">
                                             <h5>परिवार का विवरण </h5>
-                                        </div><br>
+                                        </div>
+                                        <br></br>
                                         <div class="">
                                             <div class="row gy-2">
 
@@ -405,6 +460,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-2">
                                                     <div class="form-group">
 
@@ -469,6 +525,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-1">
                                                     <div class="form-group">
 
@@ -820,7 +877,7 @@
                                             <div class="">
                                                 <div class="row gy-2">
 
-                                                    <div class="col-md-1">
+                                                   @* <div class="col-md-1">
                                                         <div class="form-group">
                                                             <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">क्रम संख्या </label>
                                                             <div class="form-control-wrap">
@@ -1029,61 +1086,134 @@
                                                                 <input type="text" data-msg="Required" class="form-control required" value="" id="persentage_n_5" name="persentage_n_5">
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div>*@
+                                                                        @using (Html.BeginForm())
+                                                                        {
+                                                                <div class="row">
+                                                                                @for (int i = 0; i < 5; i++)
+                                                                                {
+                                                                        <div class="col-md-1 mb-3">
+                                                                            <div class="form-group">
+                                                                                            @if (i == 0)
+                                                                                            {
+                                                                                    <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">क्रम संख्या </label>
+                                                                                            }
+                                                                                <div class="form-control-wrap">
+                                                                                    <input type="text" asp-for="NominatedDetails[@i].Serial" class="form-control required" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                    <br><br>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label" for="fw-token-address">स्थान<span style="color:red">*</span></label>
-                                                            <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" id="Place" name="Place" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                            <div class="form-group">
+                                                                                            @if (i == 0)
+                                                                                            {
+                                                                                    <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">नामकिंत व्यक्तियों का नाम व पता नाम</label>
+                                                                                            }
+                                                                                <div class="form-control-wrap">
+                                                                                    <input type="text" asp-for="NominatedDetails[@i].NominatedPersonName" class="form-control required" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label" for="fw-mobile-number">दिनांक<span style="color:red">*</span></label>
-                                                            <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-17 10:34:02" name="form_Date" required="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label" for="fw-token-address">फ़ोटो<span style="color:red">*</span></label>
+                                                                        <div class="col-md-2 mb-3">
+                                                                            <div class="form-group">
+                                                                                            @if (i == 0)
+                                                                                            {
+                                                                                    <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">लाभार्थी से संबध</label>
+                                                                                            }
+                                                                                <div class="form-control-wrap">
+                                                                                    <input type="text" asp-for="NominatedDetails[@i].Relation" class="form-control required" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                            <div class="form-control-wrap">
-                                                                <div class="custom-file">
-                                                                    <input type="file" multiple="" class="custom-file-input" id="Photo" name="Photo" required="">
-                                                                    <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                                                        <div class="col-md-1 mb-3">
+                                                                            <div class="form-group">
+                                                                                            @if (i == 0)
+                                                                                            {
+                                                                                    <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">आयु</label>
+                                                                                            }
+                                                                                <div class="form-control-wrap">
+                                                                                    <input type="number" asp-for="NominatedDetails[@i].Age" class="form-control required" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2 mb-3">
+                                                                            <div class="form-group">
+                                                                                            @if (i == 0)
+                                                                                            {
+                                                                                    <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">नामकिंत व्यक्तियों को दी जाने वाली राशि अनुपातया</label>
+                                                                                            }
+                                                                                <div class="form-control-wrap">
+                                                                                    <input type="text" asp-for="NominatedDetails[@i].Percentage" class="form-control required" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                                }
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-label" for="fw-token-address">हस्ताक्षर (सफेद कागज पर नीला/काला हस्ताक्षर)<span style="color:red">*</span></label>
 
-                                                            <div class="form-control-wrap">
-                                                                <div class="custom-file">
-                                                                    <input type="file" multiple="" class="custom-file-input" id="Signature" name="Signature" required="">
-                                                                    <label class="custom-file-label" for="customFile">फाइलें चुनें</label>
+                                                                <br>
+
+                                                                            <br>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6 mb-3">
+                                                                        <div class="form-group">
+                                                                            <label class="form-label" for="Place">स्थान<span style="color:red">*</span></label>
+                                                                            <div class="form-control-wrap">
+                                                                                <input type="text" asp-for="Place" class="form-control required" id="Place" name="Place" required />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6 mb-3">
+                                                                        <div class="form-group">
+                                                                            <label class="form-label" for="form_Date">दिनांक<span style="color:red">*</span></label>
+                                                                            <div class="form-control-wrap">
+                                                                                <input type="text" asp-for="Form_Date" class="form-control required" readonly value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" required />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6 mb-3">
+                                                                        <div class="form-group">
+                                                                            <label class="form-label" for="Photo">फ़ोटो<span style="color:red">*</span></label>
+                                                                            <div class="form-control-wrap">
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" asp-for="Photo" class="custom-file-input" id="Photo" name="Photo" required />
+                                                                                    <label class="custom-file-label" for="Photo">फाइलें चुनें</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6 mb-3">
+                                                                        <div class="form-group">
+                                                                            <label class="form-label" for="Signature">हस्ताक्षर (सफेद कागज पर नीला/काला हस्ताक्षर)<span style="color:red">*</span></label>
+                                                                            <div class="form-control-wrap">
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" asp-for="Signature" class="custom-file-input" id="Signature" name="Signature" required />
+                                                                                    <label class="custom-file-label" for="Signature">फाइलें चुनें</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <br>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-lg btn-primary">Agree &amp; Submit</button>
-                                                    </div>
-                                                </div>
 
+                                                                <br>
+
+                                                                            <br>
+
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="form-group">
+                                                                            <button type="submit" class="btn btn-lg btn-primary">Agree &amp; Submit</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                        }
 
                                             </div>
                                         </div>
@@ -1096,6 +1226,7 @@
 
                 </div>
             </div>
+
             <script>
                 
             document.getElementById('yourFormId').addEventListener('submit', function(event) {

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Transactions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Newtonsoft.Json;
 using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
@@ -19,6 +11,8 @@ namespace ShagunGraminHealth.Services
         private readonly IGenericRepository<MembershipPlan> _membershipPlanRepository;
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<MembershipForm> _membershipFormRepository;
+        private readonly IGenericRepository<JobApplication> _jobApplicationRepository;
+        private readonly IGenericRepository<NominatedDetail> _nominatedDetailRepository;
         private readonly IGenericRepository<PaymentOrder> _paymentRepository;
         private readonly IGenericRepository<Orders> _orderRepository;
         private readonly IWebHostEnvironment _environment;
@@ -27,6 +21,8 @@ namespace ShagunGraminHealth.Services
             IGenericRepository<MembershipPlan> membershipPlanRepository,
             IGenericRepository<User> userRepository,
             IGenericRepository<MembershipForm> membershipFormRepository,
+            IGenericRepository<JobApplication> jobApplicationRepository,
+            IGenericRepository<NominatedDetail> nominatedDetailRepository,
             IGenericRepository<PaymentOrder> paymentRepository,
              IGenericRepository<Orders> orderRepository,
             IWebHostEnvironment environment)
@@ -34,9 +30,11 @@ namespace ShagunGraminHealth.Services
             _membershipPlanRepository = membershipPlanRepository;
             _userRepository = userRepository;
             _membershipFormRepository = membershipFormRepository;
+            _jobApplicationRepository= jobApplicationRepository;
             _paymentRepository = paymentRepository;
             _orderRepository = orderRepository;
             _environment = environment;
+            _nominatedDetailRepository = nominatedDetailRepository;
         }
 
         public async Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync()
@@ -147,12 +145,88 @@ namespace ShagunGraminHealth.Services
                 Form_Date = DateTime.Now,
                 OrderId = model.OrderId,
                 UserId = model.UserId,
+                //NominatedDetailsJson = ,
+                //FamilyDetailsJson = 
+        
+                //FamilyDetails = model.FamilyDetails?.Select(fd => new FamilyDetail
+                //{
+                //    Serial = fd.Serial,
+                //    FamilyMemberName = fd.FamilyMemberName,
+                //    Relation = fd.Relation,
+                //    Age = fd.Age,
+                //    AadharNumber = fd.AadharNumber,
+                //    EducationalLevel = fd.EducationalLevel,
+                //    SchoolName = fd.SchoolName
+                //}).ToList(),
+                //NominatedDetails = model.NominatedDetails?.Select(nd => new NominatedDetail
+                //{
+                //    Serial = nd.Serial,
+                //    NominatedPersonName = nd.NominatedPersonName,
+                //    Relation = nd.Relation,
+                //    Age = nd.Age,
+                //    Percentage = nd.Percentage
+                //}).ToList()
+
             };
 
             await _membershipFormRepository.AddAsync(membershipForm);
             await _membershipFormRepository.SaveChangesAsync();
         }
+        public async Task ApplyJobAsync(JobApplicationViewModel model)
+        {
+            if (model.Photo != null && model.Signature != null && model.AgePhoto != null)
+            {
+                string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
 
+                string photoPath = await SaveFileAsync(model.Photo, uploadsFolder);
+                string signaturePath = await SaveFileAsync(model.Signature, uploadsFolder);
+                string agePhotoPath = await SaveFileAsync(model.AgePhoto, uploadsFolder);
+
+                JobApplication jobApplication = new JobApplication
+                {
+                    ApplicationId = model.ApplicationId,
+                    AdvertisementNo = model.AdvertisementNo,
+                    CategoryNo = model.CategoryNo,
+                    Post = model.Post,
+                    CandidateName = model.CandidateName,
+                    FatherName = model.FatherName,
+                    DateOfBirthDays = model.DateOfBirthDays,
+                    DateOfBirthMonths = model.DateOfBirthMonths,
+                    DateOfBirthYears = model.DateOfBirthYears,
+                    Sex = model.Sex,
+                    EmailAddress = model.EmailAddress,
+                    PhoneNumber = model.PhoneNumber,
+                    Category = model.Category,
+                    PhysicallyHandicapped = model.PhysicallyHandicapped,
+                    Domicile = model.Domicile,
+                    Nationality = model.Nationality,
+                    Pincode = model.Pincode,
+                    Address = model.Address,
+                    VisibleIdentification = model.VisibleIdentification,
+                    Agree = model.Agree,
+                    Place = model.Place,
+                    FormDate = DateTime.Now,
+                    Photo = photoPath,
+                    Signature = signaturePath,
+                    AgePhoto = agePhotoPath,
+
+                    // Set educational qualifications
+                    EducationalQualifications_8th = model.EducationalQualifications_8th,
+                    YearOfPassing_8th = model.YearOfPassing_8th,
+                    MarksObtained_8th = model.MarksObtained_8th,
+                    TotalMarks_8th = model.TotalMarks_8th,
+                    Percentage_8th = model.Percentage_8th,
+                    Division_8th = model.Division_8th,
+                    BoardUniversity_8th = model.BoardUniversity_8th,
+                    Subjects_8th = model.Subjects_8th,
+
+                    // Add other educational qualifications similarly
+                };
+
+                await _jobApplicationRepository.AddAsync(jobApplication);
+                await _jobApplicationRepository.SaveChangesAsync();
+            }
+        }
         private async Task<string> SaveFileAsync(IFormFile file, string uploadsFolder)
         {
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
@@ -253,18 +327,12 @@ namespace ShagunGraminHealth.Services
 
         public async Task<IEnumerable<User>> GetDetailsAsync()
         {
-            
+
             var details = await _userRepository.GetAllAsync();
             return details;
         }
 
-        //public async Task<MembershipForm> GetMemberApplictionIdAsync(string Application_Id)
-        //{
-
-        //    var membershipForm = await _membershipFormRepository.FindAsync(m => m.Application_Id == Application_Id);
-        //    return membershipForm;
-        //}
-
+       
         public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplictionIdAsync(string Application_Id)
         {
             var allMembershipForms = await _membershipFormRepository.GetAllAsync();

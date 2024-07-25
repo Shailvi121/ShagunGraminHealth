@@ -1,11 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using ShagunGraminHealth.Models;
 
 namespace ShagunGraminHealth.ViewModel
 {
     public class MembershipFormViewModel
     {
+        public MembershipFormViewModel()
+        {
+            NominatedDetails = new List<NominatedDetail>();
+            FamilyDetails = new List<FamilyDetail>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                NominatedDetails.Add(new NominatedDetail());
+            }
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -89,16 +101,17 @@ namespace ShagunGraminHealth.ViewModel
         [Required(ErrorMessage = "Form Date is required")]
         public DateTime Form_Date { get; set; }
 
-        public string PhotoPath { get; set; }
-        public string SignaturePath { get; set; }
-        public string AgePhotoPath { get; set; }
+        public string? PhotoPath { get; set; }
+        public string? SignaturePath { get; set; }
+        public string? AgePhotoPath { get; set; }
         public string? OrderId { get; set; }
-
+       
         public int UserId { get; set; }
         public decimal PaymentAmount { get; set; }
 
+        public List<NominatedDetail> NominatedDetails { get; set; }
+        public List<FamilyDetail> FamilyDetails { get; set; }
         public string PaymentStatus { get; set; }
-
 
 
     }

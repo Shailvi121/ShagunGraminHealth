@@ -1,0 +1,835 @@
+﻿@{
+    Layout = "~/Areas/Candidate/Views/Shared/_Layout.cshtml";
+}
+
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <!-- .nk-block-head -->
+                <div class="nk-block nk-block-lg">
+                    <div class="nk-block-head">
+                        <div class="nk-block-head-content">
+                            <h4 class="title nk-block-title">Application Form </h4>
+                            <div class="nk-block-des">
+                                <p>Enter Your Details as per your documents.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card card-bordered">
+                        <div class="card-inner">
+                            <div class="card-inner">
+
+                                <form asp-action="ApplyJob" method="post" enctype="multipart/form-data">
+                                    <br><div class="">
+                                        <h5>APPLICATION DETAILS</h5>
+
+                                    </div><br>
+                                    <div class="">
+                                        <div class="row gy-3">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Application ID<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="240724160939YPJT7650" id="Application_Id" name="Application_Id" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Advertisement No<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="03/2024" id="Advertisement_No" name="Advertisement_No" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Category No<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Category_No" name="Category_No" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Name of the Post<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="Area Inspector" id="Post" name="Post" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Reference Id</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="reference_id" name="reference_id">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- .col -->
+                                        </div>
+                                    </div>
+                                    <br>
+
+
+
+
+                                    <div class="">
+                                        <h5>PERSONAL DETAILS</h5>
+                                    </div><br>
+                                    <div class="">
+                                        <div class="row gy-2">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Candidate Name (As per your documents/certificates)<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Candidate_Name" name="Candidate_Name" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Father Name (As per your documents/certificates)<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Father_Name" name="Father_Name" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-token-address">Date of Birth<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+
+
+                                                        <input class="dob_flds" type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days">
+                                                        <input class="dob_flds" type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months">
+                                                        <input class="dob_flds" type="year" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Sex<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Sex" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Email Address<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="email" class="form-control" data-msg="Required" id="email_address" value="" name="email_address" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Phone Number<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text"  class="form-control" id="phone_number" value="" name="phone_number" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Category<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Category" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="GEN">GEN</option>
+                                                            <option value="SC">SC</option>
+                                                            <option value="BCA">BCA</option>
+                                                            <option value="BCB">BCB</option>
+                                                            <option value="ESM">ESM</option>
+                                                            <option value="DESM">DESM</option>
+                                                            <option value="DEF">DEF</option>
+                                                            <option value="SBC">SBC (special  Backward Class)</option>
+                                                            <option value="EBPO">EBPG (Economical Backward  Person Genera)</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Physically Handicapped<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Physically_Handicapped" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="No">No</option>
+                                                            <option value="PHC">PHC(Ortho)</option>
+                                                            <option value="PHO">PHO(Blind/Low Vision)</option>
+                                                            <option value="PHCD">PHC Dent &amp; Dump/Hearning Impairment</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Are You Domicile of Haryana<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Domicile" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="Yes">Yes</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Nationality<span style="color:red">*</span></label>
+
+                                                    <div class="form-control-wrap">
+                                                        <select name="Nationality" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value="Indian">Indian</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-mobile-number">Pincode <span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" data-msg="Required" class="form-control required" id="Pincode" value="" name="Pincode" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="fw-first-name">Address<span style="color:red">*</span></label>
+                                                    <div class="form-control-wrap">
+@*                                                        <textarea data-msg="Required" class="form-control required" id="Address" name="Address" required="" rows="6" placeholder="Full Address"></textarea>
+*@                                                        <input type="text" data-msg="Required" class="form-control required" id="Address" value="" name="Address" rows="6" placeholder="Full Address" required="">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br>
+
+                                        <br>
+
+
+
+                                        <div class="">
+                                            <h5>EDUCATIONAL QUALIFICATIONS</h5>
+                                        </div><br>
+                                        <div class="">
+                                            <div class="row gy-2">
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">Educational Qualifications </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="8th Class" value="" id="Educational_Qualifications_8th" name="Educational_Qualifications_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">Year of Passing</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_8th" name="Year_of_Passing_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">Marks Obtained </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_8th" value="" name="Marks_Obtained_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">Total Marks</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_8th" value="" name="Total_Marks_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">Percentage </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_8th" name="Percentage_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">Division </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_8th" name="Division_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">Name of Board/University </label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_8th" value="" name="Board_University_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">Subjects</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_8th" value="" name="Subjects_8th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="10th Class"  id="Educational_Qualifications_10th" name="Educational_Qualifications_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_10th" name="Year_of_Passing_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_10th" value="" name="Marks_Obtained_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_10th" value="" name="Total_Marks_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_10th" name="Percentage_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_10th" name="Division_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_10th" value="" name="Board_University_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_10th" value="" name="Subjects_10th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="12th Class" readonly="" id="Educational_Qualifications_12th" name="Educational_Qualifications_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_12th" name="Year_of_Passing_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_12th" value="" name="Marks_Obtained_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_12th" value="" name="Total_Marks_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_12th" name="Percentage_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_12th" name="Division_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_12th" value="" name="Board_University_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_12th" value="" name="Subjects_12th">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="ITI/Vocational" readonly="" id="Educational_Qualifications_iti" name="Educational_Qualifications_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_iti" name="Year_of_Passing_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_iti" value="" name="Marks_Obtained_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_iti" value="" name="Total_Marks_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_iti" name="Percentage_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_iti" name="Division_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_iti" value="" name="Board_University_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_iti" value="" name="Subjects_iti">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Diploma Degree" readonly="" id="Educational_Qualifications_diploma" name="Educational_Qualifications_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_diploma" name="Year_of_Passing_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_diploma" value="" name="Marks_Obtained_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_diploma" value="" name="Total_Marks_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_diploma" name="Percentage_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_diploma" name="Division_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_diploma" value="" name="Board_University_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_diploma" value="" name="Subjects_diploma">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Bachelor Degree" readonly="" id="Educational_Qualifications_Bachelor" name="Educational_Qualifications_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_Bachelor" name="Year_of_Passing_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_Bachelor" value="" name="Marks_Obtained_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_Bachelor" value="" name="Total_Marks_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_Bachelor" name="Percentage_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_Bachelor" name="Division_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_Bachelor" value="" name="Board_University_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_Bachelor" value="" name="Subjects_Bachelor">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Master Degree" readonly="" id="Educational_Qualifications_Master" name="Educational_Qualifications_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_Master" name="Year_of_Passing_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_Master" value="" name="Marks_Obtained_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_Master" value="" name="Total_Marks_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_Master" name="Percentage_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_Master" name="Division_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_Master" value="" name="Board_University_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_Master" value="" name="Subjects_Master">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">Any Other Higher Qualification specify<span style="color:red">*</span></label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Higher_Qualification" name="Higher_Qualification" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="fw-first-name">Experience</label>
+                                                        <div class="form-control-wrap">
+                                                            <input class="exp_flds" type="text" placeholder="Years" id="Experience_Years" name="Experience_Years">
+                                                            <input class="exp_flds" type="text" placeholder="Months" id="Experience_Months" name="Experience_Months">
+                                                            <input class="exp_flds" type="text" placeholder="Days" id="Experience_Days" name="Experience_Days">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <br>
+                                            <br>
+
+
+
+
+                                            <div class="">
+                                                <h5>DECLARATION DETAILS</h5>
+                                            </div><br>
+                                            <div class="">
+                                                <div class="row gy-2">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-first-name">Visible identification declaration mark on the body of candidate <span style="color:red">*</span></label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="Visible_identification" name="Visible_identification" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-mobile-number">I Agree<span style="color:red">*</span></label>
+
+                                                            <div class="form-control-wrap">
+                                                                <select name="Agree" required="" class="form-control">
+                                                                    <option value="">Select</option>
+                                                                    <option value="Yes">Yes</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <img src="./images/dec.png">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">Place<span style="color:red">*</span></label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="Place" name="Place" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-mobile-number">Date<span style="color:red">*</span></label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" data-msg="Required" readonly="" class="form-control required" value="2024-07-24 16:09:39" name="form_Date" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">Photo<span style="color:red">*</span></label>
+
+                                                            <div class="form-control-wrap">
+                                                                <div class="custom-file">
+                                                                    <input type="file" multiple="" class="custom-file-input" id="Photo" name="Photo" accept="image/*" required="">
+                                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="fw-token-address">Signature(Blue/Black Sign on White Paper)<span style="color:red">*</span></label>
+
+                                                            <div class="form-control-wrap">
+                                                                <div class="custom-file">
+                                                                    <input type="file" multiple="" class="custom-file-input" id="Signature" name="Signature" accept="image/*" required="">
+                                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br>
+                                                <br>
+
+
+
+
+
+
+
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <input type="hidden" value="" class="age_limit" name="age_limit">
+                                                        <input type="hidden" value="" class="min_qualification" name="min_qualification">
+                                                        <button type="submit" class="btn btn-lg btn-primary">Agree &amp; Submit</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- .nk-block -->
+
+                    </div>
+
+                </div>
+            </div>

@@ -26,6 +26,9 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<MembershipForm> MembershipForms { get; set; }
         public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
         public virtual DbSet<Orders> Order { get; set; } = null!;
+        public virtual DbSet<JobApplication> JobApplications { get; set; } = null!;
+       
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -128,8 +131,10 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.Place).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Form_Date).IsRequired();
                 entity.Property(e => e.OrderId).HasMaxLength(50).IsRequired();
+                entity.Property(e => e.NominatedDetailsJson).HasColumnType("text").IsRequired();
+                entity.Property(e => e.FamilyDetailsJson).HasColumnType("text").IsRequired();
             });
-
+           
             modelBuilder.Entity<PaymentOrder>(entity =>
             {
                 entity.ToTable("PaymentOrder");
@@ -142,7 +147,72 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.RazorPaymentId).HasMaxLength(50);
                 entity.Property(e => e.UserId).IsRequired(false);
             });
+            modelBuilder.Entity<JobApplication>(entity =>
+            {
+                entity.ToTable("JobApplication");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
+                entity.Property(e => e.ApplicationId).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.AdvertisementNo).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.CategoryNo).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Post).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.CandidateName).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.FatherName).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.DateOfBirthDays).IsRequired();
+                entity.Property(e => e.DateOfBirthMonths).IsRequired();
+                entity.Property(e => e.DateOfBirthYears).IsRequired();
+                entity.Property(e => e.Sex).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.EmailAddress).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.PhoneNumber).HasMaxLength(20).IsRequired();
+                entity.Property(e => e.Category).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.PhysicallyHandicapped).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Domicile).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Nationality).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Pincode).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Address).HasMaxLength(1000).IsRequired();
+                entity.Property(e => e.VisibleIdentification).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Agree).HasMaxLength(10).IsRequired();
+                entity.Property(e => e.Place).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.FormDate).IsRequired();
+                entity.Property(e => e.Photo).IsRequired();
+                entity.Property(e => e.Signature).IsRequired();
 
+                entity.Property(e => e.EducationalQualifications_8th).IsRequired();
+                entity.Property(e => e.YearOfPassing_8th).IsRequired();
+                entity.Property(e => e.MarksObtained_8th).IsRequired();
+                entity.Property(e => e.TotalMarks_8th).IsRequired();
+                entity.Property(e => e.Percentage_8th).IsRequired();
+                entity.Property(e => e.Division_8th).IsRequired();
+                entity.Property(e => e.BoardUniversity_8th).IsRequired();
+                entity.Property(e => e.Subjects_8th).IsRequired();
+
+                entity.Property(e => e.EducationalQualifications_10th).IsRequired();
+                entity.Property(e => e.YearOfPassing_10th).IsRequired();
+                entity.Property(e => e.MarksObtained_10th).IsRequired();
+                entity.Property(e => e.TotalMarks_10th).IsRequired();
+                entity.Property(e => e.Percentage_10th).IsRequired();
+                entity.Property(e => e.Division_10th).IsRequired();
+                entity.Property(e => e.BoardUniversity_10th).IsRequired();
+                entity.Property(e => e.Subjects_10th).IsRequired();
+
+                entity.Property(e => e.EducationalQualifications_12th).IsRequired();
+                entity.Property(e => e.YearOfPassing_12th).IsRequired();
+                entity.Property(e => e.MarksObtained_12th).IsRequired();
+                entity.Property(e => e.TotalMarks_12th).IsRequired();
+                entity.Property(e => e.Percentage_12th).IsRequired();
+                entity.Property(e => e.Division_12th).IsRequired();
+                entity.Property(e => e.BoardUniversity_12th).IsRequired();
+                entity.Property(e => e.Subjects_12th).IsRequired();
+
+                entity.Property(e => e.EducationalQualifications_ITI).IsRequired();
+                entity.Property(e => e.YearOfPassing_ITI).IsRequired();
+                entity.Property(e => e.MarksObtained_ITI).IsRequired();
+                entity.Property(e => e.TotalMarks_ITI).IsRequired();
+                entity.Property(e => e.Percentage_ITI).IsRequired();
+                entity.Property(e => e.Division_ITI).IsRequired();
+                entity.Property(e => e.BoardUniversity_ITI).IsRequired();
+                entity.Property(e => e.Subjects_ITI).IsRequired();
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 
