@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ShagunGraminHealth.ViewModel.JobApplicationViewModel
+
+@{
     Layout = "~/Areas/Candidate/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,9 +18,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="card card-bordered">
                         <div class="card-inner">
                             <div class="card-inner">
@@ -34,7 +33,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Application ID<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="240724160939YPJT7650" id="Application_Id" name="Application_Id" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="240724160939YPJT7650" id="ApplicationId" name="ApplicationId" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -42,7 +41,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Advertisement No<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" readonly="" value="03/2024" id="Advertisement_No" name="Advertisement_No" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="03/2024" id="AdvertisementNo" name="AdvertisementNo" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,7 +49,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Category No<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Category_No" name="Category_No" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="01" id="CategoryNo" name="CategoryNo" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,7 +68,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Reference Id</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="reference_id" name="reference_id">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="ReferenceId" name="ReferenceId">
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,7 +91,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Candidate Name (As per your documents/certificates)<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Candidate_Name" name="Candidate_Name" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="CandidateName" name="CandidateName" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,7 +100,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-first-name">Father Name (As per your documents/certificates)<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="Father_Name" name="Father_Name" required="">
+                                                        <input type="text" data-msg="Required" class="form-control required" value="" id="FatherName" name="FatherName" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -114,9 +113,9 @@
                                                     <div class="form-control-wrap">
 
 
-                                                        <input class="dob_flds" type="text" placeholder="DD" id="Date_of_Birth_Days" name="Date_of_Birth_Days">
-                                                        <input class="dob_flds" type="text" placeholder="MM" id="Date_of_Birth_Months" name="Date_of_Birth_Months">
-                                                        <input class="dob_flds" type="year" placeholder="YYYY" id="Date_of_Birth_Years" name="Date_of_Birth_Years">
+                                                        <input class="dob_flds" type="text" placeholder="DD" id="DateOfBirthDays" name="DateOfBirthDays">
+                                                        <input class="dob_flds" type="text" placeholder="MM" id="DateOfBirthMonths" name="DateOfBirthMonths">
+                                                        <input class="dob_flds" type="year" placeholder="YYYY" id="DateOfBirthYears" name="DateOfBirthYears">
 
                                                     </div>
                                                 </div>
@@ -138,7 +137,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">Email Address<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="email" class="form-control" data-msg="Required" id="email_address" value="" name="email_address" required="">
+                                                        <input type="email" class="form-control" data-msg="Required" id="EmailAddress" value="" name="EmailAddress" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,7 +146,7 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="fw-mobile-number">Phone Number<span style="color:red">*</span></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text"  class="form-control" id="phone_number" value="" name="phone_number" required="">
+                                                        <input type="text" class="form-control" id="PhoneNumber" value="" name="PhoneNumber" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,14 +177,12 @@
                                                     <label class="form-label" for="fw-mobile-number">Physically Handicapped<span style="color:red">*</span></label>
 
                                                     <div class="form-control-wrap">
-                                                        <select name="Physically_Handicapped" class="form-control">
+                                                        <select name="PhysicallyHandicapped" class="form-control">
                                                             <option value="">Select</option>
                                                             <option value="No">No</option>
                                                             <option value="PHC">PHC(Ortho)</option>
                                                             <option value="PHO">PHO(Blind/Low Vision)</option>
                                                             <option value="PHCD">PHC Dent &amp; Dump/Hearning Impairment</option>
-
-
                                                         </select>
                                                     </div>
                                                 </div>
@@ -252,7 +249,7 @@
                                                     <div class="form-group">
                                                         <label style="font-size: 0.7rem !important;" class="form-label" for="fw-first-name">Educational Qualifications </label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="8th Class" value="" id="Educational_Qualifications_8th" name="Educational_Qualifications_8th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="8th Class" value="" id="EducationalQualifications_8th" name="EducationalQualifications_8th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -260,7 +257,7 @@
                                                     <div class="form-group">
                                                         <label style="font-size: 0.7rem !important;" class="form-label" for="fw-token-address">Year of Passing</label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_8th" name="Year_of_Passing_8th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_8th" name="Year_of_Passing_8th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -268,7 +265,7 @@
                                                     <div class="form-group">
                                                         <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">Marks Obtained </label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_8th" value="" name="Marks_Obtained_8th">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_8th" value="" name="MarksObtained_8th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -276,7 +273,7 @@
                                                     <div class="form-group">
                                                         <label style="font-size: 0.7rem !important;" class="form-label" for="fw-mobile-number">Total Marks</label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_8th" value="" name="Total_Marks_8th">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_8th" value="" name="TotalMarks_8th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -300,7 +297,7 @@
                                                     <div class="form-group">
                                                         <label style="font-size: 0.7rem !important;" class="form-label" for="fw-email-address">Name of Board/University </label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_8th" value="" name="Board_University_8th">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_8th" value="" name="BoardUniversity_8th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -315,7 +312,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="10th Class"  id="Educational_Qualifications_10th" name="Educational_Qualifications_10th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="10th Class" id="EducationalQualifications_10th" name="EducationalQualifications_10th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -323,7 +320,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_10th" name="Year_of_Passing_10th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_10th" name="YearOfPassing_10th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -331,7 +328,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_10th" value="" name="Marks_Obtained_10th">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_10th" value="" name="MarksObtained_10th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -339,7 +336,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_10th" value="" name="Total_Marks_10th">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_10th" value="" name="TotalMarks_10th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -363,7 +360,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_10th" value="" name="Board_University_10th">
+                                                            <input type="text"   class="form-control required email" id="BoardUniversity_10th" value="" name="BoardUniversity_10th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -380,7 +377,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="12th Class" readonly="" id="Educational_Qualifications_12th" name="Educational_Qualifications_12th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="12th Class" readonly="" id="EducationalQualifications_12th" name="EducationalQualifications_12th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -388,7 +385,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_12th" name="Year_of_Passing_12th">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Yearof_Passing_12th" name="Yearof_Passing_12th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -396,7 +393,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_12th" value="" name="Marks_Obtained_12th">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_12th" value="" name="MarksObtained_12th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -404,7 +401,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_12th" value="" name="Total_Marks_12th">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_12th" value="" name="TotalMarks_12th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -427,7 +424,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_12th" value="" name="Board_University_12th">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_12th" value="" name="BoardUniversity_12th">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -443,7 +440,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="ITI/Vocational" readonly="" id="Educational_Qualifications_iti" name="Educational_Qualifications_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="ITI/Vocational" readonly="" id="EducationalQualifications_ITI" name="EducationalQualifications_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -451,7 +448,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_iti" name="Year_of_Passing_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_ITI" name="YearOfPassing_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -459,7 +456,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_iti" value="" name="Marks_Obtained_iti">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_ITI" value="" name="MarksObtained_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -467,7 +464,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_iti" value="" name="Total_Marks_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_ITI" value="" name="TotalMarks_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -475,7 +472,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_iti" name="Percentage_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_ITI" name="Percentage_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -483,7 +480,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_iti" name="Division_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_ITI" name="Division_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -491,7 +488,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_iti" value="" name="Board_University_iti">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_ITI" value="" name="BoardUniversity_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -499,7 +496,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_iti" value="" name="Subjects_iti">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_ITI" value="" name="Subjects_ITI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -508,7 +505,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="Diploma Degree" readonly="" id="Educational_Qualifications_diploma" name="Educational_Qualifications_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Diploma Degree" id="EducationalQualifications_Diploma" name="EducationalQualifications_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -516,7 +513,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_diploma" name="Year_of_Passing_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_Diploma" name="YearOfPassing_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -524,7 +521,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_diploma" value="" name="Marks_Obtained_diploma">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_Diploma" value="" name="MarksObtained_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -532,7 +529,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_diploma" value="" name="Total_Marks_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_Diploma" value="" name="TotalMarks_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -540,7 +537,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_diploma" name="Percentage_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Percentage_Diploma" name="Percentage_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -548,7 +545,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_diploma" name="Division_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Division_Diploma" name="Division_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -556,7 +553,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_diploma" value="" name="Board_University_diploma">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_Diploma" value="" name="BoardUniversity_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -564,7 +561,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_diploma" value="" name="Subjects_diploma">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="Subjects_Diploma" value="" name="Subjects_Diploma">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -573,7 +570,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="Bachelor Degree" readonly="" id="Educational_Qualifications_Bachelor" name="Educational_Qualifications_Bachelor">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Bachelor Degree" readonly="" id="EducationalQualifications_Bachelor" name="EducationalQualifications_Bachelor">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -581,7 +578,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_Bachelor" name="Year_of_Passing_Bachelor">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_Bachelor" name="YearOfPassing_Bachelor">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -589,7 +586,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_Bachelor" value="" name="Marks_Obtained_Bachelor">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_Bachelor" value="" name="MarksObtained_Bachelor   ">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -597,7 +594,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_Bachelor" value="" name="Total_Marks_Bachelor">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_Bachelor" value="" name="TotalMarks_Bachelor">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -621,7 +618,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_Bachelor" value="" name="Board_University_Bachelor">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_Bachelor" value="" name="BoardUniversity_Bachelor">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -638,7 +635,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="Master Degree" readonly="" id="Educational_Qualifications_Master" name="Educational_Qualifications_Master">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="Master Degree" readonly="" id="EducationalQualifications_Master" name="EducationalQualifications_Master">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -646,7 +643,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="Year_of_Passing_Master" name="Year_of_Passing_Master">
+                                                            <input type="text" data-msg="Required" class="form-control required" value="" id="YearOfPassing_Master" name="YearOfPassing_Master">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -654,7 +651,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Marks_Obtained_Master" value="" name="Marks_Obtained_Master">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="MarksObtained_Master" value="" name="MarksObtained_Master">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -662,7 +659,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" class="form-control required" id="Total_Marks_Master" value="" name="Total_Marks_Master">
+                                                            <input type="text" data-msg="Required" class="form-control required" id="TotalMarks_Master" value="" name="TotalMarks_Master">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -686,7 +683,7 @@
                                                     <div class="form-group">
 
                                                         <div class="form-control-wrap">
-                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="Board_University_Master" value="" name="Board_University_Master">
+                                                            <input type="text" data-msg="Required" data-msg-email="Wrong Email" class="form-control required email" id="BoardUniversity_Master" value="" name="BoardUniversity_Master">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -740,7 +737,7 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="fw-first-name">Visible identification declaration mark on the body of candidate <span style="color:red">*</span></label>
                                                             <div class="form-control-wrap">
-                                                                <input type="text" data-msg="Required" class="form-control required" id="Visible_identification" name="Visible_identification" required="">
+                                                                <input type="text" data-msg="Required" class="form-control required" id="Visible_Identification" name="Visible_Identification" required="">
                                                             </div>
                                                         </div>
                                                     </div>

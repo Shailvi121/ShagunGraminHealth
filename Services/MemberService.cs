@@ -62,7 +62,7 @@ namespace ShagunGraminHealth.Services
 
         public async Task ApplyMembershipFormAsync(MembershipFormViewModel model)
         {
-            if (model.Photo != null && model.Signature != null && model.age_photo != null)
+            if (model.Photo != null && model.Signature != null )
             {
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
 
@@ -174,13 +174,12 @@ namespace ShagunGraminHealth.Services
         }
         public async Task ApplyJobAsync(JobApplicationViewModel model)
         {
-            if (model.Photo != null && model.Signature != null && model.AgePhoto != null)
+            if (model.Photo != null && model.Signature != null)
             {
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
 
                 string photoPath = await SaveFileAsync(model.Photo, uploadsFolder);
                 string signaturePath = await SaveFileAsync(model.Signature, uploadsFolder);
-                string agePhotoPath = await SaveFileAsync(model.AgePhoto, uploadsFolder);
 
                 JobApplication jobApplication = new JobApplication
                 {
@@ -208,9 +207,7 @@ namespace ShagunGraminHealth.Services
                     FormDate = DateTime.Now,
                     Photo = photoPath,
                     Signature = signaturePath,
-                    AgePhoto = agePhotoPath,
-
-                    // Set educational qualifications
+                  
                     EducationalQualifications_8th = model.EducationalQualifications_8th,
                     YearOfPassing_8th = model.YearOfPassing_8th,
                     MarksObtained_8th = model.MarksObtained_8th,
@@ -219,6 +216,39 @@ namespace ShagunGraminHealth.Services
                     Division_8th = model.Division_8th,
                     BoardUniversity_8th = model.BoardUniversity_8th,
                     Subjects_8th = model.Subjects_8th,
+                    EducationalQualifications_Diploma = model.EducationalQualifications_Diploma,
+                    YearOfPassing_Diploma = model.YearOfPassing_Diploma,
+                    MarksObtained_Diploma = model.MarksObtained_Diploma,
+                    TotalMarks_Diploma = model.TotalMarks_Diploma,
+                    Percentage_Diploma = model.Percentage_Diploma,
+                    Division_Diploma = model.Division_Diploma,
+                    BoardUniversity_Diploma = model.BoardUniversity_Diploma,
+                    Subjects_Diploma = model.Subjects_Diploma,
+
+                    EducationalQualifications_Bachelor = model.EducationalQualifications_Bachelor,
+                    YearOfPassing_Bachelor = model.YearOfPassing_Bachelor,
+                    MarksObtained_Bachelor = model.MarksObtained_Bachelor,
+                    TotalMarks_Bachelor = model.TotalMarks_Bachelor,
+                    Percentage_Bachelor = model.Percentage_Bachelor,
+                    Division_Bachelor = model.Division_Bachelor,
+                    BoardUniversity_Bachelor = model.BoardUniversity_Bachelor,
+                    Subjects_Bachelor = model.Subjects_Bachelor,
+
+                    EducationalQualifications_Master = model.EducationalQualifications_Master,
+                    YearOfPassing_Master = model.YearOfPassing_Master,
+                    MarksObtained_Master = model.MarksObtained_Master,
+                    TotalMarks_Master = model.TotalMarks_Master,
+                    Percentage_Master = model.Percentage_Master,
+                    Division_Master = model.Division_Master,
+                    BoardUniversity_Master = model.BoardUniversity_Master,
+                    Subjects_Master = model.Subjects_Master,
+
+                    Higher_Qualification = model.Higher_Qualification,
+                    Experience_Years = model.Experience_Years,
+                    Experience_Months = model.Experience_Months,
+                    Experience_Days = model.Experience_Days,
+
+                    Visible_Identification = model.Visible_Identification,
 
                     // Add other educational qualifications similarly
                 };
