@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ShagunGraminHealth.Interface
 {
@@ -13,7 +14,7 @@ namespace ShagunGraminHealth.Interface
         Task<int> SaveChangesAsync();
         Task<List<string>> GetRolesByUserIdAsync(int userId);
         Task<List<T>> GetByOrderIdAsync(string orderId);
-        
+       
 
     }
 }
