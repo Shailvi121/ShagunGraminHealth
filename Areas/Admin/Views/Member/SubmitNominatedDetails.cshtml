@@ -1,0 +1,25 @@
+﻿<form asp-action="SubmitNominatedDetails" method="post">
+    <input type="hidden" asp-for="MembershipFormId" />
+
+    @for (int i = 0; i < 5; i++)
+    {
+        <div>
+            <label>Serial</label>
+            <input type="text" asp-for="NominatedDetails[i].Serial" />
+
+            <label>Nominated Person Name</label>
+            <input type="text" asp-for="NominatedDetails[i].NominatedPersonName" />
+
+            <label>Relation</label>
+            <input type="text" asp-for="NominatedDetails[i].Relation" />
+
+            <label>Age</label>
+            <input type="number" asp-for="NominatedDetails[i].Age" />
+
+            <label>Percentage</label>
+            <input type="text" asp-for="NominatedDetails[i].Percentage" />
+        </div>
+    }
+
+    <button type="submit">Submit</button>
+</form>

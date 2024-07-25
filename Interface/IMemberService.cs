@@ -16,6 +16,7 @@ namespace ShagunGraminHealth.Interface
 
         Task ProcessPaymentAsync(PaymentViewModel model);
 
+        Task ApplyJobAsync(JobApplicationViewModel model);
 
     }
 }

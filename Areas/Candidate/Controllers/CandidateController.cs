@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
+using ShagunGraminHealth.ViewModel;
 
 namespace ShagunGraminHealth.Areas.Candidate.Controllers
 {
@@ -36,6 +37,31 @@ namespace ShagunGraminHealth.Areas.Candidate.Controllers
                 return Redirect("/Candidate/Dashboard");
             }
             return View(user);
+        }
+        public async Task<IActionResult> CandidateDetails()
+        {
+            var candidateDetails = await _memberService.GetDetailsAsync();
+            return View(candidateDetails);
+        }
+
+        public IActionResult ApplyJob()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ApplyJob(JobApplicationViewModel model)
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            //model.UserId = userId; // Ensure your view model has this property if needed
+
+            await _memberService.ApplyJobAsync(model);
+
+            return View("JobApplicationSuccess", model); // Redirect to a success view or page
         }
     }
 }

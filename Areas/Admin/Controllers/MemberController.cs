@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
@@ -91,6 +93,6 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             var userDetails = await _memberService.GetDetailsAsync();
             return View(userDetails);
         }
-
+        
     }
 }
