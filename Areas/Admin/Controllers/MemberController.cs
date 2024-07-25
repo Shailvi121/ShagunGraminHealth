@@ -95,13 +95,13 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         }
         public async Task<IActionResult> ViewPayments(string Application_Id)
         {
-            var Member = await _memberService.GetMemberApplictionIdAsync(Application_Id);
+            var Member = await _memberService.GetMemberApplicationIdAsync(Application_Id);
             return View(Member);
         }
 
         public async Task<IActionResult> Payment(string Application_Id)
         {
-            var membershipForms = await _memberService.GetMemberApplictionIdAsync(Application_Id);
+            var membershipForms = await _memberService.GetMemberApplicationIdAsync(Application_Id);
             return View(membershipForms);
         }
 

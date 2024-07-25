@@ -250,7 +250,6 @@ namespace ShagunGraminHealth.Services
 
                     Visible_Identification = model.Visible_Identification,
 
-                    // Add other educational qualifications similarly
                 };
 
                 await _jobApplicationRepository.AddAsync(jobApplication);
@@ -369,7 +368,7 @@ namespace ShagunGraminHealth.Services
         //    return membershipForm;
         //}
 
-        public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplictionIdAsync(string Application_Id)
+        public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplicationIdAsync(string Application_Id)
         {
             var allMembershipForms = await _membershipFormRepository.GetAllAsync();
             var orderDetails = await _orderRepository.GetAllAsync();
@@ -394,6 +393,9 @@ namespace ShagunGraminHealth.Services
                             return viewModels;
         }
 
-
+        public Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

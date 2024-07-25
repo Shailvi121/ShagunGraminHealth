@@ -41,8 +41,8 @@ namespace ShagunGraminHealth.Models
         public IFormFile? FileToUpload { get; set; }
         public string? OrderId { get; set; }
         public int UserId { get; set; }
-        public string? NominatedDetailsJson { get; set; }
-        public string? FamilyDetailsJson { get; set; }
+        public string NominatedDetailsJson { get; set; }
+        public string FamilyDetailsJson { get; set; }
 
 
 

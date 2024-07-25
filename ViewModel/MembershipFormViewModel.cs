@@ -9,13 +9,13 @@ namespace ShagunGraminHealth.ViewModel
     {
         public MembershipFormViewModel()
         {
-            NominatedDetails = new List<NominatedDetail>();
-            FamilyDetails = new List<FamilyDetail>();
+            //NominatedDetails = new List<NominatedDetail>();
+            //FamilyDetails = new List<FamilyDetail>();
 
-            for (int i = 0; i < 5; i++)
-            {
-                NominatedDetails.Add(new NominatedDetail());
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    NominatedDetails.Add(new NominatedDetail());
+            //}
         }
 
         [Key]
