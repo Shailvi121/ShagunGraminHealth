@@ -20,6 +20,8 @@ namespace ShagunGraminHealth.Interface
         
 
         Task ApplyJobAsync(JobApplicationViewModel model);
+        Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize);
+
 
     }
 }
