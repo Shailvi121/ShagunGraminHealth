@@ -393,9 +393,6 @@ namespace ShagunGraminHealth.Services
                             return viewModels;
         }
 
-        public Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

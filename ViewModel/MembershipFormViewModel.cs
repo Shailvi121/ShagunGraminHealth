@@ -109,8 +109,9 @@ namespace ShagunGraminHealth.ViewModel
         public int UserId { get; set; }
         public decimal PaymentAmount { get; set; }
 
+        public List<NominatedDetail> NominatedDetails { get; set; }
+        public List<FamilyDetail> FamilyDetails { get; set; }
         public string PaymentStatus { get; set; }
-
 
 
     }
