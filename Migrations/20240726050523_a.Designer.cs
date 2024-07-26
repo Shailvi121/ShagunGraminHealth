@@ -399,10 +399,6 @@ namespace ShagunGraminHealth.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Visible_Identification")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("YearOfPassing_10th")
                         .HasColumnType("nvarchar(max)");
 

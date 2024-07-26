@@ -121,7 +121,6 @@ namespace ShagunGraminHealth.Migrations
                     Experience_Years = table.Column<int>(type: "int", nullable: false),
                     Experience_Months = table.Column<int>(type: "int", nullable: false),
                     Experience_Days = table.Column<int>(type: "int", nullable: false),
-                    Visible_Identification = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

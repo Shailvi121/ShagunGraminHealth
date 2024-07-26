@@ -7,7 +7,7 @@
         public string? AdvertisementNo { get; set; }
         public string CategoryNo { get; set; }
         public string Post { get; set; }
-         public string ReferenceId { get; set; }
+        public string ReferenceId { get; set; }
 
         public string CandidateName { get; set; }
         public string FatherName { get; set; }
@@ -93,14 +93,11 @@
         public string BoardUniversity_Master { get; set; }
         public string Subjects_Master { get; set; }
 
-        // Additional field for higher qualification
         public string Higher_Qualification { get; set; }
         public int Experience_Years { get; set; }
         public int Experience_Months { get; set; }
         public int Experience_Days { get; set; }
 
-        // New fields for Declaration Details
-        public string Visible_Identification { get; set; }
         
     }
 }

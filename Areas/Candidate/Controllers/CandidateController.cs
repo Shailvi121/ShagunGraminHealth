@@ -61,7 +61,7 @@ namespace ShagunGraminHealth.Areas.Candidate.Controllers
 
             await _memberService.ApplyJobAsync(model);
 
-            return View("JobApplicationSuccess", model); // Redirect to a success view or page
+            return Redirect("/Candidate/Dashboard");
         }
     }
 }

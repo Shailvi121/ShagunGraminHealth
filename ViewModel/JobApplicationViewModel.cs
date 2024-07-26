@@ -98,8 +98,6 @@ namespace ShagunGraminHealth.ViewModel
         public int Experience_Months { get; set; }
         public int Experience_Days { get; set; }
 
-        // New fields for Declaration Details
-        public string Visible_Identification { get; set; }
 
     }
 }

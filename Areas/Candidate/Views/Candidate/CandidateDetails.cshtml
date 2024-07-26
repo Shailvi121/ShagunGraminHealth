@@ -12,40 +12,20 @@
                 <div class="card card-preview">
                     <div class="card-inner">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                            <div class="row justify-between g-2">
-                                <div class="col-7 col-sm-6 text-left">
-                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                        <label><input type="search" class="form-control form-control-sm" placeholder="Type in to Search" aria-controls="DataTables_Table_0"></label>
-                                    </div>
-                                </div>
-                                <div class="col-5 col-sm-6 text-right">
-                                    <div class="datatable-filter">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                            <label>
-                                                <span class="d-none d-sm-inline-block">Show</span>
-                                                <div class="form-control-select">
-                                                    <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="datatable-wrap my-3">
                                 <table class="datatable-init nowrap table dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending">Id</th>
-@*                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="USER ID: activate to sort column ascending">USER ID</th>
-*@                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="FULLNAME: activate to sort column ascending">FULLNAME</th>
+                                            <th cl
+                                                sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending">Id</th>
+                                            @*  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="USER ID: activate to sort column ascending">USER ID</th>
+                                            *@
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="FULLNAME: activate to sort column ascending">FULLNAME</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="MOBILE: activate to sort column ascending">MOBILE</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="EMAIL: activate to sort column ascending">EMAIL</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ADDRESS: activate to sort column ascending">ADDRESS</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="REFERENCE ID: activate to sort column ascending">REFERENCE ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,8 +36,8 @@
                                                 <td>@user.Name</td>
                                                 <td>@user.Mobile</td>
                                                 <td>@user.Email</td>
-@*                                                <td>@user.Address</td>
-*@                                               
+                                                <td>@user.Address</td>
+                                                <td>@user.ReferenceId</td>
 
 
 
@@ -67,30 +47,19 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="col-7 col-sm-12 col-md-9">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Prev</a>
-                                            </li>
-                                            <li class="paginate_button page-item active">
-                                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                            </li>
-                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                                <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">Next</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-5 col-sm-12 col-md-3 text-left text-md-right">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">1 -1 of 1</div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable();
+            $('#customSearch').on('keyup', function () {
+                table.search(this.value).draw();
+            });
+        });
+
+    </script>

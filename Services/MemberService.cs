@@ -55,6 +55,8 @@ namespace ShagunGraminHealth.Services
                 existingUser.Name = user.Name;
                 existingUser.Mobile = user.Mobile;
                 existingUser.Email = user.Email;
+                existingUser.Address = user.Address;
+
 
                 await _userRepository.Update(existingUser);
             }
@@ -189,6 +191,7 @@ namespace ShagunGraminHealth.Services
                     FormDate = DateTime.Now,
                     Photo = photoPath,
                     Signature = signaturePath,
+                    ReferenceId = model.ReferenceId,
 
                     EducationalQualifications_8th = model.EducationalQualifications_8th,
                     YearOfPassing_8th = model.YearOfPassing_8th,
@@ -198,6 +201,34 @@ namespace ShagunGraminHealth.Services
                     Division_8th = model.Division_8th,
                     BoardUniversity_8th = model.BoardUniversity_8th,
                     Subjects_8th = model.Subjects_8th,
+
+                    EducationalQualifications_10th = model.EducationalQualifications_10th,
+                    YearOfPassing_10th = model.YearOfPassing_10th,
+                    MarksObtained_10th = model.MarksObtained_8th,
+                    TotalMarks_10th = model.TotalMarks_10th,
+                    Percentage_10th = model.Percentage_10th,
+                    Division_10th = model.Division_10th,
+                    BoardUniversity_10th = model.BoardUniversity_10th,
+                    Subjects_10th = model.Subjects_10th,
+
+                    EducationalQualifications_12th = model.EducationalQualifications_12th,
+                    YearOfPassing_12th = model.YearOfPassing_12th,
+                    MarksObtained_12th = model.MarksObtained_12th,
+                    TotalMarks_12th = model.TotalMarks_12th,
+                    Percentage_12th = model.Percentage_12th,
+                    Division_12th = model.Division_12th,
+                    BoardUniversity_12th = model.BoardUniversity_12th,
+                    Subjects_12th = model.Subjects_12th,
+
+                    EducationalQualifications_ITI = model.EducationalQualifications_ITI,
+                    YearOfPassing_ITI = model.YearOfPassing_ITI,
+                    MarksObtained_ITI = model.MarksObtained_ITI,
+                    TotalMarks_ITI = model.TotalMarks_ITI,
+                    Percentage_ITI = model.Percentage_ITI,
+                    Division_ITI = model.Division_ITI,
+                    BoardUniversity_ITI = model.BoardUniversity_ITI,
+                    Subjects_ITI = model.Subjects_ITI,
+
                     EducationalQualifications_Diploma = model.EducationalQualifications_Diploma,
                     YearOfPassing_Diploma = model.YearOfPassing_Diploma,
                     MarksObtained_Diploma = model.MarksObtained_Diploma,
@@ -230,7 +261,6 @@ namespace ShagunGraminHealth.Services
                     Experience_Months = model.Experience_Months,
                     Experience_Days = model.Experience_Days,
 
-                    Visible_Identification = model.Visible_Identification,
 
                 };
 
