@@ -54,11 +54,12 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             }
             return View(user);
         }
-        public IActionResult ApplyMember(string planNumber, string PlanFee)
+        public IActionResult ApplyMember(string planNumber, string PlanFee, string ApplicationId)
         {
 
             ViewBag.PaymentAmount = PlanFee;
             ViewBag.PlanNumber = planNumber;
+            ViewBag.ApplicationId = ApplicationId;
 
             return View();
         }
