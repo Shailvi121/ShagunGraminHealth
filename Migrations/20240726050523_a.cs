@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShagunGraminHealth.Migrations
 {
-    public partial class Initialcreate : Migration
+    public partial class a : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -180,7 +180,8 @@ namespace ShagunGraminHealth.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PlanName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PlanFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PlanFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ApplicationId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -30,7 +30,7 @@ namespace ShagunGraminHealth.Services
             _membershipPlanRepository = membershipPlanRepository;
             _userRepository = userRepository;
             _membershipFormRepository = membershipFormRepository;
-            _jobApplicationRepository= jobApplicationRepository;
+            _jobApplicationRepository = jobApplicationRepository;
             _paymentRepository = paymentRepository;
             _orderRepository = orderRepository;
             _environment = environment;
@@ -62,7 +62,7 @@ namespace ShagunGraminHealth.Services
 
         public async Task ApplyMembershipFormAsync(MembershipFormViewModel model)
         {
-            if (model.Photo != null && model.Signature != null )
+            if (model.Photo != null && model.Signature != null)
             {
                 string uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
 
@@ -112,7 +112,8 @@ namespace ShagunGraminHealth.Services
 
             await _orderRepository.AddAsync(orders);
             await _orderRepository.SaveChangesAsync();
-
+            string NominatedDetails = JsonConvert.SerializeObject(model.NominatedDetails);
+            string FamilyDetails = JsonConvert.SerializeObject(model.FamilyDetails);
             MembershipForm membershipForm = new MembershipForm
             {
                 Application_Id = model.Application_Id,
@@ -145,27 +146,8 @@ namespace ShagunGraminHealth.Services
                 Form_Date = DateTime.Now,
                 OrderId = model.OrderId,
                 UserId = model.UserId,
-                //NominatedDetailsJson = ,
-                //FamilyDetailsJson = 
-        
-                //FamilyDetails = model.FamilyDetails?.Select(fd => new FamilyDetail
-                //{
-                //    Serial = fd.Serial,
-                //    FamilyMemberName = fd.FamilyMemberName,
-                //    Relation = fd.Relation,
-                //    Age = fd.Age,
-                //    AadharNumber = fd.AadharNumber,
-                //    EducationalLevel = fd.EducationalLevel,
-                //    SchoolName = fd.SchoolName
-                //}).ToList(),
-                //NominatedDetails = model.NominatedDetails?.Select(nd => new NominatedDetail
-                //{
-                //    Serial = nd.Serial,
-                //    NominatedPersonName = nd.NominatedPersonName,
-                //    Relation = nd.Relation,
-                //    Age = nd.Age,
-                //    Percentage = nd.Percentage
-                //}).ToList()
+                NominatedDetailsJson = NominatedDetails,
+                FamilyDetailsJson = FamilyDetails
 
             };
 
@@ -207,7 +189,7 @@ namespace ShagunGraminHealth.Services
                     FormDate = DateTime.Now,
                     Photo = photoPath,
                     Signature = signaturePath,
-                  
+
                     EducationalQualifications_8th = model.EducationalQualifications_8th,
                     YearOfPassing_8th = model.YearOfPassing_8th,
                     MarksObtained_8th = model.MarksObtained_8th,
@@ -267,32 +249,14 @@ namespace ShagunGraminHealth.Services
             return uniqueFileName;
         }
 
-        //public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
-        //{
-        //    var appliedPlans = await _membershipFormRepository.GetAllAsync();
-        //    var viewModelList = appliedPlans.Select(m => new MembershipFormViewModel
-        //    {
-        //        Id = m.Id,
-        //        Application_Id = m.Application_Id,
-        //        PlanNumber = m.PlanNumber,
-        //        Candidate_Name = m.Candidate_Name,
-        //        Father_Name = m.Father_Name,
-        //        Sex = m.Sex,
-        //        Category = m.Category,
-        //        //Payment = m.Payment
-        //    });
-        //    return viewModelList;
-        //}
-
-
         public async Task<IEnumerable<MembershipFormViewModel>> GetAppliedPlansAsync()
         {
             var appliedPlans = await _membershipFormRepository.GetAllAsync();
-            var orderDetails = await _orderRepository.GetAllAsync(); 
+            var orderDetails = await _orderRepository.GetAllAsync();
 
             var viewModelList = appliedPlans.Select(m =>
             {
-                var orderDetail = orderDetails.FirstOrDefault(o => o.OrderId == m.OrderId); 
+                var orderDetail = orderDetails.FirstOrDefault(o => o.OrderId == m.OrderId);
                 return new MembershipFormViewModel
                 {
                     Id = m.Id,
@@ -361,13 +325,6 @@ namespace ShagunGraminHealth.Services
             return details;
         }
 
-        //public async Task<MembershipForm> GetMemberApplictionIdAsync(string Application_Id)
-        //{
-
-        //    var membershipForm = await _membershipFormRepository.FindAsync(m => m.Application_Id == Application_Id);
-        //    return membershipForm;
-        //}
-
         public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplicationIdAsync(string Application_Id)
         {
             var allMembershipForms = await _membershipFormRepository.GetAllAsync();
@@ -375,7 +332,7 @@ namespace ShagunGraminHealth.Services
             var membershipForms = allMembershipForms.Where(m => m.Application_Id == Application_Id);
             var viewModels = membershipForms.Select(m =>
             {
-                
+
                 var orderDetail = orderDetails.FirstOrDefault(o => o.OrderId == m.OrderId);
 
                 return new MembershipFormViewModel
@@ -386,13 +343,16 @@ namespace ShagunGraminHealth.Services
                     Candidate_Name = m.Candidate_Name,
                     PaymentAmount = orderDetail.PaymentAmount,
                     OrderId = m.OrderId,
-                    PaymentStatus = orderDetail?.PaymentStatus 
+                    PaymentStatus = orderDetail?.PaymentStatus
                 };
             });
 
-                            return viewModels;
+            return viewModels;
         }
 
-
+        public Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
