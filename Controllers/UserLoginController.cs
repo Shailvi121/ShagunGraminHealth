@@ -78,7 +78,6 @@ namespace ShagunGraminHealth.Controllers
             var existingUser = await _userService.SignUp(model);
             if (existingUser != null)
             {
-                TempData["SuccessMessage"] = "Registration successful! Please log in.";
                 return RedirectToAction("Login");
             }
 

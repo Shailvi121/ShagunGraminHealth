@@ -113,7 +113,7 @@
                                                     <div class="user-info">
                                                         <span class="lead-text">@username</span>
                                                         <span class="sub-text">@email</span>
-                                                        <span class="sub-text">Reference ID: @referenceId</span> 
+                                                        <span class="sub-text">@(!string.IsNullOrEmpty(referenceId) ? "Reference ID: " + referenceId : "Reference ID not available")</span>
 
                                                     </div>
                                                 </div>

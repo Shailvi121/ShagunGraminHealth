@@ -397,7 +397,6 @@ namespace ShagunGraminHealth.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
 
-                   
                     b.Property<string>("YearOfPassing_10th")
                         .HasColumnType("nvarchar(max)");
 
@@ -733,8 +732,8 @@ namespace ShagunGraminHealth.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ReferenceId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ReferenceId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");

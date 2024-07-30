@@ -12,8 +12,8 @@ using ShagunGraminHealth.Data;
 namespace ShagunGraminHealth.Migrations
 {
     [DbContext(typeof(ShagunGraminHealthContext))]
-    [Migration("20240726050523_a")]
-    partial class a
+    [Migration("20240730081754_added migration")]
+    partial class addedmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -734,8 +734,8 @@ namespace ShagunGraminHealth.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ReferenceId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ReferenceId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");

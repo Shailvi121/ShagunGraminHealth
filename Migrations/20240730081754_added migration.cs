@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShagunGraminHealth.Migrations
 {
-    public partial class a : Migration
+    public partial class addedmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -120,7 +120,7 @@ namespace ShagunGraminHealth.Migrations
                     Higher_Qualification = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Experience_Years = table.Column<int>(type: "int", nullable: false),
                     Experience_Months = table.Column<int>(type: "int", nullable: false),
-                    Experience_Days = table.Column<int>(type: "int", nullable: false),
+                    Experience_Days = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -244,7 +244,7 @@ namespace ShagunGraminHealth.Migrations
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Mobile = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ReferenceId = table.Column<int>(type: "int", nullable: true),
+                    ReferenceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Passcode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime", nullable: true),

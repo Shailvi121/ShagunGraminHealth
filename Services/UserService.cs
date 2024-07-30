@@ -48,7 +48,7 @@ namespace ShagunGraminHealth.Services
                     Email = model.Email,
                     Password = model.Password,
                     Mobile = model.Mobile,
-                    ReferenceId = model.ReferenceId,
+                    ReferenceId = Guid.NewGuid(),
                     Passcode = model.Passcode,
                     IsActive = true,
                     CreatedOn = DateTime.Now,
