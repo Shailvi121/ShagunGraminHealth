@@ -296,6 +296,7 @@ namespace ShagunGraminHealth.Services
                     Father_Name = m.Father_Name,
                     Sex = m.Sex,
                     Category = m.Category,
+                    OrderId = m.OrderId,
                     PaymentStatus = orderDetail?.PaymentStatus ?? "Pending",
                     PaymentAmount = orderDetail?.PaymentAmount ?? 0
                 };
@@ -359,7 +360,7 @@ namespace ShagunGraminHealth.Services
         {
             var allMembershipForms = await _membershipFormRepository.GetAllAsync();
             var orderDetails = await _orderRepository.GetAllAsync();
-            var membershipForms = allMembershipForms.Where(m => m.Application_Id == Application_Id);
+            var membershipForms = allMembershipForms.Where(m => m.OrderId == Application_Id);
             var viewModels = membershipForms.Select(m =>
             {
 

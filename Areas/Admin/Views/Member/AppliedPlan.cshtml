@@ -4,56 +4,69 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .payment-status-success {
+        color: green;
+    }
+
+    .payment-status-default {
+        color: blue;
+    }
+</style>
+
 <div class="container-fluid">
     <div class="nk-content-inner">
         <div class="nk-content-body">
             <div class="card card-preview">
                 <div class="card-inner">
-                            <div class="datatable-wrap my-3">
-                                <table class="datatable-init nowrap table dataTable no-footer dtr-inline">
-                                    <thead>
-                                        <tr role="row">
-                                            <th>Id</th>
-                                            <th>Application_Id</th>
-                                            <th>Plan No</th>
-                                            <th>Candidate_Name</th>
-                                            <th>Father_Name</th>
-                                            <th>Sex</th>
-                                            <th>Category</th>
-                                            <th>Payment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>@item.Id</td>
-                                                <td>@item.Application_Id</td>
-                                                <td>@item.PlanNumber</td>
-                                                <td>@item.Candidate_Name</td>
-                                                <td>@item.Father_Name</td>
-                                                <td>@item.Sex</td>
-                                                <td>@item.Category</td>
-                                                <td>@item.PaymentStatus</td>
-                                                <td class="tb-tnx-action">
-                                                    <div class="dropdown">
-                                                        <a class="text-soft dropdown-toggle btn btn-outline-primary" data-toggle="dropdown" aria-expanded="false">
-                                                            <em class="icon ni ni-more-h"></em>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                                            <ul class="link-list-plain">
-
-                                                       @*  <li><a href="/Admin/Member/Payment?Application_Id=@item.Application_Id">Online Payment</a></li> *@
-                                                        <li><a href="Admin/Member/ViewPayments?Application_Id=@item.Application_Id">View Payment Records</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="datatable-wrap my-3">
+                        <table class="datatable-init nowrap table dataTable no-footer dtr-inline">
+                            <thead>
+                                <tr role="row">
+                                    <th>Id</th>
+                                    <th>Application_Id</th>
+                                    <th>Plan No</th>
+                                    <th>Candidate_Name</th>
+                                    <th>Father_Name</th>
+                                    <th>Sex</th>
+                                    <th>Category</th>
+                                    <th>Payment</th>
+                                    <th>Actions</th> <!-- Added column for actions -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Application_Id</td>
+                                        <td>@item.PlanNumber</td>
+                                        <td>@item.Candidate_Name</td>
+                                        <td>@item.Father_Name</td>
+                                        <td>@item.Sex</td>
+                                        <td>@item.Category</td>
+                                        <td class="@(item.PaymentStatus == "Success" ? "payment-status-success" : "payment-status-default")">
+                                            @item.PaymentStatus
+                                        </td>
+                                        <td class="tb-tnx-action">
+                                            <div class="dropdown">
+                                                <a class="text-soft dropdown-toggle btn btn-outline-primary" data-toggle="dropdown" aria-expanded="false">
+                                                    <em class="icon ni ni-more-h"></em>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                    <ul class="link-list-plain">
+                                                        <!-- Uncomment and adjust the URL if needed -->
+                                                        <!-- <li><a href="/Admin/Member/Payment?Application_Id=@item.Application_Id">Online Payment</a></li> -->
+                                                        <li><a href="Admin/Member/ViewPayments?Application_Id=@item.OrderId">View Payment Records</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
