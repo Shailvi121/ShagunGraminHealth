@@ -91,9 +91,16 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         public async Task<IActionResult> UserDetails()
         {
-            var userDetails = await _memberService.GetDetailsAsync();
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var userDetails = await _memberService.GetUserDetailsByIdAsync(userId);
             return View(userDetails);
         }
+
         public async Task<IActionResult> ViewPayments(string Application_Id)
         {
             var Member = await _memberService.GetMemberApplicationIdAsync(Application_Id);

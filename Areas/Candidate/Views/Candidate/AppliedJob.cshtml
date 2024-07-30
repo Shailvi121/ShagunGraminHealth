@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ShagunGraminHealth.ViewModel.JobApplicationViewModel>
+
+@{
+    Layout = "~/Areas/Candidate/Views/Shared/_Layout.cshtml";
+}
+
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="card card-preview">
+                    <div class="card-inner">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                           
+                            <div class="datatable-wrap my-3">
+                                <table class="datatable-init nowrap table dataTable no-footer dtr-inline collapsed" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Application_Id</th>
+                                            <th>Advertisement_No</th>
+                                            <th>Category_No</th>
+                                            <th>Post</th>
+                                            <th>Candidate_Name</th>
+                                            <th>Father_Name</th>
+                                            <th>Sex</th>
+                                            <th>Category</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row">
+                                                <td>@item.ApplicationId</td>
+                                                <td>@item.AdvertisementNo</td>
+                                                <td>@item.CategoryNo</td>
+                                                <td>@item.Post</td>
+                                                <td>@item.CandidateName</td>
+                                                <td>@item.FatherName</td>
+                                                <td>@item.Sex</td>
+                                                <td>@item.Category</td>
+                                                <td class="tb-tnx-action">
+                                                    <div class="dropdown">
+                                                        <a class="text-soft dropdown-toggle btn btn-outline-primary" data-toggle="dropdown">
+                                                            <em class="icon ni ni-more-h"></em>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                            <ul class="link-list-plain">
+                                                                <li><a href="Apply/print_certificate.php?Application_Id=@item.ApplicationId">Print Application</a></li>
+                                                                <li><a href="Apply/apply_job_upload.php?Application_Id=@item.ApplicationId">Upload Documents Now</a></li>
+                                                                <li><a href="Apply/pay.php?Application_Id=@item.ApplicationId">Online Payment</a></li>
+                                                                <li><a href="Apply/payments.php?Application_Id=@item.ApplicationId">View Payment Records</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

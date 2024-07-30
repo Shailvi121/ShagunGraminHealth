@@ -1,64 +1,45 @@
-﻿@model IEnumerable<ShagunGraminHealth.Models.User>
-
+﻿@model ShagunGraminHealth.Models.User
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="nk-content ">
+<div class="nk-content">
     <div class="container-fluid">
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="card card-preview">
                     <div class="card-inner">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                           
+                            <!-- Display user details in a table -->
                             <div class="datatable-wrap my-3">
-                                <table class="datatable-init nowrap table dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                <table class="table">
                                     <thead>
-                                        <tr role="row">
-                                            <th cl
-                                                sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending">Id</th>
-@*                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="USER ID: activate to sort column ascending">USER ID</th>
-*@                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="FULLNAME: activate to sort column ascending">FULLNAME</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="MOBILE: activate to sort column ascending">MOBILE</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="EMAIL: activate to sort column ascending">EMAIL</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ADDRESS: activate to sort column ascending">ADDRESS</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="REFERENCE ID: activate to sort column ascending">REFERENCE ID</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Full Name</th>
+                                            <th>Mobile</th>
+                                            <th>Email</th>
+                                            <th>Address</th>
+                                            <th>Reference ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var user in Model)
-                                        {
-                                            <tr>
-                                                <td>@user.Id</td>
-                                                <td>@user.Name</td>
-                                                <td>@user.Mobile</td>
-                                                <td>@user.Email</td>
-                                                <td>@user.Address</td>
-                                                <td>@user.ReferenceId</td>
-
-
-
-
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td>@Model.Id</td>
+                                            <td>@Model.Name</td>
+                                            <td>@Model.Mobile</td>
+                                            <td>@Model.Email</td>
+                                            <td>@Model.Address</td>
+                                            <td>@Model.ReferenceId</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable();
-        $('#customSearch').on('keyup', function () {
-            table.search(this.value).draw();
-        });
-    });
-
-</script>

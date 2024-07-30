@@ -28,13 +28,15 @@ namespace ShagunGraminHealth.Controllers
             var user = await _userService.SignInAsync(model);
             if (user != null)
             {
+
                 var roles = await _userService.GetRoles(user.Id);
 
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Name),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim("ReferenceId", user.ReferenceId.ToString()) 
                 };
 
                 claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

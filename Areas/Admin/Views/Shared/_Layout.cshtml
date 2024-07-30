@@ -18,6 +18,8 @@
     var username = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
     var email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
     var UserNamefirst = !string.IsNullOrEmpty(username) ? username[0].ToString() : "";
+    var referenceId = claimsPrincipal.FindFirst("ReferenceId")?.Value; 
+
 }
 
 <body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme">
@@ -111,6 +113,8 @@
                                                     <div class="user-info">
                                                         <span class="lead-text">@username</span>
                                                         <span class="sub-text">@email</span>
+                                                        <span class="sub-text">Reference ID: @referenceId</span> 
+
                                                     </div>
                                                 </div>
                                             </div>

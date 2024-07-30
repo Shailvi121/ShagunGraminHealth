@@ -40,8 +40,14 @@ namespace ShagunGraminHealth.Areas.Candidate.Controllers
         }
         public async Task<IActionResult> CandidateDetails()
         {
-            var candidateDetails = await _memberService.GetDetailsAsync();
-            return View(candidateDetails);
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var userDetails = await _memberService.GetUserDetailsByIdAsync(userId);
+            return View(userDetails);
         }
 
         public IActionResult ApplyJob()
@@ -62,6 +68,16 @@ namespace ShagunGraminHealth.Areas.Candidate.Controllers
             await _memberService.ApplyJobAsync(model);
 
             return Redirect("/Candidate/Dashboard");
+        }
+        public async Task<IActionResult> AppliedJob()
+        {
+            var data = await _memberService.GetAppliedJobAsync();
+            return View(data);
+        }
+        public async Task<IActionResult> JobAdvertisements(int page = 1, int pageSize = 10)
+        {
+            var jobAdvertisements = await _memberService.GetJobAdvertisementsAsync(page, pageSize);
+            return View(jobAdvertisements);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace ShagunGraminHealth.Services
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<MembershipForm> _membershipFormRepository;
         private readonly IGenericRepository<JobApplication> _jobApplicationRepository;
+        private readonly IGenericRepository<JobAdvertisement> _jobAdvertisementRepository; 
         private readonly IGenericRepository<NominatedDetail> _nominatedDetailRepository;
         private readonly IGenericRepository<PaymentOrder> _paymentRepository;
         private readonly IGenericRepository<Orders> _orderRepository;
@@ -25,6 +26,7 @@ namespace ShagunGraminHealth.Services
             IGenericRepository<NominatedDetail> nominatedDetailRepository,
             IGenericRepository<PaymentOrder> paymentRepository,
              IGenericRepository<Orders> orderRepository,
+            IGenericRepository<JobAdvertisement> jobAdvertisementRepository,
             IWebHostEnvironment environment)
         {
             _membershipPlanRepository = membershipPlanRepository;
@@ -35,6 +37,8 @@ namespace ShagunGraminHealth.Services
             _orderRepository = orderRepository;
             _environment = environment;
             _nominatedDetailRepository = nominatedDetailRepository;
+            _jobAdvertisementRepository = jobAdvertisementRepository; 
+
         }
 
         public async Task<IEnumerable<MembershipPlan>> GetAllMembershipPlansAsync()
@@ -304,6 +308,30 @@ namespace ShagunGraminHealth.Services
 
             return viewModelList;
         }
+
+        public async Task<IEnumerable<JobApplicationViewModel>> GetAppliedJobAsync()
+        {
+            var appliedJob = await _jobApplicationRepository.GetAllAsync();
+
+            var viewModelList = appliedJob.Select(m =>
+            {
+                return new JobApplicationViewModel
+                {
+                    ApplicationId = m.ApplicationId,
+                    AdvertisementNo = m.AdvertisementNo,
+                    CategoryNo = m.CategoryNo,
+                    Post = m.Post,
+                    CandidateName = m.CandidateName,
+                    FatherName = m.FatherName,
+                    Sex = m.Sex,
+                    Category=m.Category,
+                    //PaymentStatus = orderDetail?.PaymentStatus ?? "Pending",
+                    //PaymentAmount = orderDetail?.PaymentAmount ?? 0
+                };
+            });
+
+            return viewModelList;
+        }
         public async Task ProcessPaymentAsync(PaymentViewModel model)
         {
             Dictionary<string, string> attributes = new Dictionary<string, string>
@@ -349,12 +377,11 @@ namespace ShagunGraminHealth.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetDetailsAsync()
+        public async Task<User> GetUserDetailsByIdAsync(int userId)
         {
-
-            var details = await _userRepository.GetAllAsync();
-            return details;
+            return await _userRepository.GetByIdAsync(userId);
         }
+
 
         public async Task<IEnumerable<MembershipFormViewModel>> GetMemberApplicationIdAsync(string Application_Id)
         {
@@ -381,9 +408,16 @@ namespace ShagunGraminHealth.Services
             return viewModels;
         }
 
-        public Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
+        public async Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
         {
-            throw new NotImplementedException();
+            var allAdvertisements = await _jobAdvertisementRepository.GetAllAsync();
+            var paginatedAdvertisements = allAdvertisements
+                .OrderByDescending(ad => ad.AdvertisementDate) // Sort by AdvertisementDate or any other criteria
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return paginatedAdvertisements;
         }
     }
 }
