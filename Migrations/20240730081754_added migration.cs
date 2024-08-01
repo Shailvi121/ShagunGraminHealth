@@ -244,7 +244,7 @@ namespace ShagunGraminHealth.Migrations
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Mobile = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ReferenceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReferenceId = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Passcode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime", nullable: true),

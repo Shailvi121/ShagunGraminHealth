@@ -48,7 +48,7 @@ namespace ShagunGraminHealth.Services
                     Email = model.Email,
                     Password = model.Password,
                     Mobile = model.Mobile,
-                    ReferenceId = Guid.NewGuid(),
+                    ReferenceId = GenerateReferenceId(),
                     Passcode = model.Passcode,
                     IsActive = true,
                     CreatedOn = DateTime.Now,
@@ -59,6 +59,14 @@ namespace ShagunGraminHealth.Services
                 return newUser;
             }
             return null;
+        }
+
+        private static string GenerateReferenceId()
+        {
+            Guid guid = Guid.NewGuid();
+            string base64Guid = Convert.ToBase64String(guid.ToByteArray());
+            string referenceId = base64Guid.Replace("=", "").Replace("+", "").Replace("/", "").Substring(0, 10);
+            return referenceId;
         }
 
         private async Task AssignUserRole(int userId, string role)
