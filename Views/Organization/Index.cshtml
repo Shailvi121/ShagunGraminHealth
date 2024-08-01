@@ -128,8 +128,6 @@
         <!-- Container Start Here -->
         <section class="container">
             <div class="wrapper">
-
-
                 <div class="section-middle">
                     <aside class="document_sec">
                         <div class="accordion">
@@ -144,7 +142,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="drawer">
                                 <div class="accordion-item">
                                     <div class="accordion-header"><div class="accordion-header-icon"></div><h1>Job Application</h1></div><div class="accordion-content">
@@ -155,13 +152,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
-
                     </aside>
-
                     <div class="news-notifications">
                         <h2>News &amp; Notifications</h2>
                         <div class="notific-list">
@@ -514,6 +506,29 @@
 
                 // Initially mark the first pager item as active
                 $('.bx-pager-item').eq(0).addClass('active');
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+                accordionHeaders.forEach(header => {
+                    header.addEventListener("click", function () {
+                        const currentlyActiveHeader = document.querySelector(".accordion-header-active");
+                        if (currentlyActiveHeader && currentlyActiveHeader !== header) {
+                            currentlyActiveHeader.classList.remove("accordion-header-active");
+                            currentlyActiveHeader.nextElementSibling.style.display = "none";
+                        }
+
+                        header.classList.toggle("accordion-header-active");
+                        const accordionContent = header.nextElementSibling;
+                        if (header.classList.contains("accordion-header-active")) {
+                            accordionContent.style.display = "block";
+                        } else {
+                            accordionContent.style.display = "none";
+                        }
+                    });
+                });
             });
         </script>
         <script src="~/assets/assets/js/sha1.js"></script>
