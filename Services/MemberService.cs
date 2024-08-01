@@ -412,12 +412,13 @@ namespace ShagunGraminHealth.Services
         {
             var allAdvertisements = await _jobAdvertisementRepository.GetAllAsync();
             var paginatedAdvertisements = allAdvertisements
-                .OrderByDescending(ad => ad.AdvertisementDate) // Sort by AdvertisementDate or any other criteria
+                .OrderByDescending(ad => ad.AdvertisementDate) 
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             return paginatedAdvertisements;
         }
+
     }
 }

@@ -106,9 +106,5 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             var Member = await _memberService.GetMemberApplicationIdAsync(Application_Id);
             return View(Member);
         }
-
-       
-
-
     }
 }

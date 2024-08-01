@@ -28,6 +28,8 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<Orders> Order { get; set; } = null!;
         public virtual DbSet<JobApplication> JobApplications { get; set; } = null!;
         public virtual DbSet<JobAdvertisement> JobAdvertisements { get; set; } = null!;
+        public virtual DbSet<Wallet> Wallets { get; set; } = null!;
+
 
 
 
