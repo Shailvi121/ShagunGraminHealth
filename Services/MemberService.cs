@@ -3,6 +3,7 @@ using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using ShagunGraminHealth.ViewModel;
+using System.Text;
 
 namespace ShagunGraminHealth.Services
 {
@@ -16,7 +17,9 @@ namespace ShagunGraminHealth.Services
         private readonly IGenericRepository<NominatedDetail> _nominatedDetailRepository;
         private readonly IGenericRepository<PaymentOrder> _paymentRepository;
         private readonly IGenericRepository<Orders> _orderRepository;
+        IGenericRepository<Wallet> _walletRepository;
         private readonly IWebHostEnvironment _environment;
+
 
         public MemberService(
             IGenericRepository<MembershipPlan> membershipPlanRepository,
@@ -25,8 +28,9 @@ namespace ShagunGraminHealth.Services
             IGenericRepository<JobApplication> jobApplicationRepository,
             IGenericRepository<NominatedDetail> nominatedDetailRepository,
             IGenericRepository<PaymentOrder> paymentRepository,
-             IGenericRepository<Orders> orderRepository,
+            IGenericRepository<Orders> orderRepository,
             IGenericRepository<JobAdvertisement> jobAdvertisementRepository,
+            IGenericRepository<Wallet> walletRepository,
             IWebHostEnvironment environment)
         {
             _membershipPlanRepository = membershipPlanRepository;
@@ -37,7 +41,8 @@ namespace ShagunGraminHealth.Services
             _orderRepository = orderRepository;
             _environment = environment;
             _nominatedDetailRepository = nominatedDetailRepository;
-            _jobAdvertisementRepository = jobAdvertisementRepository; 
+            _jobAdvertisementRepository = jobAdvertisementRepository;
+            _walletRepository = walletRepository;
 
         }
 
@@ -118,6 +123,25 @@ namespace ShagunGraminHealth.Services
 
             await _orderRepository.AddAsync(orders);
             await _orderRepository.SaveChangesAsync();
+            WalletVM walletViewModel = new WalletVM
+            {
+                ReferenceId = model.Reference,
+                UserId = model.UserId,
+                OrderId = model.OrderId,
+                CreatedDate = DateTime.Now,
+                Balance = 100
+            };
+            Wallet wallet = new Wallet
+            {
+                ReferenceId = walletViewModel.ReferenceId,
+                UserId = walletViewModel.UserId,
+                OrderId = walletViewModel.OrderId,
+                CreatedDate = walletViewModel.CreatedDate,
+                Balance = walletViewModel.Balance
+            };
+            await _walletRepository.AddAsync(wallet);
+            await _walletRepository.SaveChangesAsync();
+
             string NominatedDetails = JsonConvert.SerializeObject(model.NominatedDetails);
             string FamilyDetails = JsonConvert.SerializeObject(model.FamilyDetails);
             MembershipForm membershipForm = new MembershipForm
@@ -338,7 +362,9 @@ namespace ShagunGraminHealth.Services
             {
                 { "razorpay_payment_id", model.razorpay_payment_id },
                 { "razorpay_order_id", model.razorpay_order_id },
-                { "razorpay_signature", model.razorpay_signature }
+                { "razorpay_signature", model.razorpay_signature },
+                {"Reference_id", model.Reference_id }
+
             };
 
             Utils.verifyPaymentSignature(attributes);
@@ -364,6 +390,8 @@ namespace ShagunGraminHealth.Services
                     await _orderRepository.Update(order);
                 }
                 await _orderRepository.SaveChangesAsync();
+
+                
             }
             else
             {
@@ -371,6 +399,43 @@ namespace ShagunGraminHealth.Services
             }
 
         }
+
+        //private async Task RefundPaymentAsync(string paymentId, decimal amount, string referenceId)
+        //{
+        //    var client = new HttpClient();
+
+        //    // Basic Authentication
+        //    var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("rzp_test_h6khePiEN5pLb5:aa79deq6RzqONUxz2lnJPmhc"));
+        //    client.DefaultRequestHeaders.Add("Authorization", "Basic " + credentials);
+
+        //    // API URL for the refund
+        //    var url = $"https://api.razorpay.com/v1/payments/{paymentId}/refund";
+
+        //    // Prepare the refund request payload
+        //    var content = new FormUrlEncodedContent(new[]
+        //    {
+        //        new KeyValuePair<string, string>("amount", (amount * 100).ToString()), // Amount in paise
+        //        new KeyValuePair<string, string>("receipt", referenceId)
+        //    });
+
+        //    // Make the request
+        //    var response = await client.PostAsync(url, content);
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var responseContent = await response.Content.ReadAsStringAsync();
+        //        // Handle successful response (you can deserialize and process responseContent if needed)
+        //        Console.WriteLine("Refund successful: " + responseContent);
+        //    }
+        //    else
+        //    {
+        //        var errorContent = await response.Content.ReadAsStringAsync();
+        //        // Handle error response
+        //        Console.WriteLine($"Refund failed: {errorContent}");
+        //        throw new Exception($"Refund failed: {errorContent}");
+        //    }
+        //}
+
 
         public Task ProcessPaymentAsync(string razorpayPaymentId, string razorpayOrderId, string razorpaySignature, int userId)
         {
