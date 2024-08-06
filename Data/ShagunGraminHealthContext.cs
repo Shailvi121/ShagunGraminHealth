@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using ShagunGraminHealth.Areas.Admin.Models;
 using ShagunGraminHealth.Models;
 
@@ -22,17 +20,13 @@ namespace ShagunGraminHealth.Data
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<MembershipPlan> MembershipPlans { get; set; } = null!;
-
-        public virtual DbSet<MembershipForm> MembershipForms { get; set; }
-        public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
-        public virtual DbSet<Orders> Order { get; set; } = null!;
+        public virtual DbSet<MembershipForm> MembershipForms { get; set; } = null!;
+        public virtual DbSet<PaymentOrder> PaymentOrders { get; set; } = null!;
+        public virtual DbSet<Orders> Orders { get; set; } = null!;
         public virtual DbSet<JobApplication> JobApplications { get; set; } = null!;
         public virtual DbSet<JobAdvertisement> JobAdvertisements { get; set; } = null!;
         public virtual DbSet<Wallet> Wallets { get; set; } = null!;
-
-
-
-
+        public virtual DbSet<WalletPaymentDetails> WalletPaymentDetails { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +35,6 @@ namespace ShagunGraminHealth.Data
                 entity.ToTable("Role");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.Property(e => e.Name).HasMaxLength(255);
             });
 
@@ -50,36 +43,30 @@ namespace ShagunGraminHealth.Data
                 entity.ToTable("User");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
                 entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.Mobile)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
+                entity.Property(e => e.Mobile).HasMaxLength(15).IsUnicode(false);
                 entity.Property(e => e.Name).HasMaxLength(255);
-
                 entity.Property(e => e.Passcode).HasMaxLength(50);
-
                 entity.Property(e => e.Password).HasMaxLength(100);
-
                 entity.Property(e => e.UpdatedOn).HasColumnType("datetime");
+
+                // Configure navigation property
+                entity.HasMany(e => e.Wallets)
+                      .WithOne(w => w.User)
+                      .HasForeignKey(w => w.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<UserRole>(entity =>
             {
                 entity.ToTable("UserRole");
-
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.UserRoles)
                     .HasForeignKey(d => d.RoleId)
                     .HasConstraintName("FK_UserRole_Role");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserRoles)
                     .HasForeignKey(d => d.UserId)
@@ -91,21 +78,16 @@ namespace ShagunGraminHealth.Data
                 entity.ToTable("MembershipPlan");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.Property(e => e.PlanFee).HasColumnType("decimal(18, 2)");
-
                 entity.Property(e => e.PlanName).HasMaxLength(100);
-
                 entity.Property(e => e.PlanNumber).HasMaxLength(50);
             });
 
             modelBuilder.Entity<MembershipForm>(entity =>
             {
                 entity.ToTable("MembershipForm");
-
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.Property(e => e.Application_Id).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.PlanNumber).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Reference).HasMaxLength(255).IsRequired();
@@ -138,19 +120,18 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.NominatedDetailsJson).HasColumnType("text").IsRequired();
                 entity.Property(e => e.FamilyDetailsJson).HasColumnType("text").IsRequired();
             });
-           
+
             modelBuilder.Entity<PaymentOrder>(entity =>
             {
                 entity.ToTable("PaymentOrder");
-
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).UseIdentityColumn();
-
                 entity.Property(e => e.OrderId).HasMaxLength(50);
                 entity.Property(e => e.PaymentStatus).HasMaxLength(50);
                 entity.Property(e => e.RazorPaymentId).HasMaxLength(50);
                 entity.Property(e => e.UserId).IsRequired(false);
             });
+
             modelBuilder.Entity<JobApplication>(entity =>
             {
                 entity.ToTable("JobApplication");
@@ -251,11 +232,11 @@ namespace ShagunGraminHealth.Data
 
                 entity.Property(e => e.VisibleIdentification).HasMaxLength(255).IsRequired(false).IsUnicode(false);
             });
+
             modelBuilder.Entity<JobAdvertisement>(entity =>
             {
                 entity.ToTable("JobAdvertisement");
                 entity.HasKey(e => e.Id);
-
                 entity.Property(e => e.Id).UseIdentityColumn();
                 entity.Property(e => e.AdvertisementNo).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.AdvertisementDate).IsRequired();
@@ -267,6 +248,51 @@ namespace ShagunGraminHealth.Data
                 entity.Property(e => e.FileUrl).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Status).HasMaxLength(10).IsRequired();
             });
+
+            modelBuilder.Entity<Wallet>(entity =>
+            {
+                entity.ToTable("Wallet");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
+                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.ReferenceId).IsRequired();
+
+                entity.HasOne(w => w.User)
+                      .WithMany(u => u.Wallets)
+                      .HasForeignKey(w => w.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<WalletPaymentDetails>(entity =>
+            {
+                entity.ToTable("WalletPaymentDetails");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
+                entity.Property(e => e.UserRefId).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Amount).HasColumnType("decimal(18, 2)").IsRequired();
+                entity.Property(e => e.TransactionDate).IsRequired();
+                entity.Property(e => e.WalletId).IsRequired();
+
+                entity.HasOne(wpd => wpd.Wallet)
+                      .WithMany(w => w.WalletPaymentDetails)
+                      .HasForeignKey(wpd => wpd.WalletId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.ToTable("Orders");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).UseIdentityColumn();
+                entity.Property(e => e.OrderId).HasMaxLength(50);
+                entity.Property(e => e.PaymentAmount).HasColumnType("decimal(18, 2)").IsRequired();
+                entity.Property(e => e.CreatedDate).IsRequired();
+                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.IsActive).IsRequired();
+                entity.Property(e => e.PaymentStatus).HasMaxLength(50);
+            });
+
+
             OnModelCreatingPartial(modelBuilder);
         }
 

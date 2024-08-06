@@ -12,10 +12,12 @@ namespace ShagunGraminHealth.Services
         private readonly IGenericRepository<User> _userRepository;
         private readonly IGenericRepository<MembershipForm> _membershipFormRepository;
         private readonly IGenericRepository<JobApplication> _jobApplicationRepository;
-        private readonly IGenericRepository<JobAdvertisement> _jobAdvertisementRepository; 
+        private readonly IGenericRepository<JobAdvertisement> _jobAdvertisementRepository;
         private readonly IGenericRepository<NominatedDetail> _nominatedDetailRepository;
         private readonly IGenericRepository<PaymentOrder> _paymentRepository;
         private readonly IGenericRepository<Orders> _orderRepository;
+        private readonly IGenericRepository<Wallet> _walletRepository;
+        private readonly IGenericRepository<WalletPaymentDetails> _walletPaymentDetailsRepository;
         private readonly IWebHostEnvironment _environment;
 
         public MemberService(
@@ -25,7 +27,9 @@ namespace ShagunGraminHealth.Services
             IGenericRepository<JobApplication> jobApplicationRepository,
             IGenericRepository<NominatedDetail> nominatedDetailRepository,
             IGenericRepository<PaymentOrder> paymentRepository,
-             IGenericRepository<Orders> orderRepository,
+            IGenericRepository<Orders> orderRepository,
+            IGenericRepository<Wallet> walletRepository,
+            IGenericRepository<WalletPaymentDetails> walletPaymentDetailsRepository,
             IGenericRepository<JobAdvertisement> jobAdvertisementRepository,
             IWebHostEnvironment environment)
         {
@@ -35,9 +39,11 @@ namespace ShagunGraminHealth.Services
             _jobApplicationRepository = jobApplicationRepository;
             _paymentRepository = paymentRepository;
             _orderRepository = orderRepository;
+            _walletRepository = walletRepository;
+            _walletPaymentDetailsRepository = walletPaymentDetailsRepository;
             _environment = environment;
             _nominatedDetailRepository = nominatedDetailRepository;
-            _jobAdvertisementRepository = jobAdvertisementRepository; 
+            _jobAdvertisementRepository = jobAdvertisementRepository;
 
         }
 
@@ -86,12 +92,12 @@ namespace ShagunGraminHealth.Services
             int paymentAmountInPaise = (int)(paymentAmountInINR * 100);
 
             Dictionary<string, object> input = new Dictionary<string, object>
-            {
+                        {
 
-                { "amount", paymentAmountInPaise },
-                { "currency", "INR" },
-                { "receipt", transactionId }
-            };
+                            { "amount", paymentAmountInPaise },
+                            { "currency", "INR" },
+                            { "receipt", transactionId }
+                        };
 
             Razorpay.Api.Order order = client.Order.Create(input);
             model.OrderId = order["id"].ToString();
@@ -324,7 +330,7 @@ namespace ShagunGraminHealth.Services
                     CandidateName = m.CandidateName,
                     FatherName = m.FatherName,
                     Sex = m.Sex,
-                    Category=m.Category,
+                    Category = m.Category,
                     //PaymentStatus = orderDetail?.PaymentStatus ?? "Pending",
                     //PaymentAmount = orderDetail?.PaymentAmount ?? 0
                 };
@@ -335,11 +341,11 @@ namespace ShagunGraminHealth.Services
         public async Task ProcessPaymentAsync(PaymentViewModel model)
         {
             Dictionary<string, string> attributes = new Dictionary<string, string>
-            {
-                { "razorpay_payment_id", model.razorpay_payment_id },
-                { "razorpay_order_id", model.razorpay_order_id },
-                { "razorpay_signature", model.razorpay_signature }
-            };
+                        {
+                            { "razorpay_payment_id", model.razorpay_payment_id },
+                            { "razorpay_order_id", model.razorpay_order_id },
+                            { "razorpay_signature", model.razorpay_signature }
+                        };
 
             Utils.verifyPaymentSignature(attributes);
             var orderId = model.razorpay_order_id;
@@ -407,18 +413,52 @@ namespace ShagunGraminHealth.Services
 
             return viewModels;
         }
-
         public async Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize)
         {
             var allAdvertisements = await _jobAdvertisementRepository.GetAllAsync();
             var paginatedAdvertisements = allAdvertisements
-                .OrderByDescending(ad => ad.AdvertisementDate) 
+                .OrderByDescending(ad => ad.AdvertisementDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             return paginatedAdvertisements;
         }
+        public async Task<WalletViewModel> GetWalletDetailsAsync(int userId)
+        {
+            var wallet = await _walletRepository.GetByIdAsync(userId);
+            if (wallet != null)
+            {
+                return new WalletViewModel
+                {
+                    UserId = wallet.UserId,
+                };
+            }
+            return null;
+        }
+        public async Task UpdateWalletAsync(int userId, decimal amount, string userRefId)
+        {
+            var wallet = await _walletRepository.GetByIdAsync(userId);
+            if (wallet != null)
+            {
+                await _walletRepository.Update(wallet);
+                await _walletRepository.SaveChangesAsync();
 
+                var walletPaymentDetails = new WalletPaymentDetails
+                {
+                    Amount = amount,
+                    UserRefId = userRefId,
+                    TransactionDate = DateTime.UtcNow
+                };
+
+                await _walletPaymentDetailsRepository.AddAsync(walletPaymentDetails);
+                await _walletPaymentDetailsRepository.SaveChangesAsync();
+            }
+        }
+        public async Task AddWalletPaymentDetailsAsync(WalletPaymentDetails paymentDetails)
+        {
+            await _walletPaymentDetailsRepository.AddAsync(paymentDetails);
+            await _walletPaymentDetailsRepository.SaveChangesAsync();
+        }
     }
 }

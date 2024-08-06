@@ -1,13 +1,15 @@
-﻿namespace ShagunGraminHealth.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace ShagunGraminHealth.Models
 {
-    public class Wallet
+    public partial class Wallet
     {
         public int Id { get; set; }
-        public string? ReferenceId { get; set; }
         public int UserId { get; set; }
-        public string? OrderId { get; set; }
-        public decimal Balance { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string ReferenceId { get; set; } = null!;
 
+        public virtual User User { get; set; } = null!;
+        public virtual ICollection<WalletPaymentDetails> WalletPaymentDetails { get; set; } = new HashSet<WalletPaymentDetails>();
     }
 }

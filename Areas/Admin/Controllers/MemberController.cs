@@ -80,7 +80,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         }
 
 
-        public async Task<IActionResult> Payment(PaymentViewModel model)
+        public async Task<IActionResult> Payment(PaymentViewModel model)    
         {
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             model.UserId = Convert.ToInt32(userIdClaim);
@@ -105,6 +105,31 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         {
             var Member = await _memberService.GetMemberApplicationIdAsync(Application_Id);
             return View(Member);
+        }
+        public async Task<IActionResult> WalletDetails()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var walletDetails = await _memberService.GetWalletDetailsAsync(userId);
+            
+            return View(walletDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateWallet(decimal amount, string userRefId)
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (int.TryParse(userIdClaim, out int userId))
+            {
+                await _memberService.UpdateWalletAsync(userId, amount, userRefId);
+                return RedirectToAction("WalletDetails", new { userId = userId });
+            }
+
+            return Unauthorized();
         }
     }
 }

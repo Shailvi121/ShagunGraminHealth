@@ -8,6 +8,8 @@ namespace ShagunGraminHealth.Models
         public User()
         {
             UserRoles = new HashSet<UserRole>();
+            Wallets = new HashSet<Wallet>();
+
         }
 
         public int Id { get; set; }
@@ -24,5 +26,7 @@ namespace ShagunGraminHealth.Models
         public string? Role { get; set; }
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Wallet> Wallets { get; set; }
+
     }
 }

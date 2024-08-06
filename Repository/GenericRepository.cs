@@ -40,11 +40,10 @@ namespace ShagunGraminHealth.Repository
             }
             catch (Exception)
             {
-
                 throw;
             }
-       
         }
+
 
         public async Task<List<T>> GetAllAsync()
         {
