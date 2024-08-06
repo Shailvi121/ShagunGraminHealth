@@ -341,11 +341,11 @@ namespace ShagunGraminHealth.Services
         public async Task ProcessPaymentAsync(PaymentViewModel model)
         {
             Dictionary<string, string> attributes = new Dictionary<string, string>
-                        {
-                            { "razorpay_payment_id", model.razorpay_payment_id },
-                            { "razorpay_order_id", model.razorpay_order_id },
-                            { "razorpay_signature", model.razorpay_signature }
-                        };
+            {
+               { "razorpay_payment_id", model.razorpay_payment_id },
+               { "razorpay_order_id", model.razorpay_order_id },
+               { "razorpay_signature", model.razorpay_signature }
+            };
 
             Utils.verifyPaymentSignature(attributes);
             var orderId = model.razorpay_order_id;
@@ -360,6 +360,75 @@ namespace ShagunGraminHealth.Services
 
             await _paymentRepository.AddAsync(paymentOrder);
             await _paymentRepository.SaveChangesAsync();
+
+
+            
+            WalletViewModel walletvm = new WalletViewModel
+            {
+                UserId = model.UserId,
+                ReferenceId = model.Refference_id,
+                Status = "Unpaid",
+                TotalBalance = "100",
+                TransactionCount = "1",
+            };
+
+           
+            var wallet = await _walletRepository.FindAsync(w => w.ReferenceId == walletvm.ReferenceId);
+
+            if (wallet == null)
+            {
+                
+                wallet = new Wallet
+                {
+                    UserId = walletvm.UserId,
+                    ReferenceId = walletvm.ReferenceId,
+                    Status = walletvm.Status,
+                    TotalBalance = walletvm.TotalBalance,
+                    TranscationCount = walletvm.TransactionCount,
+                };
+
+                await _walletRepository.AddAsync(wallet);
+            }
+            else
+            {
+                decimal currentBalance = decimal.Parse(wallet.TotalBalance);
+                int currentTransactionCount = int.Parse(wallet.TranscationCount);
+
+                // Update wallet with new values
+                wallet.TotalBalance = (currentBalance + decimal.Parse(walletvm.TotalBalance)).ToString();
+                wallet.TranscationCount = (currentTransactionCount + int.Parse(walletvm.TransactionCount)).ToString();
+
+               await _walletRepository.Update(wallet);
+
+
+                //    wallet.TotalBalance = (wallet.TotalBalance + walletvm.TotalBalance).ToString();
+                //    wallet.TranscationCount = (wallet.TranscationCount + 1).ToString();
+
+                //   await _walletRepository.Update(wallet);
+            }
+
+            await _walletRepository.SaveChangesAsync();
+
+            // Create WalletPaymentDetailsVM
+            WalletPaymentDetailsVM walletPaymentDetailsVM = new WalletPaymentDetailsVM
+            {
+                WalletId = wallet.Id,
+                UserRefId = model.Refference_id,
+                TransactionDate = DateTime.Now,
+                Amount = 100,
+            };
+
+            // Create WalletPaymentDetails
+            WalletPaymentDetails walletPaymentDetails = new WalletPaymentDetails
+            {
+                WalletId =walletPaymentDetailsVM.WalletId,
+                UserRefId = walletPaymentDetailsVM.UserRefId,
+                TransactionDate = walletPaymentDetailsVM.TransactionDate,
+                Amount = walletPaymentDetailsVM.Amount,
+            };
+
+            await _walletPaymentDetailsRepository.AddAsync(walletPaymentDetails);
+            await _walletPaymentDetailsRepository.SaveChangesAsync();
 
             var orders = await _orderRepository.GetByOrderIdAsync(model.razorpay_order_id);
             if (orders != null && orders.Count > 0)
@@ -424,18 +493,26 @@ namespace ShagunGraminHealth.Services
 
             return paginatedAdvertisements;
         }
-        public async Task<WalletViewModel> GetWalletDetailsAsync(int userId)
+
+        public async Task<List<WalletViewModel>> GetWalletDetailsAsync()
         {
-            var wallet = await _walletRepository.GetByIdAsync(userId);
-            if (wallet != null)
+            // Retrieve all wallet records from the repository
+            var wallets = await _walletRepository.GetAllAsync();
+
+            // Map Wallet entities to WalletViewModel
+            var walletViewModels = wallets.Select(wallet => new WalletViewModel
             {
-                return new WalletViewModel
-                {
-                    UserId = wallet.UserId,
-                };
-            }
-            return null;
+                Id = wallet.Id,
+                UserId = wallet.UserId,
+                ReferenceId = wallet.ReferenceId,
+                TransactionCount = wallet.TranscationCount, 
+                TotalBalance = wallet.TotalBalance,          
+                Status = wallet.Status
+            }).ToList();
+
+            return walletViewModels;
         }
+        
         public async Task UpdateWalletAsync(int userId, decimal amount, string userRefId)
         {
             var wallet = await _walletRepository.GetByIdAsync(userId);
@@ -459,6 +536,11 @@ namespace ShagunGraminHealth.Services
         {
             await _walletPaymentDetailsRepository.AddAsync(paymentDetails);
             await _walletPaymentDetailsRepository.SaveChangesAsync();
+        }
+
+        public Task<WalletViewModel> GetWalletDetailsAsync(int userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

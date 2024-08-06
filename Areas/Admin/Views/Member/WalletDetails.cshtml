@@ -4,38 +4,66 @@
 }
 <h2>Wallet Details</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReferenceId)
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReferenceId)
-                </td>
-                
-            </tr>
-        }
-    </tbody>
-</table>
+<style>
+    .payment-status-success {
+        color: green;
+    }
+
+    .payment-status-default {
+        color: blue;
+    }
+</style>
+<div class="container-fluid">
+    <div class="nk-content-inner">
+        <div class="nk-content-body">
+            <div class="card card-preview">
+                <div class="card-inner">
+                    <div class="datatable-wrap my-3">
+                        <table class="datatable-init nowrap table dataTable no-footer dtr-inline">
+
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TotalBalance)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TransactionCount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ReferenceId)
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalBalance)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TransactionCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReferenceId)
+                                        </td>
+
+                                        <td class="@(item.Status == "Paid" ? "payment-status-success" : "payment-status-default")">
+                                            @item.Status
+                                        </td>
+                                       @*  <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

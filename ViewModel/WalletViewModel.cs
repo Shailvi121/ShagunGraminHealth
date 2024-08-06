@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string ReferenceId { get; set; }
-        public int TransactionCount { get; set; }
-        public decimal TotalBalance { get; set; }
-        public string Status { get; set; }
+        public string? ReferenceId { get; set; }
+        public string? TransactionCount { get; set; }
+        public string? TotalBalance { get; set; }
+        public string? Status { get; set; }
     }
 }

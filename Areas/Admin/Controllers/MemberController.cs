@@ -108,13 +108,13 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         }
         public async Task<IActionResult> WalletDetails()
         {
-            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
-            {
-                return Unauthorized();
-            }
+            //var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            //if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            //{
+            //    return Unauthorized();
+            //}
 
-            var walletDetails = await _memberService.GetWalletDetailsAsync(userId);
+            var walletDetails = await _memberService.GetWalletDetailsAsync();
             
             return View(walletDetails);
         }

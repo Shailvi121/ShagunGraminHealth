@@ -19,6 +19,7 @@ namespace ShagunGraminHealth.Interface
         Task<IEnumerable<MembershipFormViewModel>> GetMemberApplicationIdAsync(string Application_Id);
         Task ApplyJobAsync(JobApplicationViewModel model);
         Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize);
+        Task<List<WalletViewModel>> GetWalletDetailsAsync();
         Task<WalletViewModel> GetWalletDetailsAsync(int userId);
         Task UpdateWalletAsync(int userId, decimal amount, string userRefId);
         Task AddWalletPaymentDetailsAsync(WalletPaymentDetails paymentDetails);
