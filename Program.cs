@@ -17,12 +17,17 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/UserLogin/Login";
-        options.LogoutPath = "/UserLogin/Logout";
-    });
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/UserLogin/Login";
+            options.LogoutPath = "/UserLogin/Logout";
+        });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MemberPolicy", policy => policy.RequireRole("Member"));
+    options.AddPolicy("CandidatePolicy", policy => policy.RequireRole("Candidate"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,9 +40,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAuthentication();
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

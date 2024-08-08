@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
+using System.Data;
 using System.Security.Claims;
 
 namespace ShagunGraminHealth.Controllers
@@ -20,7 +22,6 @@ namespace ShagunGraminHealth.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
@@ -90,5 +91,7 @@ namespace ShagunGraminHealth.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "UserLogin");
         }
+
+
     }
 }
