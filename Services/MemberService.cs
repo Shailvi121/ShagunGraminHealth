@@ -3,6 +3,8 @@ using Razorpay.Api;
 using ShagunGraminHealth.Interface;
 using ShagunGraminHealth.Models;
 using ShagunGraminHealth.ViewModel;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace ShagunGraminHealth.Services
 {
@@ -394,17 +396,11 @@ namespace ShagunGraminHealth.Services
                 decimal currentBalance = decimal.Parse(wallet.TotalBalance);
                 int currentTransactionCount = int.Parse(wallet.TranscationCount);
 
-                // Update wallet with new values
                 wallet.TotalBalance = (currentBalance + decimal.Parse(walletvm.TotalBalance)).ToString();
                 wallet.TranscationCount = (currentTransactionCount + int.Parse(walletvm.TransactionCount)).ToString();
 
                await _walletRepository.Update(wallet);
 
-
-                //    wallet.TotalBalance = (wallet.TotalBalance + walletvm.TotalBalance).ToString();
-                //    wallet.TranscationCount = (wallet.TranscationCount + 1).ToString();
-
-                //   await _walletRepository.Update(wallet);
             }
 
             await _walletRepository.SaveChangesAsync();
@@ -416,6 +412,8 @@ namespace ShagunGraminHealth.Services
                 UserRefId = model.Refference_id,
                 TransactionDate = DateTime.Now,
                 Amount = 100,
+                OrderId = model.razorpay_order_id,
+                PaymentId = model.razorpay_payment_id,
             };
 
             // Create WalletPaymentDetails
@@ -425,6 +423,8 @@ namespace ShagunGraminHealth.Services
                 UserRefId = walletPaymentDetailsVM.UserRefId,
                 TransactionDate = walletPaymentDetailsVM.TransactionDate,
                 Amount = walletPaymentDetailsVM.Amount,
+                OrderId = walletPaymentDetailsVM.OrderId,
+                PaymentId = walletPaymentDetailsVM.PaymentId, 
             };
 
             await _walletPaymentDetailsRepository.AddAsync(walletPaymentDetails);
@@ -496,18 +496,34 @@ namespace ShagunGraminHealth.Services
 
         public async Task<List<WalletViewModel>> GetWalletDetailsAsync()
         {
-            // Retrieve all wallet records from the repository
+            
             var wallets = await _walletRepository.GetAllAsync();
-
-            // Map Wallet entities to WalletViewModel
+            var walletPayments = await _walletPaymentDetailsRepository.GetAllAsync();
             var walletViewModels = wallets.Select(wallet => new WalletViewModel
             {
                 Id = wallet.Id,
                 UserId = wallet.UserId,
                 ReferenceId = wallet.ReferenceId,
                 TransactionCount = wallet.TranscationCount, 
-                TotalBalance = wallet.TotalBalance,          
-                Status = wallet.Status
+                TotalBalance = wallet.TotalBalance,
+                //Status = wallet.Status == "Unpaid"
+                //    ? string.Join(", ", walletPayments
+                //        .Where(wpd => wpd.WalletId == wallet.Id)
+                //        .Select(wpd => $"OrderId: {wpd.OrderId}, PaymentId: {wpd.PaymentId}")
+                //        .Distinct()
+                //        .ToList())
+                //    : wallet.Status
+                Status = wallet.Status,
+                PaymentId = string.Join(", ", walletPayments
+                .Where(wpd => wpd.WalletId == wallet.Id)
+                .Select(wpd => wpd.PaymentId)
+                .Distinct()
+                .ToList()),
+                OrderId = string.Join(", ", walletPayments
+                .Where(wpd => wpd.WalletId == wallet.Id)
+                .Select(wpd => wpd.OrderId)
+                .Distinct()
+                .ToList())
             }).ToList();
 
             return walletViewModels;
@@ -537,6 +553,54 @@ namespace ShagunGraminHealth.Services
             await _walletPaymentDetailsRepository.AddAsync(paymentDetails);
             await _walletPaymentDetailsRepository.SaveChangesAsync();
         }
+       
+
+        public async Task RefundPaymentsAsync(List<string> paymentIds, List<string> orderIds)
+        {
+            if (paymentIds.Count != orderIds.Count)
+            {
+                throw new ArgumentException("The number of payment IDs and order IDs must be the same.");
+            }
+
+            string _keyId = "rzp_test_h6khePiEN5pLb5";
+            string _keySecret = "aa79deq6RzqONUxz2lnJPmhc";
+
+            var credentials = $"{_keyId}:{_keySecret}";
+            var base64Credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials));
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64Credentials);
+
+                for (int i = 0; i < paymentIds.Count; i++)
+                {
+                    var paymentId = paymentIds[i];
+                    var orderId = orderIds[i];
+
+                    var requestMessage = new HttpRequestMessage(System.Net.Http.HttpMethod.Post, "https://api.razorpay.com/v1/refunds");
+
+                    // Set the content of the request
+                    var content = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string, string>("amount", "100"), // Example amount in paise
+                        new KeyValuePair<string, string>("payment_id", paymentId),
+                        new KeyValuePair<string, string>("order_id", orderId)
+                    });
+
+                    requestMessage.Content = content;
+
+                    // Send the request
+                    var response = await client.SendAsync(requestMessage);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var errorContent = await response.Content.ReadAsStringAsync();
+                        throw new Exception($"Refund failed for Payment ID {paymentId} and Order ID {orderId}: {errorContent}");
+                    }
+                }
+            }
+        }
+
 
         public Task<WalletViewModel> GetWalletDetailsAsync(int userId)
         {

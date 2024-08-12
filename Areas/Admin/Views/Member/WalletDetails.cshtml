@@ -35,6 +35,9 @@
                                     <th>
                                         Status
                                     </th>
+                                    <th>
+                                        Bonus Payment
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,8 +57,19 @@
                                         <td class="@(item.Status == "Paid" ? "payment-status-success" : "payment-status-default")">
                                             @item.Status
                                         </td>
-                                       @*  <td>
-                                            @Html.DisplayFor(modelItem => item.Status)
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            <a href="/Admin/Member/RefundPayment?paymentId=@item.PaymentId&amp;orderId=@item.OrderId">
+                                                <span class="btn btn-primary">Bonus Payment</span>
+                                            </a>
+                                        </td>
+
+
+                                        @* <td class="dtr-control sorting_1" tabindex="0">
+
+                                            <a href="/Admin/Member/RefundPayment?PaymentId=@item.PaymentId&amp;OrderId=@item.OrderId">
+                                                <span class="btn btn-primary">Bonus Payment</span>
+                                            </a>
+
                                         </td> *@
                                     </tr>
                                 }

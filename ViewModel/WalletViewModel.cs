@@ -8,5 +8,7 @@
         public string? TransactionCount { get; set; }
         public string? TotalBalance { get; set; }
         public string? Status { get; set; }
+        public string PaymentId { get; set; } 
+        public string OrderId { get; set; }
     }
 }

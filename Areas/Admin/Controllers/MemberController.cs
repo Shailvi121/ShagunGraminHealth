@@ -108,11 +108,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
         }
         public async Task<IActionResult> WalletDetails()
         {
-            //var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            //if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
-            //{
-            //    return Unauthorized();
-            //}
+            
 
             var walletDetails = await _memberService.GetWalletDetailsAsync();
             
@@ -131,5 +127,23 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
             return Unauthorized();
         }
+
+        [HttpGet]
+
+        public async Task<IActionResult> RefundPayment(string paymentId, string orderId)
+        {
+            try
+            {
+                await _memberService.RefundPaymentsAsync(new List<string> { paymentId }, new List<string> { orderId });
+                ViewBag.Message = "Refund successful.";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = $"Refund failed: {ex.Message}";
+            }
+
+            return View();
+        }
+        
     }
 }
