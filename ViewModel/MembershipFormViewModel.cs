@@ -104,5 +104,7 @@ namespace ShagunGraminHealth.ViewModel
 
         public List<NominatedDetail> NominatedDetails { get; set; }
         public List<FamilyDetail> FamilyDetails { get; set; }
+
+        public string? Bonus {  get; set; }
     }
 }

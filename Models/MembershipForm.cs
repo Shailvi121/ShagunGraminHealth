@@ -44,7 +44,7 @@ namespace ShagunGraminHealth.Models
         public string NominatedDetailsJson { get; set; }
         public string FamilyDetailsJson { get; set; }
 
-
+        public string? Bonus {  get; set; }
 
     }
 }

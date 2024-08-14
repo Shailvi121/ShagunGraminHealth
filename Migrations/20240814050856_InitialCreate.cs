@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShagunGraminHealth.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -164,7 +164,8 @@ namespace ShagunGraminHealth.Migrations
                     OrderId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     NominatedDetailsJson = table.Column<string>(type: "text", nullable: false),
-                    FamilyDetailsJson = table.Column<string>(type: "text", nullable: false)
+                    FamilyDetailsJson = table.Column<string>(type: "text", nullable: false),
+                    Bonus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -314,6 +315,8 @@ namespace ShagunGraminHealth.Migrations
                     WalletId = table.Column<int>(type: "int", nullable: false),
                     UserRefId = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

@@ -161,7 +161,8 @@ namespace ShagunGraminHealth.Services
                 OrderId = model.OrderId,
                 UserId = model.UserId,
                 NominatedDetailsJson = NominatedDetails,
-                FamilyDetailsJson = FamilyDetails
+                FamilyDetailsJson = FamilyDetails,
+                Bonus = "UnPaid"
 
             };
 
@@ -496,39 +497,42 @@ namespace ShagunGraminHealth.Services
 
         public async Task<List<WalletViewModel>> GetWalletDetailsAsync()
         {
-            
+           
             var wallets = await _walletRepository.GetAllAsync();
             var walletPayments = await _walletPaymentDetailsRepository.GetAllAsync();
-            var walletViewModels = wallets.Select(wallet => new WalletViewModel
+            var membershipForms = await _membershipFormRepository.GetAllAsync(); 
+            var paymentOrders = await _paymentRepository.GetAllAsync(); 
+
+            var walletViewModels = wallets.Select(wallet =>
             {
-                Id = wallet.Id,
-                UserId = wallet.UserId,
-                ReferenceId = wallet.ReferenceId,
-                TransactionCount = wallet.TranscationCount, 
-                TotalBalance = wallet.TotalBalance,
-                //Status = wallet.Status == "Unpaid"
-                //    ? string.Join(", ", walletPayments
-                //        .Where(wpd => wpd.WalletId == wallet.Id)
-                //        .Select(wpd => $"OrderId: {wpd.OrderId}, PaymentId: {wpd.PaymentId}")
-                //        .Distinct()
-                //        .ToList())
-                //    : wallet.Status
-                Status = wallet.Status,
-                PaymentId = string.Join(", ", walletPayments
-                .Where(wpd => wpd.WalletId == wallet.Id)
-                .Select(wpd => wpd.PaymentId)
-                .Distinct()
-                .ToList()),
-                OrderId = string.Join(", ", walletPayments
-                .Where(wpd => wpd.WalletId == wallet.Id)
-                .Select(wpd => wpd.OrderId)
-                .Distinct()
-                .ToList())
+                var OrderId = membershipForms
+                    .Where(mf => mf.Reference == wallet.ReferenceId) 
+                    .OrderBy(mf => mf.Form_Date)
+                    .Select(mf => mf.OrderId) 
+                    .FirstOrDefault(); 
+
+                var paymentId = paymentOrders
+                    .Where(po => po.OrderId == OrderId) 
+                    .Select(po => po.RazorPaymentId) 
+                    .FirstOrDefault(); 
+
+                return new WalletViewModel
+                {
+                    Id = wallet.Id,
+                    UserId = wallet.UserId,
+                    ReferenceId = wallet.ReferenceId,
+                    TransactionCount = wallet.TranscationCount,
+                    TotalBalance = wallet.TotalBalance,
+                    Status = wallet.Status,
+                    OrderId = OrderId,
+                    PaymentId = paymentId
+                };
             }).ToList();
 
             return walletViewModels;
         }
-        
+
+
         public async Task UpdateWalletAsync(int userId, decimal amount, string userRefId)
         {
             var wallet = await _walletRepository.GetByIdAsync(userId);

@@ -12,8 +12,8 @@ using ShagunGraminHealth.Data;
 namespace ShagunGraminHealth.Migrations
 {
     [DbContext(typeof(ShagunGraminHealthContext))]
-    [Migration("20240806105952_initial-create")]
-    partial class initialcreate
+    [Migration("20240814050856_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -459,6 +459,9 @@ namespace ShagunGraminHealth.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Bonus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Candidate_Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -814,6 +817,14 @@ namespace ShagunGraminHealth.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");

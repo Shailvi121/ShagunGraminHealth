@@ -457,6 +457,9 @@ namespace ShagunGraminHealth.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Bonus")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Candidate_Name")
                         .IsRequired()
                         .HasMaxLength(255)
