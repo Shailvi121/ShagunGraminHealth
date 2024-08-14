@@ -629,10 +629,46 @@ namespace ShagunGraminHealth.Services
             }
         }
 
-
-        public Task<WalletViewModel> GetWalletDetailsAsync(int userId)
+        public async Task UpdateWalletAndMembershipStatusAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                // Retrieve all wallets
+                var wallets = await _walletRepository.GetAllAsync();
+
+                foreach (var wallet in wallets)
+                {
+                    // Check if transaction count is greater than 1
+                    if (int.Parse(wallet.TranscationCount) > 1)
+                    {
+                        // Update wallet status to "Paid"
+                        wallet.Status = "Paid";
+                        await _walletRepository.Update(wallet);
+
+                        // Retrieve the related membership forms based on the wallet's reference ID
+                        var membershipForms = await _membershipFormRepository.GetAllAsync();
+                        var relatedForms = membershipForms.Where(mf => mf.Reference == wallet.ReferenceId);
+
+                        foreach (var form in relatedForms)
+                        {
+                            // Update bonus status to "Paid"
+                            form.Bonus = "Paid";
+                            await _membershipFormRepository.Update(form);
+                        }
+                    }
+                }
+
+                // Save changes to the database
+                await _walletRepository.SaveChangesAsync();
+                await _membershipFormRepository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (using a logging framework or system)
+                Console.WriteLine($"An error occurred while updating wallet and membership status: {ex.Message}");
+                throw; // Rethrow the exception if you need it to be handled further up the call stack
+            }
         }
+
     }
 }

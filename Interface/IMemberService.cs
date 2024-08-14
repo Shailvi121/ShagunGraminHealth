@@ -20,12 +20,11 @@ namespace ShagunGraminHealth.Interface
         Task ApplyJobAsync(JobApplicationViewModel model);
         Task<List<JobAdvertisement>> GetJobAdvertisementsAsync(int page, int pageSize);
         Task<List<WalletViewModel>> GetWalletDetailsAsync();
-        Task<WalletViewModel> GetWalletDetailsAsync(int userId);
         Task UpdateWalletAsync(int userId, decimal amount, string userRefId);
         Task AddWalletPaymentDetailsAsync(WalletPaymentDetails paymentDetails);
         //Task RefundPaymentAsync(string paymentId, string orderId);
         Task RefundPaymentsAsync(List<string> paymentIds, List<string> orderIds,string ReferenceId);
-
+        Task UpdateWalletAndMembershipStatusAsync();
 
     }
 }

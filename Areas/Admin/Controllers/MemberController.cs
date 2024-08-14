@@ -135,6 +135,8 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
             try
             {
                 await _memberService.RefundPaymentsAsync(new List<string> { paymentId }, new List<string> { orderId }, ReferenceId);
+                await _memberService.UpdateWalletAndMembershipStatusAsync();
+
                 ViewBag.Message = "Refund successful.";
             }
             catch (Exception ex)
@@ -142,7 +144,7 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
                 ViewBag.Message = $"Refund failed: {ex.Message}";
             }
 
-            return View();
+            return RedirectToAction("walletDetails");
         }
         
     }
