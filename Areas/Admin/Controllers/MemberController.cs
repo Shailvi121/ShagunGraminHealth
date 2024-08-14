@@ -130,11 +130,11 @@ namespace ShagunGraminHealth.Areas.Admin.Controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> RefundPayment(string paymentId, string orderId)
+        public async Task<IActionResult> RefundPayment(string paymentId, string orderId, string ReferenceId)
         {
             try
             {
-                await _memberService.RefundPaymentsAsync(new List<string> { paymentId }, new List<string> { orderId });
+                await _memberService.RefundPaymentsAsync(new List<string> { paymentId }, new List<string> { orderId }, ReferenceId);
                 ViewBag.Message = "Refund successful.";
             }
             catch (Exception ex)

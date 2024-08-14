@@ -6,6 +6,7 @@ using ShagunGraminHealth.ViewModel;
 using System.Net.Http.Headers;
 using System.Text;
 
+
 namespace ShagunGraminHealth.Services
 {
     public class MemberService : IMemberService
@@ -559,7 +560,7 @@ namespace ShagunGraminHealth.Services
         }
        
 
-        public async Task RefundPaymentsAsync(List<string> paymentIds, List<string> orderIds)
+        public async Task RefundPaymentsAsync(List<string> paymentIds, List<string> orderIds, string ReferenceId)
         {
             if (paymentIds.Count != orderIds.Count)
             {
@@ -596,11 +597,34 @@ namespace ShagunGraminHealth.Services
                     // Send the request
                     var response = await client.SendAsync(requestMessage);
 
+                    if (response.IsSuccessStatusCode)
+                    {
+
+
+                        var responseData = await response.Content.ReadAsStringAsync();
+
+                        // Deserialize using Newtonsoft.Json
+                        var refundDetails = JsonConvert.DeserializeObject<RefundResponse>(responseData);
+                        
+
+                        // Log or handle the refund details as needed
+                        Console.WriteLine($"Refund successful for Payment ID {paymentId} and Order ID {orderId}. Refund ID: {refundDetails.Id}");
+                    }
+                    else
+                    {
+                        var errorContent = await response.Content.ReadAsStringAsync();
+                        // You might want to log this error for troubleshooting
+                        Console.WriteLine($"Refund failed for Payment ID {paymentId} and Order ID {orderId}: {errorContent}");
+                        throw new Exception($"Refund failed for Payment ID {paymentId} and Order ID {orderId}: {errorContent}");
+                    }
+
+
                     if (!response.IsSuccessStatusCode)
                     {
                         var errorContent = await response.Content.ReadAsStringAsync();
                         throw new Exception($"Refund failed for Payment ID {paymentId} and Order ID {orderId}: {errorContent}");
                     }
+
                 }
             }
         }
